@@ -1,49 +1,233 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const categories = [
+  {
+    title: 'Creative Culture\n& Team',
+    services: [
+      'Culture strategy & design',
+      'Team rituals & facilitation',
+      'Organisational storytelling',
+      'Internal communications design',
+      'Creative leadership workshops',
+      'Brand identity & values',
+      'Change management support',
+    ],
+  },
+  {
+    title: 'Futures\n& Innovation',
+    services: [
+      'Innovation sprints',
+      'Trend research & foresight',
+      'Scenario planning',
+      'Emerging technology scouting',
+      'Opportunity mapping',
+      'Future-back strategy',
+      'Concept prototyping',
+    ],
+  },
+  {
+    title: 'Product',
+    services: [
+      'Product strategy',
+      'UX & interaction design',
+      'Prototype development',
+      'Design systems',
+      'User research',
+      'Go-to-market planning',
+      'Product-market fit workshops',
+    ],
+  },
+];
 ---
 
 <BaseLayout
   title="Services"
-  description="Estro services — residencies, sprints, advisory, and venture building."
+  description="Strategy, design, and innovation — delivered from inside your team."
+  showFooter={false}
 >
 
-  <section class="page-header">
-    <div class="container">
-      <h1 class="page-title">Services</h1>
+  <!-- ── Section 1: sentence + 2 images ── -->
+  <section class="s-hero">
+
+    <div class="s-hero__text">
+      <p class="s-hero__sentence">
+        We show up where the work is — embedding creative thinking, strategic depth,
+        and product craft into the teams that are building things that matter.
+      </p>
     </div>
+
+    <div class="s-hero__images">
+      <div class="s-hero__img-slot">
+        <!-- TODO: replace with <picture> when image is ready -->
+        <div class="img-placeholder" style="background: linear-gradient(160deg,#dde0d5 0%,#cdd0c5 100%);"></div>
+      </div>
+      <div class="s-hero__img-slot">
+        <!-- TODO: replace with <picture> when image is ready -->
+        <div class="img-placeholder" style="background: linear-gradient(160deg,#d5d2c8 0%,#c5c2b5 100%);"></div>
+      </div>
+    </div>
+
   </section>
 
-  <hr class="rule" />
+  <!-- ── Section 2: 3 service categories ── -->
+  <section class="s-categories" aria-label="Service categories">
 
-  <!-- TODO: content — services overview -->
-  <section class="section">
-    <div class="container">
-      <p class="section-label">Overview</p>
-      <!-- TODO: content — overview paragraph -->
+    <div class="s-categories__grid">
+      {categories.map((cat) => (
+        <div class="s-cat">
+          <p class="s-cat__title">
+            {cat.title.split('\n').map((line, i) => (
+              <>{line}{i < cat.title.split('\n').length - 1 && <br />}</>
+            ))}
+          </p>
+          <ul class="s-cat__list" role="list">
+            {cat.services.map((svc) => (
+              <li class="s-cat__item">{svc}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
     </div>
-  </section>
 
-  <hr class="rule" />
-
-  <!-- TODO: content — services list -->
-  <section class="section">
-    <div class="container">
-      <p class="section-label">What we offer</p>
-      <!-- TODO: content — services -->
-    </div>
   </section>
 
 </BaseLayout>
 
 <style>
-  .page-header { padding-block: var(--space-5); }
-
-  .page-title {
-    font-family: var(--font-display);
-    font-size: var(--text-3xl);
-    font-weight: 700;
-    letter-spacing: -0.02em;
+  /* ── Override BaseLayout padding so sections sit flush ── */
+  :global(#main-content) {
+    padding-top: 0 !important;
   }
 
-  .section { padding-block: var(--space-6); }
+  /* ── Section 1 — hero ─────────────────────────────────── */
+  .s-hero {
+    height: 100dvh;
+    padding-top: 72px; /* fixed nav */
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid var(--color-rule);
+    overflow: hidden;
+  }
+
+  .s-hero__text {
+    padding: var(--space-5) var(--gutter) var(--space-4);
+    flex-shrink: 0;
+  }
+
+  .s-hero__sentence {
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 3vw, 2.2rem);
+    font-weight: 400;
+    line-height: 1.3;
+    max-width: 44ch;
+  }
+
+  /* Two images fill the remaining height */
+  .s-hero__images {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-top: 1px solid var(--color-rule);
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  .s-hero__img-slot {
+    overflow: hidden;
+    position: relative;
+  }
+
+  .s-hero__img-slot + .s-hero__img-slot {
+    border-left: 1px solid var(--color-rule);
+  }
+
+  .img-placeholder {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+  }
+
+  /* ── Section 2 — categories ───────────────────────────── */
+  .s-categories {
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-block: var(--space-5);
+    overflow: hidden;
+  }
+
+  .s-categories__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid var(--color-rule);
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  .s-cat {
+    padding: var(--space-5) var(--gutter);
+    border-right: 1px solid var(--color-rule);
+  }
+
+  .s-cat:last-child { border-right: none; }
+
+  .s-cat__title {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: var(--space-4);
+  }
+
+  .s-cat__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .s-cat__item {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: 300;
+    color: var(--color-muted);
+    line-height: 1.5;
+    padding-left: var(--space-3);
+    position: relative;
+  }
+
+  .s-cat__item::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--color-muted);
+    font-size: 0.65rem;
+    top: 0.2em;
+  }
+
+  /* Mobile: keep 3 columns, tighten spacing */
+  @media (max-width: 640px) {
+    .s-cat {
+      padding: var(--space-3) calc(var(--gutter) * 0.6);
+    }
+
+    .s-cat__title {
+      font-size: var(--text-sm);
+      margin-bottom: var(--space-3);
+    }
+
+    .s-cat__item {
+      font-size: 0.65rem;
+      padding-left: var(--space-2);
+    }
+
+    .s-categories {
+      justify-content: flex-start;
+      padding-block: var(--space-4);
+    }
+  }
 </style>
