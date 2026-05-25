@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="About"
+  description="Learn about Estro — who we are, our mission, and how we work."
+>
+
+  <!-- Page header -->
+  <section class="page-header section">
+    <div class="container">
+      <h1 class="page-title">About</h1>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       MISSION
+       ===================================================== -->
+  <section class="section" aria-labelledby="mission-heading">
+    <div class="container">
+      <h2 id="mission-heading" class="section-label">Mission</h2>
+      <!-- TODO: content — mission statement, 1–2 sentences -->
+      <div class="placeholder content-block">Mission statement</div>
+    </div>
+  </section>
+
+  <hr class="rule container" />
+
+  <!-- =====================================================
+       FOUNDERS
+       ===================================================== -->
+  <section class="section" aria-labelledby="founders-heading">
+    <div class="container">
+      <h2 id="founders-heading" class="section-label">Founders</h2>
+      <ul class="founders-grid" role="list">
+        {Array.from({ length: 2 }).map((_, i) => (
+          <li class="founder-card">
+            <div class="founder-card__photo placeholder">Photo</div>
+            <div class="founder-card__bio">
+              <!-- TODO: content — founder {i + 1} name, role, bio -->
+              <p class="placeholder">Founder {i + 1}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <hr class="rule container" />
+
+  <!-- =====================================================
+       STORY
+       ===================================================== -->
+  <section class="section" aria-labelledby="story-heading">
+    <div class="container">
+      <h2 id="story-heading" class="section-label">Story</h2>
+      <!-- TODO: content — origin story, long-form text -->
+      <div class="placeholder content-block">Story / history block</div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .page-header { padding-block-end: 0; }
+
+  .page-title {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+
+  .section-label {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-muted);
+    margin-block-end: var(--space-4);
+  }
+
+  .content-block { max-width: 60ch; padding: var(--space-5) var(--space-4); }
+
+  .rule {
+    border: none;
+    border-block-start: 1px solid var(--color-rule);
+    margin-block: 0;
+  }
+
+  .founders-grid {
+    display: grid;
+    gap: var(--space-5);
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 640px) {
+    .founders-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .founder-card { display: flex; flex-direction: column; gap: var(--space-3); }
+
+  .founder-card__photo {
+    aspect-ratio: 3 / 4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+</style>

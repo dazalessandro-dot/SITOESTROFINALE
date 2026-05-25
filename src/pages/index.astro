@@ -1,0 +1,171 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Home"
+  description="Estro — a nomadic innovation hub run by two co-founders."
+>
+
+  <!-- =====================================================
+       HERO
+       ===================================================== -->
+  <section class="hero" aria-label="Hero">
+
+    <!-- Wordmark -->
+    <h1 class="hero__wordmark">Estro</h1>
+
+    <!-- Hero image container — aspect ratio held so layout
+         doesn't shift when a real image is added -->
+    <div class="hero__image-wrap" aria-hidden="true">
+      <!-- TODO: content — hero image
+           Replace this placeholder with:
+           <picture>
+             <source srcset="hero.avif" type="image/avif" />
+             <source srcset="hero.webp" type="image/webp" />
+             <img src="hero.jpg" alt="" loading="eager" decoding="async"
+                  width="1400" height="900" />
+           </picture>
+      -->
+      <div class="placeholder hero__image-placeholder">Hero image</div>
+    </div>
+
+    <!-- Marquee / sub-headline strip -->
+    <div class="hero__strip">
+      <!-- TODO: content — tagline / marquee text -->
+      <p class="placeholder hero__strip-placeholder">Tagline strip</p>
+    </div>
+
+  </section>
+
+  <!-- =====================================================
+       INTRO
+       ===================================================== -->
+  <section class="section intro" aria-labelledby="intro-heading">
+    <div class="container">
+      <h2 id="intro-heading" class="intro__label"><!-- TODO: content — section label --></h2>
+      <!-- TODO: content — 2–3 sentence intro paragraph -->
+      <div class="placeholder intro__copy-placeholder">Intro paragraph block</div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       HIGHLIGHTS GRID  (3 stubs)
+       ===================================================== -->
+  <section class="section highlights" aria-labelledby="highlights-heading">
+    <div class="container">
+      <h2 id="highlights-heading" class="section-label"><!-- TODO: content — highlights label --></h2>
+      <ul class="highlights__grid" role="list">
+        {Array.from({ length: 3 }).map((_, i) => (
+          <li class="highlight-card">
+            <div class="highlight-card__media placeholder">Image</div>
+            <div class="highlight-card__body">
+              <!-- TODO: content — highlight {i + 1} title + description -->
+              <p class="placeholder highlight-card__text">Highlight {i + 1}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* --- Hero ------------------------------------------------- */
+  .hero {
+    position: relative;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-height: calc(100svh - 72px);
+    overflow: hidden;
+  }
+
+  .hero__wordmark {
+    font-family: var(--font-display);
+    font-size: var(--text-hero);
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    line-height: 0.9;
+    padding: var(--space-3) var(--gutter);
+    z-index: 1;
+  }
+
+  .hero__image-wrap {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .hero__image-wrap { aspect-ratio: 16 / 9; }
+  }
+
+  .hero__image-placeholder {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+  }
+
+  .hero__strip {
+    padding: var(--space-3) var(--gutter);
+    border-block-start: 1px solid var(--color-rule);
+  }
+
+  .hero__strip-placeholder {
+    margin: 0;
+  }
+
+  /* --- Intro ------------------------------------------------- */
+  .intro__label {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-muted);
+    margin-block-end: var(--space-4);
+  }
+
+  .intro__copy-placeholder {
+    max-width: 56ch;
+    padding: var(--space-6) var(--space-4);
+  }
+
+  /* --- Highlights -------------------------------------------- */
+  .section-label {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-muted);
+    margin-block-end: var(--space-4);
+  }
+
+  .highlights__grid {
+    display: grid;
+    gap: var(--space-4);
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 600px) {
+    .highlights__grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .highlight-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .highlight-card__media {
+    aspect-ratio: 4 / 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .highlight-card__text { margin: 0; }
+</style>

@@ -1,0 +1,74 @@
+---
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = 'Estro — a nomadic innovation hub.',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://estro.io');
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content={description} />
+
+  <title>{title} — Estro</title>
+
+  <link rel="canonical" href={canonicalURL} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Open Graph basics -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content={canonicalURL} />
+  <meta property="og:title"       content={`${title} — Estro`} />
+  <meta property="og:description" content={description} />
+
+  <!-- No external requests: no fonts, no analytics, no trackers -->
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to content</a>
+
+  <Nav />
+
+  <main id="main-content" tabindex="-1">
+    <slot />
+  </main>
+
+  <Footer />
+</body>
+</html>
+
+<style is:global>
+  .skip-link {
+    position: absolute;
+    top: -100%;
+    left: var(--gutter);
+    background: var(--color-text);
+    color: var(--color-bg);
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    z-index: 999;
+    transition: top var(--duration-fast);
+  }
+
+  .skip-link:focus {
+    top: var(--space-2);
+  }
+
+  /* Offset content so fixed header doesn't overlap */
+  main {
+    padding-block-start: 72px; /* approx header height; adjust if needed */
+  }
+</style>

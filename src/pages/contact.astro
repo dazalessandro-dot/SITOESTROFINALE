@@ -1,0 +1,91 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Contact"
+  description="Get in touch with Estro."
+>
+
+  <!-- Page header -->
+  <section class="page-header section">
+    <div class="container">
+      <h1 class="page-title">Contact</h1>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       CONTACT INFO
+       ===================================================== -->
+  <section class="section" aria-labelledby="contact-info-heading">
+    <div class="container contact-layout">
+
+      <div class="contact-info">
+        <h2 id="contact-info-heading" class="section-label">Get in touch</h2>
+
+        <!-- TODO: content — email address -->
+        <p class="placeholder">Email address</p>
+
+        <!-- TODO: content — location / city note (nomadic, so maybe "We travel.") -->
+        <p class="placeholder">Location / base info</p>
+
+        <!-- TODO: content — social links -->
+        <div class="placeholder">Social links</div>
+      </div>
+
+      <div class="contact-form-area">
+        <h2 class="section-label">Send a message</h2>
+        <!-- TODO: contact form
+             When ready, add a form here (e.g. Netlify Forms, Formspree,
+             or a custom endpoint). Keep it: name, email, message, submit.
+             No CAPTCHA unless spam becomes a problem. -->
+        <div class="placeholder form-placeholder">Contact form goes here</div>
+      </div>
+
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .page-header { padding-block-end: 0; }
+
+  .page-title {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+
+  .section-label {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-muted);
+    margin-block-end: var(--space-4);
+  }
+
+  /* Two-column on wider screens */
+  .contact-layout {
+    display: grid;
+    gap: var(--space-5);
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 768px) {
+    .contact-layout { grid-template-columns: 1fr 2fr; }
+  }
+
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .form-placeholder {
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+</style>

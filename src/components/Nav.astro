@@ -1,0 +1,236 @@
+---
+const navLinks = [
+  { href: '/about',       label: 'About'       },
+  { href: '/what-we-do',  label: 'What We Do'  },
+  { href: '/projects',    label: 'Projects'    },
+  { href: '/contact',     label: 'Contact'     },
+];
+
+const { pathname } = Astro.url;
+---
+
+<header class="site-header" role="banner">
+  <div class="header-inner container">
+    <a href="/" class="wordmark" aria-label="Estro — home">Estro</a>
+
+    <!-- Hamburger: real button for JS-enhanced experience -->
+    <button
+      class="hamburger"
+      id="menu-toggle"
+      aria-expanded="false"
+      aria-controls="menu-overlay"
+      aria-label="Open navigation menu"
+    >
+      <span class="hamburger__line"></span>
+      <span class="hamburger__line"></span>
+      <span class="visually-hidden">Menu</span>
+    </button>
+  </div>
+</header>
+
+<!-- Menu overlay -->
+<div
+  class="menu-overlay"
+  id="menu-overlay"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Site navigation"
+  hidden
+>
+  <div class="menu-overlay__header container">
+    <span class="wordmark" aria-hidden="true">Estro</span>
+    <button
+      class="close-btn"
+      id="menu-close"
+      aria-label="Close navigation menu"
+    >×</button>
+  </div>
+
+  <nav class="menu-nav" aria-label="Main">
+    <ul class="menu-nav__list">
+      {navLinks.map((link) => (
+        <li class="menu-nav__item">
+          <a
+            href={link.href}
+            class:list={['menu-nav__link', { 'is-active': pathname.startsWith(link.href) }]}
+          >
+            {link.label.toUpperCase()}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</div>
+
+<!-- No-JS fallback: rendered at bottom of page via a slot in BaseLayout,
+     but anchor here so #menu works as a skip link too -->
+
+<style>
+  /* --- Header ------------------------------------------------ */
+  .site-header {
+    position: fixed;
+    inset-block-start: 0;
+    inset-inline: 0;
+    z-index: 100;
+    padding-block: var(--space-3);
+    /* Transparent — hero image shows through on home */
+    mix-blend-mode: normal;
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .wordmark {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  /* --- Hamburger --------------------------------------------- */
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--space-2);
+    margin-inline-end: calc(-1 * var(--space-2)); /* optical alignment */
+    color: var(--color-text);
+  }
+
+  .hamburger__line {
+    display: block;
+    width: 24px;
+    height: 1.5px;
+    background-color: currentColor;
+    transition: opacity var(--duration-fast) var(--easing);
+  }
+
+  .hamburger:hover .hamburger__line { opacity: 0.6; }
+
+  /* --- Menu overlay ------------------------------------------ */
+  .menu-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background-color: var(--color-accent);
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transition: opacity var(--duration-menu) var(--easing);
+    pointer-events: none;
+  }
+
+  /* hidden attr hides it from AT; JS removes it when opening */
+  .menu-overlay[hidden] { display: none; }
+
+  .menu-overlay.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .menu-overlay__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: var(--space-3);
+    flex-shrink: 0;
+  }
+
+  .close-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: var(--text-xl);
+    line-height: 1;
+    padding: var(--space-2);
+    margin-inline-end: calc(-1 * var(--space-2));
+    color: var(--color-text);
+  }
+
+  .close-btn:hover { opacity: 0.6; }
+
+  /* --- Nav list ---------------------------------------------- */
+  .menu-nav {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .menu-nav__list {
+    border-block-start: 1px solid var(--color-rule);
+  }
+
+  .menu-nav__item {
+    border-block-end: 1px solid var(--color-rule);
+  }
+
+  .menu-nav__link {
+    display: block;
+    padding: var(--space-4) var(--gutter);
+    font-family: var(--font-body);
+    font-size: clamp(1.5rem, 6vw, 3rem);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--color-text);
+    text-decoration: none;
+    transition: opacity var(--duration-fast) var(--easing);
+  }
+
+  .menu-nav__link:hover,
+  .menu-nav__link:focus-visible { opacity: 0.6; }
+
+  .menu-nav__link.is-active {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+  }
+
+  /* Focus styles */
+  .hamburger:focus-visible,
+  .close-btn:focus-visible,
+  .menu-nav__link:focus-visible {
+    outline: 2px solid var(--color-text);
+    outline-offset: 3px;
+  }
+</style>
+
+<script>
+  const toggle   = document.getElementById('menu-toggle');
+  const close    = document.getElementById('menu-close');
+  const overlay  = document.getElementById('menu-overlay');
+  const links    = overlay?.querySelectorAll('.menu-nav__link');
+
+  function openMenu() {
+    overlay?.removeAttribute('hidden');
+    requestAnimationFrame(() => overlay?.classList.add('is-open'));
+    toggle?.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('is-menu-open');
+    close?.focus();
+  }
+
+  function closeMenu() {
+    overlay?.classList.remove('is-open');
+    toggle?.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('is-menu-open');
+    overlay?.addEventListener('transitionend', () => overlay.setAttribute('hidden', ''), { once: true });
+    toggle?.focus();
+  }
+
+  toggle?.addEventListener('click', openMenu);
+  close?.addEventListener('click', closeMenu);
+  links?.forEach(link => link.addEventListener('click', closeMenu));
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay?.classList.contains('is-open')) closeMenu();
+  });
+</script>

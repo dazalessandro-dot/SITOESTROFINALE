@@ -1,0 +1,115 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="What We Do"
+  description="Explore the programs, services, and formats Estro offers."
+>
+
+  <!-- Page header -->
+  <section class="page-header section">
+    <div class="container">
+      <h1 class="page-title">What We Do</h1>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       OVERVIEW
+       ===================================================== -->
+  <section class="section" aria-labelledby="overview-heading">
+    <div class="container">
+      <h2 id="overview-heading" class="section-label">Overview</h2>
+      <!-- TODO: content — overview paragraph -->
+      <div class="placeholder content-block">Overview paragraph</div>
+    </div>
+  </section>
+
+  <hr class="rule container" />
+
+  <!-- =====================================================
+       PROGRAMS / FORMATS
+       ===================================================== -->
+  <section class="section" aria-labelledby="programs-heading">
+    <div class="container">
+      <h2 id="programs-heading" class="section-label">Programs &amp; Formats</h2>
+      <ul class="programs-list" role="list">
+        {Array.from({ length: 4 }).map((_, i) => (
+          <li class="program-item">
+            <hr class="program-item__rule" />
+            <div class="program-item__inner">
+              <span class="program-item__index">0{i + 1}</span>
+              <div class="program-item__body">
+                <!-- TODO: content — program {i + 1} name + description -->
+                <p class="placeholder">Program / format {i + 1}</p>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <hr class="rule container" />
+
+  <!-- =====================================================
+       SERVICES
+       ===================================================== -->
+  <section class="section" aria-labelledby="services-heading">
+    <div class="container">
+      <h2 id="services-heading" class="section-label">Services</h2>
+      <!-- TODO: content — services block (list or grid) -->
+      <div class="placeholder content-block">Services block</div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .page-header { padding-block-end: 0; }
+
+  .page-title {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+
+  .section-label {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-muted);
+    margin-block-end: var(--space-4);
+  }
+
+  .content-block { max-width: 60ch; padding: var(--space-5) var(--space-4); }
+
+  .rule {
+    border: none;
+    border-block-start: 1px solid var(--color-rule);
+    margin-block: 0;
+  }
+
+  .programs-list { list-style: none; padding: 0; margin: 0; }
+
+  .program-item__rule {
+    border: none;
+    border-block-start: 1px solid var(--color-rule);
+    margin: 0;
+  }
+
+  .program-item__inner {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: var(--space-4);
+    padding-block: var(--space-4);
+    align-items: start;
+  }
+
+  .program-item__index {
+    font-size: var(--text-xs);
+    color: var(--color-muted);
+    padding-block-start: 0.25em;
+  }
+</style>
