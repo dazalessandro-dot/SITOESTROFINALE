@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Services"
+  description="Estro services — residencies, sprints, advisory, and venture building."
+>
+
+  <section class="page-header">
+    <div class="container">
+      <h1 class="page-title">Services</h1>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- TODO: content — services overview -->
+  <section class="section">
+    <div class="container">
+      <p class="section-label">Overview</p>
+      <!-- TODO: content — overview paragraph -->
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- TODO: content — services list -->
+  <section class="section">
+    <div class="container">
+      <p class="section-label">What we offer</p>
+      <!-- TODO: content — services -->
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .page-header { padding-block: var(--space-5); }
+
+  .page-title {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .section { padding-block: var(--space-6); }
+</style>

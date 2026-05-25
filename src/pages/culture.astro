@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Culture"
+  description="Estro culture — how we work, what we value, and the way we show up."
+>
+
+  <section class="page-header">
+    <div class="container">
+      <h1 class="page-title">Culture</h1>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- TODO: content — culture / values -->
+  <section class="section">
+    <div class="container">
+      <p class="section-label">How we work</p>
+      <!-- TODO: content -->
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- TODO: content — principles / manifesto -->
+  <section class="section">
+    <div class="container">
+      <p class="section-label">Principles</p>
+      <!-- TODO: content -->
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .page-header { padding-block: var(--space-5); }
+
+  .page-title {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .section { padding-block: var(--space-6); }
+</style>

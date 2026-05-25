@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Research"
+  description="Estro research — ideas, observations, and writing from the field."
+>
+
+  <section class="page-header">
+    <div class="container">
+      <h1 class="page-title">Research</h1>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- TODO: content — research intro -->
+  <section class="section">
+    <div class="container">
+      <p class="section-label">From the field</p>
+      <!-- TODO: content — intro paragraph -->
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- TODO: content — research articles / papers / posts grid -->
+  <section class="section">
+    <div class="container">
+      <p class="section-label">Writing</p>
+      <!-- TODO: content — articles list or grid -->
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .page-header { padding-block: var(--space-5); }
+
+  .page-title {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .section { padding-block: var(--space-6); }
+</style>
