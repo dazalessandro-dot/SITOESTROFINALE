@@ -1,0 +1,125 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const items = [
+  { title: 'Estro Tote',           price: '€28', tint: 'linear-gradient(155deg, #e2dfd4 0%, #d4d0c3 100%)' },
+  { title: 'Residency Zine Vol. 1', price: '€18', tint: 'linear-gradient(155deg, #d9d5ca 0%, #cbc7b9 100%)' },
+  { title: 'Nomad Field Notes',     price: '€12', tint: 'linear-gradient(155deg, #d4d1c6 0%, #c7c3b5 100%)' },
+  { title: 'Estro Print — Lisbon',  price: '€45', tint: 'linear-gradient(155deg, #cfccc1 0%, #c2beaf 100%)' },
+];
+---
+
+<BaseLayout
+  title="Shop"
+  description="Objects and editions from Estro — made in small runs, shipped from wherever we are."
+>
+
+  <section class="page-header">
+    <div class="container">
+      <h1 class="page-title">Shop</h1>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- Objects grid -->
+  <section class="section" aria-labelledby="objects-heading">
+    <div class="container">
+      <p id="objects-heading" class="section-label">Objects &amp; Editions</p>
+      <ul class="shop-grid" role="list">
+        {items.map((item) => (
+          <li class="shop-card">
+            <a href="#" class="shop-card__link">
+              <div class="shop-card__media" style={`background: ${item.tint};`}>
+                <!-- TODO: replace with <picture> when images are ready -->
+              </div>
+              <div class="shop-card__meta">
+                <p class="shop-card__title">{item.title}</p>
+                <p class="shop-card__price">{item.price}</p>
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- Note -->
+  <section class="section" aria-labelledby="note-heading">
+    <div class="container">
+      <p id="note-heading" class="section-label">Note</p>
+      <p class="note-text">
+        All objects are made in small runs. We ship once a month from wherever we are.
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .page-header { padding-block: var(--space-5); }
+
+  .page-title {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .section { padding-block: var(--space-6); }
+
+  /* Grid */
+  .shop-grid {
+    display: grid;
+    gap: var(--space-4);
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  }
+
+  /* Card */
+  .shop-card__link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .shop-card__media {
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    margin-bottom: var(--space-3);
+    transition: transform 400ms ease;
+  }
+
+  .shop-card__link:hover .shop-card__media {
+    transform: scale(1.02);
+  }
+
+  .shop-card__meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .shop-card__title {
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+    font-weight: 400;
+  }
+
+  .shop-card__price {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: 300;
+    color: var(--color-muted);
+  }
+
+  /* Note */
+  .note-text {
+    font-family: var(--font-display);
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    font-weight: 400;
+    max-width: 40ch;
+    line-height: 1.4;
+  }
+</style>
