@@ -1,49 +1,393 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const fragments = [
+  {
+    mark: '↘',
+    label: 'Explore first',
+    text: 'Emerging trends, field signals, and simple open questions give the work a clear starting point.',
+    className: 'fragment--explore',
+  },
+  {
+    mark: '→',
+    label: 'Play with purpose',
+    text: 'Card decks, word generators, and quick games spark new connections before the idea becomes fixed.',
+    className: 'fragment--play',
+  },
+  {
+    mark: '↗',
+    label: 'Build fast',
+    text: 'Objects, sketches, and rituals are prototyped quickly so the project can learn in public.',
+    className: 'fragment--build',
+  },
+  {
+    mark: '↙',
+    label: 'Co-create',
+    text: 'Inside, outside, online, or in the studio, the strongest ideas are shaped with the people who will use them.',
+    className: 'fragment--co',
+  },
+  {
+    mark: '↓',
+    label: 'Make tools',
+    text: 'Every object is a small engine of creativity: something to carry, use, test, and open again.',
+    className: 'fragment--tools',
+  },
+];
 ---
 
 <BaseLayout
   title="Culture"
   description="Estro culture — how we work, what we value, and the way we show up."
+  showFooter={false}
 >
 
-  <section class="page-header">
-    <div class="container">
-      <h1 class="page-title">Culture</h1>
+  <section class="culture-hero" aria-labelledby="culture-title">
+    <div class="culture-hero__inner">
+      <p class="culture-label">Culture</p>
+      <h1 id="culture-title">Plural, playful and useful.</h1>
+      <p>
+        We open projects through research, play, making, and shared
+        participation.
+      </p>
     </div>
+    <a class="culture-scroll" href="#culture-field">Scroll down to discover</a>
   </section>
 
-  <hr class="rule" />
-
-  <!-- TODO: content — culture / values -->
-  <section class="section">
-    <div class="container">
-      <p class="section-label">How we work</p>
-      <!-- TODO: content -->
-    </div>
+  <section class="culture-statement" aria-label="Culture statement">
+    <p>
+      We start before the answer is clear, then build the tools, rituals, and
+      prototypes that make a project easier to see.
+    </p>
   </section>
 
-  <hr class="rule" />
+  <section class="culture-field" id="culture-field" aria-label="How Estro works">
+    {fragments.map((fragment) => (
+      <article class={`culture-fragment ${fragment.className}`}>
+        <span aria-hidden="true">{fragment.mark}</span>
+        <p>{fragment.label}</p>
+        <h2>{fragment.text}</h2>
+      </article>
+    ))}
+  </section>
 
-  <!-- TODO: content — principles / manifesto -->
-  <section class="section">
-    <div class="container">
-      <p class="section-label">Principles</p>
-      <!-- TODO: content -->
-    </div>
+  <section class="culture-close">
+    <p>Ready to open up your next project?</p>
+    <a href="mailto:hello@estro.io">Let’s start.</a>
   </section>
 
 </BaseLayout>
 
 <style>
-  .page-header { padding-block: var(--space-5); }
-
-  .page-title {
-    font-family: var(--font-display);
-    font-size: var(--text-3xl);
-    font-weight: 700;
-    letter-spacing: -0.02em;
+  :global(#main-content) {
+    padding-top: 0 !important;
+    background: #fff;
   }
 
-  .section { padding-block: var(--space-6); }
+  .culture-hero,
+  .culture-statement,
+  .culture-field,
+  .culture-close {
+    padding-inline: var(--gutter);
+  }
+
+  .culture-hero {
+    min-height: 100svh;
+    padding-top: calc(72px + var(--space-4));
+    padding-bottom: var(--space-5);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+    overflow: hidden;
+    background: #fff;
+  }
+
+  .culture-hero::after {
+    content: '';
+    position: absolute;
+    inset: -8rem -12rem auto auto;
+    width: min(72vw, 42rem);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background:
+      repeating-conic-gradient(
+        from 20deg,
+        transparent 0deg 6deg,
+        rgba(211, 54, 48, 0.34) 6deg 6.55deg,
+        transparent 6.55deg 12deg
+      );
+    opacity: 0.46;
+    pointer-events: none;
+  }
+
+  .culture-hero__inner {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 42rem);
+    margin-left: clamp(0rem, 14vw, 12rem);
+  }
+
+  .culture-label {
+    margin-bottom: clamp(var(--space-4), 10vh, var(--space-6));
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 400;
+    color: rgba(17, 17, 17, 0.45);
+  }
+
+  .culture-hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(4rem, 12vw, 9rem);
+    font-weight: 400;
+    line-height: 0.92;
+    max-width: 8.5ch;
+  }
+
+  .culture-hero__inner > p:last-child {
+    margin-top: var(--space-4);
+    max-width: 27ch;
+    font-size: clamp(1rem, 2vw, 1.35rem);
+    line-height: 1.32;
+  }
+
+  .culture-scroll {
+    position: relative;
+    z-index: 1;
+    align-self: flex-start;
+    margin-top: clamp(var(--space-5), 12vh, var(--space-6));
+    margin-left: clamp(0rem, 14vw, 12rem);
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 0.25rem;
+  }
+
+  .culture-scroll::after {
+    content: '↓';
+    display: inline-block;
+    margin-left: 0.8rem;
+    transition: transform 160ms ease;
+  }
+
+  .culture-scroll:hover::after {
+    transform: translateY(0.25rem);
+  }
+
+  .culture-statement {
+    min-height: 92svh;
+    padding-top: var(--space-6);
+    padding-bottom: var(--space-6);
+    display: flex;
+    align-items: center;
+    background: #050505;
+    color: #fff;
+  }
+
+  .culture-statement p {
+    margin-left: clamp(0rem, 14vw, 12rem);
+    max-width: 13ch;
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 8.5vw, 7.2rem);
+    font-weight: 400;
+    line-height: 0.94;
+  }
+
+  .culture-field {
+    min-height: 130svh;
+    padding-top: var(--space-6);
+    padding-bottom: var(--space-6);
+    position: relative;
+    background: #050505;
+    color: #fff;
+  }
+
+  .culture-fragment {
+    position: absolute;
+    width: min(32rem, 34vw);
+  }
+
+  .culture-fragment span {
+    display: block;
+    margin-bottom: var(--space-4);
+    font-size: clamp(2rem, 4vw, 3.8rem);
+    line-height: 1;
+    color: #d93430;
+  }
+
+  .culture-fragment p {
+    margin-bottom: var(--space-3);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #d93430;
+  }
+
+  .culture-fragment h2 {
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 1.8vw, 1.45rem);
+    font-weight: 400;
+    line-height: 1.24;
+    color: #fff;
+  }
+
+  .fragment--explore {
+    left: clamp(var(--gutter), 14vw, 12rem);
+    top: 4rem;
+  }
+
+  .fragment--play {
+    right: var(--gutter);
+    top: 16rem;
+    width: min(23rem, 28vw);
+  }
+
+  .fragment--build {
+    left: 38vw;
+    top: 33rem;
+    width: min(30rem, 38vw);
+  }
+
+  .fragment--co {
+    left: var(--gutter);
+    top: 55rem;
+    width: min(27rem, 32vw);
+  }
+
+  .fragment--tools {
+    right: clamp(var(--gutter), 10vw, 9rem);
+    top: 70rem;
+    width: min(28rem, 32vw);
+  }
+
+  .culture-close {
+    min-height: 54svh;
+    padding-top: var(--space-6);
+    padding-bottom: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background: #fff;
+  }
+
+  .culture-close p,
+  .culture-close a {
+    max-width: 10ch;
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 8vw, 5.6rem);
+    font-weight: 400;
+    line-height: 0.96;
+    color: var(--color-text);
+  }
+
+  .culture-close a {
+    margin-top: var(--space-2);
+    text-decoration: underline;
+    text-underline-offset: 0.12em;
+    text-decoration-thickness: 1px;
+  }
+
+  @media (max-width: 640px) {
+    .culture-hero {
+      min-height: 100svh;
+      padding-top: calc(72px + var(--space-3));
+    }
+
+    .culture-hero::after {
+      inset: -5rem -7rem auto auto;
+      width: 21rem;
+      opacity: 0.48;
+    }
+
+    .culture-hero__inner,
+    .culture-scroll {
+      margin-left: clamp(3.4rem, 17vw, 4.2rem);
+    }
+
+    .culture-label {
+      margin-bottom: clamp(var(--space-5), 20vh, 9rem);
+    }
+
+    .culture-hero h1 {
+      font-size: clamp(3.2rem, 15vw, 5rem);
+      max-width: 7.6ch;
+    }
+
+    .culture-hero__inner > p:last-child {
+      max-width: 22ch;
+      font-size: 1rem;
+    }
+
+    .culture-scroll {
+      margin-top: var(--space-5);
+      font-size: 0.78rem;
+    }
+
+    .culture-statement {
+      min-height: 92svh;
+    }
+
+    .culture-statement p {
+      margin-left: clamp(3.4rem, 17vw, 4.2rem);
+      font-size: clamp(2.6rem, 12vw, 4rem);
+      max-width: 11ch;
+    }
+
+    .culture-field {
+      min-height: 150rem;
+      padding-top: var(--space-6);
+    }
+
+    .culture-fragment {
+      width: auto;
+    }
+
+    .culture-fragment span {
+      margin-bottom: var(--space-3);
+      font-size: clamp(2.2rem, 12vw, 3.8rem);
+    }
+
+    .culture-fragment h2 {
+      font-size: 1.05rem;
+      line-height: 1.3;
+    }
+
+    .fragment--explore {
+      left: var(--gutter);
+      right: 18vw;
+      top: 2rem;
+    }
+
+    .fragment--play {
+      left: 42vw;
+      right: var(--gutter);
+      top: 25rem;
+    }
+
+    .fragment--build {
+      left: 14vw;
+      right: var(--gutter);
+      top: 49rem;
+    }
+
+    .fragment--co {
+      left: var(--gutter);
+      right: 27vw;
+      top: 83rem;
+    }
+
+    .fragment--tools {
+      left: 32vw;
+      right: var(--gutter);
+      top: 112rem;
+    }
+
+    .culture-close {
+      min-height: 50svh;
+    }
+
+    .culture-close p,
+    .culture-close a {
+      font-size: clamp(2.3rem, 11vw, 3.4rem);
+    }
+  }
 </style>

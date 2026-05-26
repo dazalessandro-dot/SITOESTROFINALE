@@ -2,108 +2,237 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const projects = [
-  { title: 'Kelp',        tags: ['Sustainable packaging', 'Residency', '2024'], tint: 'linear-gradient(155deg, #dde0d3 0%, #cfd2c5 100%)' },
-  { title: 'Meridian',    tags: ['Urban mobility', 'Sprint', '2024'],           tint: 'linear-gradient(155deg, #d8dbd5 0%, #cacdc6 100%)' },
-  { title: 'Forma',       tags: ['Design systems', 'Advisory', '2023'],         tint: 'linear-gradient(155deg, #d5d2c8 0%, #c7c4b9 100%)' },
-  { title: 'Tidal',       tags: ['Clean energy', 'Venture', '2023'],            tint: 'linear-gradient(155deg, #d2d0c6 0%, #c5c2b7 100%)' },
-  { title: 'Nomad Stack', tags: ['Distributed work', 'Sprint', '2022'],         tint: 'linear-gradient(155deg, #cfcdc3 0%, #c2c0b5 100%)' },
-  { title: 'Atlas',       tags: ['Knowledge platforms', 'Residency', '2022'],   tint: 'linear-gradient(155deg, #cccac0 0%, #bfbdb2 100%)' },
+  ['Kelp', 'Sustainable packaging / Residency / 2024'],
+  ['Meridian', 'Urban mobility / Sprint / 2024'],
+  ['Forma', 'Design systems / Advisory / 2023'],
+  ['Tidal', 'Clean energy / Venture / 2023'],
+  ['Nomad Stack', 'Distributed work / Sprint / 2022'],
+  ['Atlas', 'Knowledge platforms / Residency / 2022'],
 ];
 ---
 
 <BaseLayout
   title="Projects"
   description="A selection of projects from Estro's nomadic innovation practice."
+  showFooter={false}
 >
-
-  <section class="page-header">
-    <div class="container">
-      <h1 class="page-title">Projects</h1>
+  <section class="project-page" aria-labelledby="projects-title">
+    <div class="project-intro">
+      <p>Projects</p>
+      <h1 id="projects-title">Selected work, still moving.</h1>
+      <span>Experiments, ventures, systems, and strategic prototypes.</span>
     </div>
-  </section>
 
-  <hr class="rule" />
-
-  <section class="section" aria-label="Project listing">
-    <div class="container">
-      <ul class="projects-grid" role="list">
-        {projects.map((p) => (
-          <li class="project-card">
-            <a href="#" class="project-card__link">
-              <div class="project-card__media" style={`background: ${p.tint};`}>
-                <!-- TODO: replace with <picture> when images are ready -->
-              </div>
-              <p class="project-card__title">{p.title}</p>
-              <div class="project-card__tags">
-                {p.tags.map((tag) => (
-                  <span class="project-card__tag">{tag}</span>
-                ))}
-              </div>
-            </a>
-          </li>
-        ))}
-      </ul>
+    <div class="project-media" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
-  </section>
 
+    <ul class="project-ledger" role="list">
+      {projects.map(([title, meta], index) => (
+        <li>
+          <a href="#">
+            <span class="project-ledger__count">{String(index + 1).padStart(2, '0')}</span>
+            <strong>{title}</strong>
+            <em>{meta}</em>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
 </BaseLayout>
 
 <style>
-  .page-header { padding-block: var(--space-5); }
-
-  .page-title {
-    font-family: var(--font-display);
-    font-size: var(--text-3xl);
-    font-weight: 700;
-    letter-spacing: -0.02em;
+  :global(#main-content) {
+    padding-top: 0 !important;
+    background: #f7f7f5;
   }
 
-  .section { padding-block: var(--space-6); }
-
-  /* Grid */
-  .projects-grid {
-    display: grid;
-    gap: var(--space-4);
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  }
-
-  /* Card */
-  .project-card__link {
-    display: block;
-    text-decoration: none;
-    color: inherit;
-  }
-
-  .project-card__media {
-    aspect-ratio: 4 / 3;
+  .project-page {
+    min-height: 100svh;
+    padding: calc(72px + var(--space-4)) var(--gutter) var(--space-6);
+    position: relative;
     overflow: hidden;
-    margin-bottom: var(--space-3);
-    transition: transform 400ms ease;
+    background: #f7f7f5;
   }
 
-  .project-card__link:hover .project-card__media {
-    transform: scale(1.02);
-  }
-
-  .project-card__title {
-    font-family: var(--font-display);
-    font-size: var(--text-lg);
-    font-weight: 400;
-    margin-bottom: var(--space-2);
-  }
-
-  .project-card__tags {
+  .project-intro {
+    min-height: 70svh;
     display: flex;
-    gap: var(--space-3);
-    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+    z-index: 2;
+    max-width: 42rem;
   }
 
-  .project-card__tag {
-    font-family: var(--font-body);
-    font-size: var(--text-xs);
-    font-weight: 400;
-    color: var(--color-muted);
+  .project-intro p,
+  .project-ledger__count {
+    font-size: 0.72rem;
+    color: rgba(17, 17, 17, 0.48);
     text-transform: uppercase;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.12em;
+  }
+
+  .project-intro h1 {
+    margin-top: clamp(var(--space-5), 14vh, var(--space-6));
+    max-width: 8ch;
+    font-family: var(--font-display);
+    font-size: clamp(4rem, 13vw, 10rem);
+    font-weight: 400;
+    line-height: 0.86;
+  }
+
+  .project-intro span {
+    display: block;
+    margin-top: var(--space-4);
+    max-width: 26ch;
+    font-size: clamp(1rem, 1.8vw, 1.28rem);
+    line-height: 1.32;
+  }
+
+  .project-media {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .project-media span {
+    position: absolute;
+    display: block;
+    border: 1px solid rgba(17, 17, 17, 0.08);
+  }
+
+  .project-media span:nth-child(1) {
+    width: min(38vw, 32rem);
+    height: min(56vw, 44rem);
+    right: -5vw;
+    top: 12svh;
+    background: linear-gradient(145deg, rgba(255,255,255,0.7), rgba(17,17,17,0.12));
+    transform: rotate(4deg);
+  }
+
+  .project-media span:nth-child(2) {
+    width: min(30vw, 24rem);
+    height: min(24vw, 18rem);
+    left: 18vw;
+    top: 64svh;
+    background: #d93430;
+    opacity: 0.78;
+    transform: rotate(-8deg);
+  }
+
+  .project-media span:nth-child(3) {
+    width: min(42vw, 36rem);
+    height: min(18vw, 14rem);
+    right: 14vw;
+    bottom: 10svh;
+    background: #111;
+    transform: rotate(2deg);
+  }
+
+  .project-ledger {
+    position: relative;
+    z-index: 2;
+    list-style: none;
+    padding: var(--space-6) 0 0;
+    margin: 0;
+  }
+
+  .project-ledger li {
+    border-top: 1px solid rgba(17, 17, 17, 0.18);
+  }
+
+  .project-ledger li:last-child {
+    border-bottom: 1px solid rgba(17, 17, 17, 0.18);
+  }
+
+  .project-ledger a {
+    min-height: clamp(7rem, 16vw, 14rem);
+    display: grid;
+    grid-template-columns: 4rem minmax(0, 1fr) minmax(12rem, 0.38fr);
+    gap: var(--space-4);
+    align-items: center;
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .project-ledger strong {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 8vw, 7rem);
+    font-weight: 400;
+    line-height: 0.9;
+  }
+
+  .project-ledger em {
+    max-width: 22ch;
+    font-style: normal;
+    color: var(--color-muted);
+    font-size: 0.78rem;
+    line-height: 1.35;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .project-ledger a:hover strong {
+    transform: translateX(0.35rem);
+  }
+
+  .project-ledger strong {
+    transition: transform 160ms ease;
+  }
+
+  @media (max-width: 640px) {
+    .project-page {
+      padding-top: calc(72px + var(--space-3));
+    }
+
+    .project-intro {
+      min-height: 82svh;
+    }
+
+    .project-intro h1 {
+      font-size: clamp(3.5rem, 18vw, 5.8rem);
+      max-width: 6.4ch;
+    }
+
+    .project-media span:nth-child(1) {
+      width: 54vw;
+      height: 80vw;
+      right: -18vw;
+      top: 14svh;
+    }
+
+    .project-media span:nth-child(2) {
+      width: 42vw;
+      height: 34vw;
+      left: -8vw;
+      top: 61svh;
+    }
+
+    .project-media span:nth-child(3) {
+      width: 58vw;
+      height: 24vw;
+      right: -6vw;
+      bottom: 7svh;
+    }
+
+    .project-ledger a {
+      min-height: 9rem;
+      grid-template-columns: 2.2rem minmax(0, 1fr);
+      gap: var(--space-3);
+      align-items: start;
+      padding-block: var(--space-4);
+    }
+
+    .project-ledger em {
+      grid-column: 2;
+      max-width: 18ch;
+    }
+
+    .project-ledger strong {
+      font-size: clamp(2.7rem, 13vw, 4.2rem);
+    }
   }
 </style>

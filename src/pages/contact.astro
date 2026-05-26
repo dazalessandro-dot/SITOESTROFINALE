@@ -1,225 +1,192 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const links = [
+  ['Instagram', '#'],
+  ['LinkedIn', '#'],
+  ['Are.na', '#'],
+];
 ---
 
 <BaseLayout
   title="Contact"
   description="Get in touch with Estro — hello@estro.io"
+  showFooter={false}
 >
+  <section class="contact-signal" aria-labelledby="contact-title">
+    <p>Contact</p>
+    <h1 id="contact-title">Send the unfinished thing.</h1>
+    <a class="contact-email" href="mailto:hello@estro.io">hello@estro.io</a>
 
-  <section class="page-header">
-    <div class="container">
-      <h1 class="page-title">Contact</h1>
+    <div class="contact-orbit" aria-hidden="true">
+      <span></span>
+      <span></span>
     </div>
   </section>
 
-  <hr class="rule" />
-
-  <section class="section" aria-label="Contact">
-    <div class="container contact-layout">
-
-      <!-- Info -->
-      <div class="contact-info">
-        <p class="section-label">Get in touch</p>
-
-        <div class="contact-info__row">
-          <p class="contact-info__label">Email</p>
-          <a href="mailto:hello@estro.io" class="contact-info__value">hello@estro.io</a>
-        </div>
-
-        <div class="contact-info__row">
-          <p class="contact-info__label">Location</p>
-          <p class="contact-info__value">Wherever the work is.</p>
-        </div>
-
-        <div class="contact-info__row">
-          <p class="contact-info__label">Follow</p>
-          <div class="social-links">
-            <a href="#" class="social-link">Instagram</a>
-            <a href="#" class="social-link">LinkedIn</a>
-            <a href="#" class="social-link">Are.na</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Form -->
-      <div class="contact-form-wrap">
-        <p class="section-label">Send a message</p>
-
-        <form class="contact-form" id="contact-form" novalidate>
-          <div class="form-field">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" id="name" name="name" required autocomplete="name" class="form-input" />
-          </div>
-
-          <div class="form-field">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" id="email" name="email" required autocomplete="email" class="form-input" />
-          </div>
-
-          <div class="form-field">
-            <label for="message" class="form-label">Message</label>
-            <textarea id="message" name="message" required rows="5" class="form-input form-textarea"></textarea>
-          </div>
-
-          <button type="submit" class="form-submit">Send</button>
-        </form>
-
-        <div class="form-thanks" id="form-thanks" hidden>
-          <p class="thanks-heading">Thank you.</p>
-          <p class="thanks-body">We will be in touch.</p>
-        </div>
-      </div>
-
-    </div>
+  <section class="contact-lines" aria-label="Other contact routes">
+    <p>Wherever the work is.</p>
+    <ul role="list">
+      {links.map(([label, href]) => (
+        <li>
+          <a href={href}>{label}<span aria-hidden="true">→</span></a>
+        </li>
+      ))}
+    </ul>
   </section>
-
 </BaseLayout>
 
 <style>
-  .page-header { padding-block: var(--space-5); }
-
-  .page-title {
-    font-family: var(--font-display);
-    font-size: var(--text-3xl);
-    font-weight: 700;
-    letter-spacing: -0.02em;
+  :global(#main-content) {
+    padding-top: 0 !important;
+    background: #050505;
   }
 
-  .section { padding-block: var(--space-6); }
-
-  /* Layout */
-  .contact-layout {
-    display: grid;
-    gap: var(--space-6);
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  .contact-signal,
+  .contact-lines {
+    padding-inline: var(--gutter);
   }
 
-  /* Info */
-  .contact-info {
+  .contact-signal {
+    min-height: 100svh;
+    padding-top: calc(72px + var(--space-4));
+    padding-bottom: var(--space-5);
+    position: relative;
     display: flex;
     flex-direction: column;
-    gap: var(--space-5);
+    justify-content: flex-end;
+    overflow: hidden;
+    background: #050505;
+    color: #fff;
   }
 
-  .contact-info__label {
-    font-family: var(--font-body);
-    font-size: var(--text-xs);
-    font-weight: 300;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--color-muted);
-    margin-bottom: var(--space-1);
+  .contact-signal > p {
+    margin-bottom: clamp(var(--space-5), 16vh, var(--space-6));
+    color: rgba(255,255,255,0.48);
+    font-size: 0.78rem;
   }
 
-  .contact-info__value {
+  .contact-signal h1 {
+    position: relative;
+    z-index: 2;
+    max-width: 8ch;
     font-family: var(--font-display);
-    font-size: var(--text-xl);
+    font-size: clamp(4rem, 13vw, 10rem);
     font-weight: 400;
+    line-height: 0.86;
+  }
+
+  .contact-email {
+    position: relative;
+    z-index: 2;
+    width: max-content;
+    margin-top: var(--space-5);
+    color: #fff;
+    font-size: clamp(1.25rem, 3vw, 2.4rem);
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+  }
+
+  .contact-orbit {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .contact-orbit span {
+    position: absolute;
+    display: block;
+    border: 1px solid rgba(255,255,255,0.09);
+  }
+
+  .contact-orbit span:first-child {
+    width: min(50vw, 42rem);
+    height: min(62vw, 50rem);
+    right: -10vw;
+    top: 14svh;
+    background: #d93430;
+    opacity: 0.86;
+    transform: rotate(7deg);
+  }
+
+  .contact-orbit span:last-child {
+    width: min(36vw, 30rem);
+    height: min(22vw, 18rem);
+    right: 14vw;
+    bottom: 9svh;
+    background: rgba(255,255,255,0.88);
+    transform: rotate(-4deg);
+  }
+
+  .contact-lines {
+    min-height: 70svh;
+    padding-block: var(--space-6);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(14rem, 0.55fr);
+    gap: var(--space-6);
+    align-items: end;
+    background: #f7f7f5;
+    color: var(--color-text);
+  }
+
+  .contact-lines p {
+    max-width: 8ch;
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 8vw, 6rem);
+    line-height: 0.92;
+  }
+
+  .contact-lines ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .contact-lines a {
     color: var(--color-text);
     text-decoration: none;
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
   }
 
-  a.contact-info__value:hover { text-decoration: underline; text-underline-offset: 3px; }
-
-  .social-links {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
+  .contact-lines span {
+    display: inline-block;
+    margin-left: var(--space-2);
+    color: #d93430;
+    transition: transform 160ms ease;
   }
 
-  .social-link {
-    font-family: var(--font-display);
-    font-size: var(--text-base);
-    font-weight: 400;
-    color: var(--color-text);
-    opacity: 0.7;
-    transition: opacity var(--duration-fast);
+  .contact-lines a:hover span {
+    transform: translateX(0.35rem);
   }
 
-  .social-link:hover { opacity: 1; }
+  @media (max-width: 640px) {
+    .contact-signal h1 {
+      font-size: clamp(3rem, 14vw, 4.9rem);
+      max-width: 7.4ch;
+    }
 
-  /* Form */
-  .contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-4);
-  }
+    .contact-orbit span:first-child {
+      width: 62vw;
+      height: 82vw;
+      right: -24vw;
+      top: 15svh;
+    }
 
-  .form-field { display: flex; flex-direction: column; }
+    .contact-orbit span:last-child {
+      width: 48vw;
+      height: 28vw;
+      right: -7vw;
+      bottom: 11svh;
+    }
 
-  .form-label {
-    font-family: var(--font-body);
-    font-size: var(--text-xs);
-    font-weight: 300;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--color-muted);
-    margin-bottom: var(--space-1);
-  }
-
-  .form-input {
-    width: 100%;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid var(--color-rule);
-    padding-block: var(--space-3);
-    font-size: var(--text-base);
-    font-family: var(--font-body);
-    font-weight: 400;
-    color: var(--color-text);
-    outline: none;
-    border-radius: 0;
-    appearance: none;
-  }
-
-  .form-input:focus {
-    border-bottom-color: var(--color-text);
-  }
-
-  .form-textarea { resize: vertical; }
-
-  .form-submit {
-    align-self: flex-start;
-    background: var(--color-text);
-    color: var(--color-bg);
-    border: none;
-    padding: var(--space-3) var(--space-5);
-    font-family: var(--font-body);
-    font-size: var(--text-xs);
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: opacity var(--duration-fast) var(--easing);
-  }
-
-  .form-submit:hover { opacity: 0.75; }
-
-  /* Thank you state */
-  .form-thanks { padding-block: var(--space-6); }
-
-  .thanks-heading {
-    font-family: var(--font-display);
-    font-size: var(--text-2xl);
-    font-weight: 700;
-    margin-bottom: var(--space-3);
-  }
-
-  .thanks-body {
-    font-family: var(--font-body);
-    font-size: var(--text-sm);
-    color: var(--color-muted);
+    .contact-lines {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-end;
+    }
   }
 </style>
-
-<script>
-  const form   = document.getElementById('contact-form') as HTMLFormElement | null;
-  const thanks = document.getElementById('form-thanks');
-
-  form?.addEventListener('submit', (e) => {
-    e.preventDefault();
-    form.hidden = true;
-    if (thanks) thanks.hidden = false;
-  });
-</script>

@@ -1,49 +1,213 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const notes = [
+  ['Signals', 'Behaviour, tools, language, and taste before they become obvious.'],
+  ['Methods', 'Prompts and formats that help teams think in public.'],
+  ['Objects', 'Portable tools for making research visible and shareable.'],
+  ['Writing', 'Short observations from the field before they become reports.'],
+];
 ---
 
 <BaseLayout
   title="Research"
   description="Estro research — ideas, observations, and writing from the field."
+  showFooter={false}
 >
-
-  <section class="page-header">
-    <div class="container">
-      <h1 class="page-title">Research</h1>
+  <section class="research-sheet" aria-labelledby="research-title">
+    <div class="research-title">
+      <p>Research</p>
+      <h1 id="research-title">Signals before certainty.</h1>
     </div>
+
+    <p class="research-note research-note--a">
+      We collect what feels early, strange, or not yet named.
+    </p>
+
+    <p class="research-note research-note--b">
+      Field notes are not finished answers. They are coordinates.
+    </p>
+
+    <div class="research-plane" aria-hidden="true"></div>
   </section>
 
-  <hr class="rule" />
+  <section class="research-index" aria-label="Research index">
+    <p class="research-index__lead">
+      Research becomes useful when it can be touched, discussed, and changed.
+    </p>
 
-  <!-- TODO: content — research intro -->
-  <section class="section">
-    <div class="container">
-      <p class="section-label">From the field</p>
-      <!-- TODO: content — intro paragraph -->
+    <div class="research-notes">
+      {notes.map(([label, text]) => (
+        <article>
+          <p>{label}</p>
+          <h2>{text}</h2>
+        </article>
+      ))}
     </div>
   </section>
-
-  <hr class="rule" />
-
-  <!-- TODO: content — research articles / papers / posts grid -->
-  <section class="section">
-    <div class="container">
-      <p class="section-label">Writing</p>
-      <!-- TODO: content — articles list or grid -->
-    </div>
-  </section>
-
 </BaseLayout>
 
 <style>
-  .page-header { padding-block: var(--space-5); }
-
-  .page-title {
-    font-family: var(--font-display);
-    font-size: var(--text-3xl);
-    font-weight: 700;
-    letter-spacing: -0.02em;
+  :global(#main-content) {
+    padding-top: 0 !important;
+    background: #050505;
   }
 
-  .section { padding-block: var(--space-6); }
+  .research-sheet,
+  .research-index {
+    padding-inline: var(--gutter);
+  }
+
+  .research-sheet {
+    min-height: 100svh;
+    padding-top: calc(72px + var(--space-4));
+    padding-bottom: var(--space-5);
+    position: relative;
+    overflow: hidden;
+    background: #050505;
+    color: #fff;
+  }
+
+  .research-title {
+    position: absolute;
+    left: var(--gutter);
+    bottom: var(--space-6);
+    max-width: 38rem;
+    z-index: 2;
+  }
+
+  .research-title p {
+    margin-bottom: clamp(var(--space-5), 15vh, var(--space-6));
+    color: rgba(255,255,255,0.48);
+    font-size: 0.78rem;
+  }
+
+  .research-title h1 {
+    max-width: 7.5ch;
+    font-family: var(--font-display);
+    font-size: clamp(4rem, 13vw, 10rem);
+    font-weight: 400;
+    line-height: 0.86;
+  }
+
+  .research-note {
+    position: absolute;
+    z-index: 2;
+    max-width: 19ch;
+    color: rgba(255,255,255,0.7);
+    font-size: 0.96rem;
+    line-height: 1.35;
+  }
+
+  .research-note--a {
+    right: var(--gutter);
+    top: 24svh;
+  }
+
+  .research-note--b {
+    left: 42vw;
+    bottom: 18svh;
+  }
+
+  .research-plane {
+    position: absolute;
+    right: -8vw;
+    top: 12svh;
+    width: min(48vw, 36rem);
+    height: min(64vw, 48rem);
+    border: 1px solid rgba(255,255,255,0.08);
+    background:
+      linear-gradient(145deg, rgba(255,255,255,0.14), rgba(255,255,255,0.02)),
+      #171717;
+    transform: rotate(5deg);
+  }
+
+  .research-index {
+    min-height: 100svh;
+    padding-block: var(--space-6);
+    background: #f7f7f5;
+    color: var(--color-text);
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(18rem, 0.7fr);
+    gap: clamp(var(--space-5), 8vw, var(--space-6));
+    align-items: start;
+  }
+
+  .research-index__lead {
+    position: sticky;
+    top: calc(72px + var(--space-5));
+    max-width: 10ch;
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 7vw, 6rem);
+    line-height: 0.92;
+  }
+
+  .research-notes {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(var(--space-5), 8vw, var(--space-6));
+    padding-top: var(--space-3);
+  }
+
+  .research-notes article:nth-child(even) {
+    margin-left: clamp(2rem, 12vw, 9rem);
+  }
+
+  .research-notes p {
+    margin-bottom: var(--space-3);
+    color: #d93430;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .research-notes h2 {
+    max-width: 26ch;
+    font-family: var(--font-body);
+    font-size: clamp(1.15rem, 2vw, 1.55rem);
+    font-weight: 400;
+    line-height: 1.28;
+  }
+
+  @media (max-width: 640px) {
+    .research-title h1 {
+      font-size: clamp(3rem, 14vw, 4.8rem);
+      max-width: 7.4ch;
+    }
+
+    .research-plane {
+      width: 58vw;
+      height: 78vw;
+      right: -18vw;
+      top: 14svh;
+    }
+
+    .research-note--a {
+      right: var(--gutter);
+      top: 22svh;
+      max-width: 15ch;
+    }
+
+    .research-note--b {
+      left: auto;
+      right: var(--gutter);
+      bottom: 9svh;
+      max-width: 17ch;
+    }
+
+    .research-index {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+    }
+
+    .research-index__lead {
+      position: static;
+      font-size: clamp(2.8rem, 13vw, 4.6rem);
+    }
+
+    .research-notes article:nth-child(even) {
+      margin-left: clamp(4rem, 24vw, 7rem);
+    }
+  }
 </style>

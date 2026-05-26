@@ -3,31 +3,38 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 const categories = [
   {
-    title: 'Creative Culture\n& Team',
+    title: 'Creative Culture & Team',
+    summary:
+      'We shape the shared habits, stories, and rituals that help teams move with clarity.',
     services: [
-      'Culture strategy & design',
-      'Team rituals & facilitation',
+      'Culture strategy',
+      'Team rituals',
+      'Facilitation design',
       'Organisational storytelling',
-      'Internal communications design',
-      'Creative leadership workshops',
-      'Brand identity & values',
-      'Change management support',
+      'Internal communications',
+      'Creative leadership',
+      'Brand values',
+      'Change support',
     ],
   },
   {
-    title: 'Futures\n& Innovation',
+    title: 'Futures & Innovation',
+    summary:
+      'We turn signals, scenarios, and emerging technologies into practical directions for what comes next.',
     services: [
       'Innovation sprints',
-      'Trend research & foresight',
+      'Trend research',
+      'Foresight strategy',
       'Scenario planning',
-      'Emerging technology scouting',
+      'Technology scouting',
       'Opportunity mapping',
-      'Future-back strategy',
       'Concept prototyping',
     ],
   },
   {
     title: 'Product',
+    summary:
+      'We define, design, and test products that connect business intent with real user needs.',
     services: [
       'Product strategy',
       'UX & interaction design',
@@ -47,31 +54,38 @@ const categories = [
   showFooter={false}
 >
 
-  <!-- ── Section 1: sentence + 2 images ── -->
+  <!-- ── Section 1: service thesis ── -->
   <section class="s-hero">
 
     <div class="s-hero__text">
+      <p class="section-label">Services</p>
       <p class="s-hero__sentence">
-        We show up where the work is — embedding creative thinking, strategic depth,
-        and product craft into the teams that are building things that matter.
+        We design the culture, futures, and products that help teams build work
+        with purpose, precision, and momentum.
       </p>
     </div>
 
-    <div class="s-hero__images">
-      <div class="s-hero__img-slot">
-        <!-- TODO: replace with <picture> when image is ready -->
-        <div class="img-placeholder" style="background: linear-gradient(160deg,#dde0d5 0%,#cdd0c5 100%);"></div>
-      </div>
-      <div class="s-hero__img-slot">
-        <!-- TODO: replace with <picture> when image is ready -->
-        <div class="img-placeholder" style="background: linear-gradient(160deg,#d5d2c8 0%,#c5c2b5 100%);"></div>
-      </div>
+    <div class="s-hero__media" aria-label="Selected service imagery">
+      <div class="s-image-space s-image-space--wide"></div>
+      <div class="s-image-space"></div>
     </div>
 
   </section>
 
   <!-- ── Section 2: 3 service categories ── -->
   <section class="s-categories" aria-label="Service categories">
+
+    <div class="s-categories__intro">
+      <p class="section-label">End-to-end work</p>
+      <p class="s-categories__statement">
+        We work from inside the team: clarifying direction, shaping concepts,
+        and turning ideas into experiences people can use.
+      </p>
+    </div>
+
+    <div class="s-categories__media" aria-label="Project imagery">
+      <div class="s-image-space s-image-space--tall"></div>
+    </div>
 
     <div class="s-categories__grid">
       {categories.map((cat) => (
@@ -81,6 +95,7 @@ const categories = [
               <>{line}{i < cat.title.split('\n').length - 1 && <br />}</>
             ))}
           </p>
+          <p class="s-cat__summary">{cat.summary}</p>
           <ul class="s-cat__list" role="list">
             {cat.services.map((svc) => (
               <li class="s-cat__item">{svc}</li>
@@ -95,6 +110,11 @@ const categories = [
 </BaseLayout>
 
 <style>
+  :global(body),
+  :global(#main-content) {
+    background: #fff;
+  }
+
   /* ── Override BaseLayout padding so sections sit flush ── */
   :global(#main-content) {
     padding-top: 0 !important;
@@ -102,82 +122,119 @@ const categories = [
 
   /* ── Section 1 — hero ─────────────────────────────────── */
   .s-hero {
-    height: 100dvh;
-    padding-top: 72px; /* fixed nav */
-    display: flex;
-    flex-direction: column;
-    border-bottom: 1px solid var(--color-rule);
-    overflow: hidden;
+    min-height: 100dvh;
+    padding: calc(72px + var(--space-6)) var(--gutter) var(--space-6);
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(18rem, 0.95fr);
+    gap: clamp(2rem, 7vw, 7rem);
+    align-items: end;
+    overflow: visible;
   }
 
   .s-hero__text {
-    padding: var(--space-5) var(--gutter) var(--space-4);
-    flex-shrink: 0;
+    padding: 0;
+  }
+
+  .s-hero__text .section-label {
+    margin-bottom: var(--space-3);
   }
 
   .s-hero__sentence {
     font-family: var(--font-display);
-    font-size: clamp(1.25rem, 3vw, 2.2rem);
+    font-size: clamp(1.45rem, 3.5vw, 2.8rem);
     font-weight: 400;
-    line-height: 1.3;
-    max-width: 44ch;
+    line-height: 1.18;
+    max-width: 35ch;
   }
 
-  /* Two images fill the remaining height */
-  .s-hero__images {
-    flex: 1;
+  .s-hero__media {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    border-top: 1px solid var(--color-rule);
-    overflow: hidden;
-    min-height: 0;
+    grid-template-columns: 1fr 0.72fr;
+    align-items: end;
+    gap: var(--space-3);
+    padding-bottom: clamp(0rem, 4vw, var(--space-5));
   }
 
-  .s-hero__img-slot {
-    overflow: hidden;
-    position: relative;
+  .s-image-space {
+    min-height: clamp(13rem, 32vw, 24rem);
+    background:
+      linear-gradient(135deg, rgba(17, 17, 17, 0.035), rgba(17, 17, 17, 0.01)),
+      #f8f8f6;
+    border-radius: 0.35rem;
   }
 
-  .s-hero__img-slot + .s-hero__img-slot {
-    border-left: 1px solid var(--color-rule);
+  .s-image-space--wide {
+    min-height: clamp(16rem, 38vw, 30rem);
   }
 
-  .img-placeholder {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    inset: 0;
+  .s-image-space--tall {
+    min-height: clamp(18rem, 42vw, 34rem);
   }
 
   /* ── Section 2 — categories ───────────────────────────── */
   .s-categories {
-    height: 100dvh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    padding-block: var(--space-5);
-    overflow: hidden;
+    min-height: auto;
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(14rem, 0.5fr);
+    gap: clamp(2rem, 7vw, 6rem);
+    padding: 0 var(--gutter) var(--space-6);
+    overflow: visible;
+  }
+
+  .s-categories__intro {
+    max-width: 58rem;
+  }
+
+  .s-categories__statement {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 3vw, 2.35rem);
+    font-weight: 400;
+    line-height: 1.18;
+    max-width: 32ch;
+  }
+
+  .s-categories__media {
+    align-self: start;
+    padding-top: var(--space-5);
   }
 
   .s-categories__grid {
+    grid-column: 1 / -1;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    border-top: 1px solid var(--color-rule);
-    border-bottom: 1px solid var(--color-rule);
+    gap: clamp(2.5rem, 6vw, 7rem);
+    padding-top: var(--space-4);
   }
 
   .s-cat {
-    padding: var(--space-5) var(--gutter);
-    border-right: 1px solid var(--color-rule);
+    padding: 0;
   }
 
-  .s-cat:last-child { border-right: none; }
+  .s-cat:nth-child(2) {
+    padding-top: clamp(1.5rem, 4vw, 4rem);
+  }
+
+  .s-cat:nth-child(3) {
+    padding-top: clamp(0.5rem, 2vw, 2rem);
+  }
 
   .s-cat__title {
     font-family: var(--font-display);
-    font-size: var(--text-lg);
+    font-size: clamp(1.45rem, 2vw, 2rem);
     font-weight: 400;
-    line-height: 1.2;
+    line-height: 1.12;
+    letter-spacing: 0;
+    margin-bottom: var(--space-3);
+    max-width: 12ch;
+  }
+
+  .s-cat__summary {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    font-weight: 300;
+    color: var(--color-muted);
+    line-height: 1.45;
+    max-width: 27ch;
     margin-bottom: var(--space-4);
   }
 
@@ -195,39 +252,127 @@ const categories = [
     font-size: var(--text-sm);
     font-weight: 300;
     color: var(--color-muted);
-    line-height: 1.5;
-    padding-left: var(--space-3);
-    position: relative;
+    line-height: 1.45;
+    padding-left: 0;
   }
 
   .s-cat__item::before {
-    content: '—';
-    position: absolute;
-    left: 0;
-    color: var(--color-muted);
-    font-size: 0.65rem;
-    top: 0.2em;
+    content: none;
   }
 
-  /* Mobile: keep 3 columns, tighten spacing */
+  /* Mobile: stacked service groups for readable flow */
   @media (max-width: 640px) {
-    .s-cat {
-      padding: var(--space-3) calc(var(--gutter) * 0.6);
+    .s-hero {
+      height: auto;
+      min-height: auto;
+      padding-top: calc(72px + var(--space-5));
+      padding-bottom: var(--space-6);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-5);
+      align-items: stretch;
     }
 
-    .s-cat__title {
-      font-size: var(--text-sm);
-      margin-bottom: var(--space-3);
+    .s-hero__sentence {
+      font-size: clamp(1.9rem, 9vw, 2.55rem);
+      line-height: 1.1;
+      max-width: 13.5ch;
+      margin-inline: auto;
+      text-align: center;
+      text-wrap: balance;
     }
 
-    .s-cat__item {
-      font-size: 0.65rem;
-      padding-left: var(--space-2);
+    .s-hero__media {
+      grid-template-columns: 1fr 0.72fr;
+      gap: var(--space-2);
+      padding-bottom: 0;
+    }
+
+    .s-image-space {
+      min-height: 11rem;
+    }
+
+    .s-image-space--wide {
+      min-height: 14rem;
+    }
+
+    .s-image-space--tall {
+      min-height: 17rem;
     }
 
     .s-categories {
       justify-content: flex-start;
-      padding-block: var(--space-4);
+      min-height: auto;
+      display: flex;
+      flex-direction: column;
+      padding: 0 var(--gutter) var(--space-6);
+      overflow: visible;
+      gap: var(--space-5);
+    }
+
+    .s-categories__statement {
+      font-size: clamp(1.8rem, 8.5vw, 2.35rem);
+      line-height: 1.08;
+      max-width: 13.5ch;
+      margin-inline: auto;
+      text-align: center;
+      text-wrap: balance;
+    }
+
+    .s-categories__media {
+      width: 72%;
+      padding-top: 0;
+      align-self: flex-end;
+    }
+
+    .s-categories__grid {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-5);
+      border: 0;
+    }
+
+    .s-cat {
+      border: 0;
+      padding: 0;
+    }
+
+    .s-cat__title {
+      font-size: clamp(1.35rem, 6.5vw, 1.85rem);
+      line-height: 1.16;
+      letter-spacing: 0;
+      margin-bottom: var(--space-3);
+      max-width: 12ch;
+    }
+
+    .s-cat__summary {
+      font-size: 1rem;
+      line-height: 1.42;
+      max-width: 29ch;
+      margin-bottom: var(--space-3);
+    }
+
+    .s-cat__list {
+      gap: 0.55rem;
+      max-width: 30ch;
+    }
+
+    .s-cat__item {
+      font-size: 0.98rem;
+      line-height: 1.4;
+      padding-left: 0;
+    }
+
+    .s-cat__item::before {
+      content: none;
+    }
+
+    .s-cat:nth-child(even) {
+      padding-left: 0;
+    }
+
+    .s-cat:nth-child(even) .s-cat__list {
+      max-width: 30ch;
     }
   }
 </style>

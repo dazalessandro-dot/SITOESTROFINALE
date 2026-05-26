@@ -2,12 +2,9 @@
    ESTRO — Global Styles
    =============================================================
 
-   FONT SETUP — DeFontePlus (self-hosted)
-   Drop the 4 TTF files into public/fonts/ to activate:
-     DeFontePlus-Leger.ttf    (weight 300 — labels, footer)
-     DeFontePlus-Normale.ttf  (weight 400 — body prose)
-     DeFontePlus-DemiGras.ttf (weight 600 — buttons, CTAs)
-     DeFontePlus-Gros.ttf     (weight 700 — headings, nav, wordmark)
+   FONT SETUP
+   Futura is used globally when available on the device, with close geometric
+   sans-serif fallbacks for browsers that do not ship it.
    ============================================================= */
 
 @font-face {
@@ -49,8 +46,8 @@
   --color-muted:  #555;    /* secondary / caption text */
 
   /* Typography */
-  --font-display: 'DeFontePlus', Georgia, serif;
-  --font-body:    'DeFontePlus', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-display: Futura, 'Futura PT', 'Futura Std', 'Avenir Next', Avenir, Montserrat, system-ui, sans-serif;
+  --font-body:    Futura, 'Futura PT', 'Futura Std', 'Avenir Next', Avenir, Montserrat, system-ui, sans-serif;
 
   /* Type scale */
   --text-hero: clamp(5rem, 18vw, 14rem);
