@@ -1,393 +1,572 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const fragments = [
+const principles = [
   {
-    mark: '↘',
-    label: 'Explore first',
-    text: 'Emerging trends, field signals, and simple open questions give the work a clear starting point.',
-    className: 'fragment--explore',
+    title: 'Plural by design',
+    body: 'We work with mixed teams, conflicting inputs, and partial information. Good ideas get sharper when they survive contact with different disciplines, different contexts, and different people.',
   },
   {
-    mark: '→',
-    label: 'Play with purpose',
-    text: 'Card decks, word generators, and quick games spark new connections before the idea becomes fixed.',
-    className: 'fragment--play',
+    title: 'Calm under motion',
+    body: 'We like fast environments, but not frantic ones. We build enough structure to move with confidence, then keep the process light so the work can stay responsive.',
   },
   {
-    mark: '↗',
-    label: 'Build fast',
-    text: 'Objects, sketches, and rituals are prototyped quickly so the project can learn in public.',
-    className: 'fragment--build',
+    title: 'System before surface',
+    body: 'A product, a service, or a story is never just an isolated output. We look at incentives, operating realities, and downstream effects before polishing the visible layer.',
   },
   {
-    mark: '↙',
-    label: 'Co-create',
-    text: 'Inside, outside, online, or in the studio, the strongest ideas are shaped with the people who will use them.',
-    className: 'fragment--co',
+    title: 'Taste with accountability',
+    body: 'We care about form, language, and detail. We also care about whether the work can be explained, defended, implemented, and owned after we leave the room.',
+  },
+];
+
+const modes = [
+  {
+    label: '01',
+    title: 'Embed',
+    body: 'We begin close to the team, not at presentation distance. That means listening before prescribing, seeing the constraints firsthand, and understanding how decisions are actually made.',
   },
   {
-    mark: '↓',
-    label: 'Make tools',
-    text: 'Every object is a small engine of creativity: something to carry, use, test, and open again.',
-    className: 'fragment--tools',
+    label: '02',
+    title: 'Frame',
+    body: 'Once the terrain is visible, we give it shape. We clarify the brief, define the right level of ambition, and create a direction people can align around without forcing false certainty.',
   },
+  {
+    label: '03',
+    title: 'Build',
+    body: 'Then we make things concrete. Concepts become systems, narratives become interfaces, and strategic ideas turn into work that can be tested, shipped, or socialised across an organisation.',
+  },
+];
+
+const signals = [
+  'Clear thinking without consultancy theatre.',
+  'Creative ambition grounded in operating reality.',
+  'Teams that feel more aligned, not more managed.',
+  'Outputs that are useful in the room and credible outside it.',
 ];
 ---
 
 <BaseLayout
   title="Culture"
-  description="Estro culture — how we work, what we value, and the way we show up."
-  showFooter={false}
+  description="How Estro works: plural thinking, embedded collaboration, and disciplined creative direction."
 >
+  <div class="culture-page" data-culture-page>
+  <section class="culture-hero">
+    <div class="container culture-hero__grid">
+      <div class="culture-hero__meta" data-reveal="hero-meta">
+        <p class="section-label">Culture</p>
+        <p class="culture-hero__eyebrow">How we think, how we work, and what clients can expect from being in the room with us.</p>
+      </div>
 
-  <section class="culture-hero" aria-labelledby="culture-title">
-    <div class="culture-hero__inner">
-      <p class="culture-label">Culture</p>
-      <h1 id="culture-title">Plural, playful and useful.</h1>
-      <p>
-        We open projects through research, play, making, and shared
-        participation.
-      </p>
+      <div class="culture-hero__content" data-reveal="hero-content">
+        <h1 class="culture-hero__title">Research-led, experimental, and built to hold up in front of real teams.</h1>
+        <p class="culture-hero__intro">
+          Estro is designed for complex work: the kind that needs editorial clarity, strategic discipline, and people who can move between imagination and execution without losing either.
+        </p>
+      </div>
     </div>
-    <a class="culture-scroll" href="#culture-field">Scroll down to discover</a>
   </section>
 
-  <section class="culture-statement" aria-label="Culture statement">
-    <p>
-      We start before the answer is clear, then build the tools, rituals, and
-      prototypes that make a project easier to see.
-    </p>
+  <hr class="rule" />
+
+  <section class="chapter" aria-labelledby="manifesto-title" data-reveal="chapter">
+    <div class="container chapter__grid">
+      <div class="chapter__rail" data-reveal="rail">
+        <p class="section-label">How we work</p>
+      </div>
+
+      <div class="chapter__content" data-reveal="content">
+        <h2 id="manifesto-title" class="chapter__headline">
+          We prefer proximity over performance.
+        </h2>
+
+        <div class="chapter__body">
+          <p class="chapter__lead">
+            We do our best work when we are close enough to the problem to feel its friction: inside the team, inside the ambiguity, and close to the decisions that actually matter.
+          </p>
+          <p class="chapter__text">
+            That does not mean becoming louder or more visible. It means asking better questions, making sharper frames, and helping a group move from instinct to direction without flattening everything into process.
+          </p>
+          <p class="chapter__text">
+            The result should feel rigorous, but never corporate. Experimental, but never indulgent. Useful on Monday morning, not just persuasive in a deck.
+          </p>
+        </div>
+
+        <blockquote class="chapter__quote">
+          <p>We are not interested in adding theatre to uncertainty. We are interested in giving uncertainty a shape the team can work with.</p>
+        </blockquote>
+      </div>
+    </div>
   </section>
 
-  <section class="culture-field" id="culture-field" aria-label="How Estro works">
-    {fragments.map((fragment) => (
-      <article class={`culture-fragment ${fragment.className}`}>
-        <span aria-hidden="true">{fragment.mark}</span>
-        <p>{fragment.label}</p>
-        <h2>{fragment.text}</h2>
-      </article>
-    ))}
+  <hr class="rule" />
+
+  <section class="chapter" aria-labelledby="principles-title" data-reveal="chapter">
+    <div class="container chapter__grid">
+      <div class="chapter__rail" data-reveal="rail">
+        <p class="section-label">Principles</p>
+      </div>
+
+      <div class="chapter__content" data-reveal="content">
+        <h2 id="principles-title" class="chapter__headline">
+          A culture that values clarity, plurality, and direction.
+        </h2>
+
+        <div class="principles-grid" role="list">
+          {principles.map((principle) => (
+            <article class="principle-card" role="listitem" data-reveal="card">
+              <h3 class="principle-card__title">{principle.title}</h3>
+              <p class="principle-card__body">{principle.body}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section class="culture-close">
-    <p>Ready to open up your next project?</p>
-    <a href="mailto:hello@estro.io">Let’s start.</a>
+  <hr class="rule" />
+
+  <section class="chapter" aria-labelledby="practice-title" data-reveal="chapter">
+    <div class="container chapter__grid">
+      <div class="chapter__rail" data-reveal="rail">
+        <p class="section-label">Practice</p>
+      </div>
+
+      <div class="chapter__content" data-reveal="content">
+        <h2 id="practice-title" class="chapter__headline">
+          Our method is deliberately simple. The discipline is in how closely we pay attention.
+        </h2>
+
+        <div class="modes-list" role="list">
+          {modes.map((mode) => (
+            <article class="mode-row" role="listitem" data-reveal="row">
+              <p class="mode-row__index">{mode.label}</p>
+              <div class="mode-row__content">
+                <h3 class="mode-row__title">{mode.title}</h3>
+                <p class="mode-row__body">{mode.body}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
   </section>
 
+  <hr class="rule" />
+
+  <section class="chapter" aria-labelledby="signals-title" data-reveal="chapter">
+    <div class="container chapter__grid">
+      <div class="chapter__rail" data-reveal="rail">
+        <p class="section-label">What this feels like</p>
+      </div>
+
+      <div class="chapter__content" data-reveal="content">
+        <h2 id="signals-title" class="chapter__headline">
+          For clients, the experience should feel measured, lucid, and surprisingly energising.
+        </h2>
+
+        <div class="signals-grid">
+          <div class="signals-grid__intro">
+            <p class="chapter__lead">
+              We want the work to leave a trace beyond the deliverable: better conversations, better decisions, and a stronger shared sense of what matters next.
+            </p>
+          </div>
+
+          <ul class="signals-list" role="list">
+            {signals.map((signal) => (
+              <li class="signals-list__item" data-reveal="card">{signal}</li>
+            ))}
+          </ul>
+        </div>
+
+        <a href="/contact" class="culture-cta" data-reveal="cta">Start a conversation</a>
+      </div>
+    </div>
+  </section>
+  </div>
 </BaseLayout>
 
 <style>
-  :global(#main-content) {
-    padding-top: 0 !important;
-    background: #fff;
-  }
-
-  .culture-hero,
-  .culture-statement,
-  .culture-field,
-  .culture-close {
-    padding-inline: var(--gutter);
+  .culture-page {
+    --motion-distance: 2.5rem;
+    --motion-duration: 760ms;
+    --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .culture-hero {
-    min-height: 100svh;
-    padding-top: calc(72px + var(--space-4));
-    padding-bottom: var(--space-5);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    position: relative;
-    overflow: hidden;
-    background: #fff;
-  }
-
-  .culture-hero::after {
-    content: '';
-    position: absolute;
-    inset: -8rem -12rem auto auto;
-    width: min(72vw, 42rem);
-    aspect-ratio: 1;
-    border-radius: 50%;
-    background:
-      repeating-conic-gradient(
-        from 20deg,
-        transparent 0deg 6deg,
-        rgba(211, 54, 48, 0.34) 6deg 6.55deg,
-        transparent 6.55deg 12deg
-      );
-    opacity: 0.46;
-    pointer-events: none;
-  }
-
-  .culture-hero__inner {
-    position: relative;
-    z-index: 1;
-    width: min(100%, 42rem);
-    margin-left: clamp(0rem, 14vw, 12rem);
-  }
-
-  .culture-label {
-    margin-bottom: clamp(var(--space-4), 10vh, var(--space-6));
-    font-family: var(--font-body);
-    font-size: 0.78rem;
-    font-weight: 400;
-    color: rgba(17, 17, 17, 0.45);
-  }
-
-  .culture-hero h1 {
-    font-family: var(--font-display);
-    font-size: clamp(4rem, 12vw, 9rem);
-    font-weight: 400;
-    line-height: 0.92;
-    max-width: 8.5ch;
-  }
-
-  .culture-hero__inner > p:last-child {
-    margin-top: var(--space-4);
-    max-width: 27ch;
-    font-size: clamp(1rem, 2vw, 1.35rem);
-    line-height: 1.32;
-  }
-
-  .culture-scroll {
-    position: relative;
-    z-index: 1;
-    align-self: flex-start;
-    margin-top: clamp(var(--space-5), 12vh, var(--space-6));
-    margin-left: clamp(0rem, 14vw, 12rem);
-    font-size: 0.82rem;
-    font-weight: 600;
-    text-decoration: underline;
-    text-underline-offset: 0.25rem;
-  }
-
-  .culture-scroll::after {
-    content: '↓';
-    display: inline-block;
-    margin-left: 0.8rem;
-    transition: transform 160ms ease;
-  }
-
-  .culture-scroll:hover::after {
-    transform: translateY(0.25rem);
-  }
-
-  .culture-statement {
-    min-height: 92svh;
-    padding-top: var(--space-6);
-    padding-bottom: var(--space-6);
+    min-height: calc(100dvh - 72px);
     display: flex;
     align-items: center;
-    background: #050505;
-    color: #fff;
+    padding-block: clamp(4rem, 12vh, 8rem) clamp(3rem, 8vh, 6rem);
   }
 
-  .culture-statement p {
-    margin-left: clamp(0rem, 14vw, 12rem);
-    max-width: 13ch;
-    font-family: var(--font-display);
-    font-size: clamp(3rem, 8.5vw, 7.2rem);
-    font-weight: 400;
-    line-height: 0.94;
+  .culture-hero__grid,
+  .chapter__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
+    gap: clamp(2rem, 5vw, 6rem);
   }
 
-  .culture-field {
-    min-height: 130svh;
-    padding-top: var(--space-6);
-    padding-bottom: var(--space-6);
-    position: relative;
-    background: #050505;
-    color: #fff;
-  }
-
-  .culture-fragment {
-    position: absolute;
-    width: min(32rem, 34vw);
-  }
-
-  .culture-fragment span {
-    display: block;
-    margin-bottom: var(--space-4);
-    font-size: clamp(2rem, 4vw, 3.8rem);
-    line-height: 1;
-    color: #d93430;
-  }
-
-  .culture-fragment p {
-    margin-bottom: var(--space-3);
-    font-size: 0.72rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: #d93430;
-  }
-
-  .culture-fragment h2 {
-    font-family: var(--font-body);
-    font-size: clamp(1rem, 1.8vw, 1.45rem);
-    font-weight: 400;
-    line-height: 1.24;
-    color: #fff;
-  }
-
-  .fragment--explore {
-    left: clamp(var(--gutter), 14vw, 12rem);
-    top: 4rem;
-  }
-
-  .fragment--play {
-    right: var(--gutter);
-    top: 16rem;
-    width: min(23rem, 28vw);
-  }
-
-  .fragment--build {
-    left: 38vw;
-    top: 33rem;
-    width: min(30rem, 38vw);
-  }
-
-  .fragment--co {
-    left: var(--gutter);
-    top: 55rem;
-    width: min(27rem, 32vw);
-  }
-
-  .fragment--tools {
-    right: clamp(var(--gutter), 10vw, 9rem);
-    top: 70rem;
-    width: min(28rem, 32vw);
-  }
-
-  .culture-close {
-    min-height: 54svh;
-    padding-top: var(--space-6);
-    padding-bottom: var(--space-6);
+  .culture-hero__meta,
+  .chapter__rail {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    background: #fff;
+    gap: var(--space-4);
   }
 
-  .culture-close p,
-  .culture-close a {
+  .chapter__rail {
+    align-self: start;
+    position: sticky;
+    top: calc(72px + var(--space-4));
+  }
+
+  .culture-hero__eyebrow {
+    max-width: 20ch;
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-muted);
+    line-height: 1.7;
+  }
+
+  .culture-hero__content {
+    max-width: 880px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .culture-hero__title {
     max-width: 10ch;
     font-family: var(--font-display);
-    font-size: clamp(2.4rem, 8vw, 5.6rem);
+    font-size: clamp(3.5rem, 8vw, 6.8rem);
     font-weight: 400;
-    line-height: 0.96;
+    line-height: 0.94;
+    letter-spacing: -0.045em;
+    text-wrap: balance;
+  }
+
+  .culture-hero__intro,
+  .chapter__lead {
+    max-width: 32ch;
+    font-family: var(--font-body);
+    font-size: clamp(1.2rem, 2vw, 1.7rem);
+    line-height: 1.35;
     color: var(--color-text);
   }
 
-  .culture-close a {
-    margin-top: var(--space-2);
-    text-decoration: underline;
-    text-underline-offset: 0.12em;
-    text-decoration-thickness: 1px;
+  .chapter {
+    padding-block: clamp(4rem, 8vw, 7rem);
+  }
+
+  .chapter__content {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(2rem, 4vw, 3rem);
+  }
+
+  .chapter__headline {
+    max-width: 12ch;
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4.6vw, 4rem);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+
+  .chapter__body {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    gap: clamp(1.5rem, 4vw, 4rem);
+    align-items: start;
+  }
+
+  .chapter__text {
+    max-width: 32ch;
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 1.4vw, 1.1rem);
+    line-height: 1.8;
+    color: var(--color-muted);
+  }
+
+  .chapter__quote {
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--color-rule);
+    max-width: 26ch;
+  }
+
+  .chapter__quote p {
+    font-family: var(--font-display);
+    font-size: clamp(1.3rem, 2.2vw, 2rem);
+    line-height: 1.18;
+    letter-spacing: -0.03em;
+  }
+
+  .principles-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    background: rgba(17, 17, 17, 0.16);
+  }
+
+  .principle-card {
+    min-height: 250px;
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    background: var(--color-bg);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: var(--space-5);
+  }
+
+  .principle-card__title,
+  .mode-row__title {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 2.4vw, 2.2rem);
+    font-weight: 400;
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+  }
+
+  .principle-card__body,
+  .mode-row__body {
+    max-width: 34ch;
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    line-height: 1.75;
+    color: var(--color-muted);
+  }
+
+  .modes-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--color-rule);
+  }
+
+  .mode-row {
+    display: grid;
+    grid-template-columns: 80px minmax(0, 1fr);
+    gap: clamp(1rem, 3vw, 2.5rem);
+    padding-block: clamp(1.4rem, 2.2vw, 2rem);
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  .mode-row__index {
+    font-family: var(--font-display);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-muted);
+    padding-top: 0.35rem;
+  }
+
+  .mode-row__content {
+    display: grid;
+    grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
+    gap: clamp(1rem, 4vw, 4rem);
+    align-items: start;
+  }
+
+  .signals-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+    gap: clamp(1.5rem, 4vw, 4rem);
+    align-items: start;
+  }
+
+  .signals-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    background: rgba(17, 17, 17, 0.16);
+  }
+
+  .signals-list__item {
+    min-height: 120px;
+    padding: clamp(1.2rem, 2vw, 1.75rem);
+    background: var(--color-bg);
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    line-height: 1.65;
+    color: var(--color-text);
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .culture-cta {
+    align-self: flex-start;
+    margin-top: var(--space-3);
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--color-text);
+    padding-bottom: 0.25rem;
+    border-bottom: 1px solid var(--color-rule);
+    transition: opacity var(--duration-fast) var(--easing);
+  }
+
+  .culture-cta:hover {
+    opacity: 0.6;
+  }
+
+  .culture-page [data-reveal] {
+    opacity: 0;
+    transform: translate3d(0, var(--motion-distance), 0);
+    transition:
+      opacity var(--motion-duration) var(--motion-ease),
+      transform var(--motion-duration) var(--motion-ease);
+    will-change: opacity, transform;
+  }
+
+  .culture-page [data-reveal="hero-meta"] {
+    transform: translate3d(-1.5rem, 0, 0);
+    transition-delay: 80ms;
+  }
+
+  .culture-page [data-reveal="hero-content"] {
+    transform: translate3d(0, 2rem, 0);
+    transition-delay: 140ms;
+  }
+
+  .culture-page [data-reveal="rail"] {
+    transform: translate3d(-1.25rem, 0, 0);
+  }
+
+  .culture-page [data-reveal="content"] {
+    transition-delay: 60ms;
+  }
+
+  .culture-page [data-reveal="card"],
+  .culture-page [data-reveal="row"] {
+    transition-duration: 680ms;
+  }
+
+  .culture-page [data-reveal="cta"] {
+    transform: translate3d(0, 1rem, 0);
+    transition-delay: 120ms;
+  }
+
+  .culture-page [data-reveal].is-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .culture-page .principle-card[data-reveal],
+  .culture-page .signals-list__item[data-reveal] {
+    transform: translate3d(0, 1.5rem, 0);
+  }
+
+  .culture-page .principle-card[data-reveal].is-visible:nth-child(2),
+  .culture-page .signals-list__item[data-reveal].is-visible:nth-child(2) {
+    transition-delay: 80ms;
+  }
+
+  .culture-page .principle-card[data-reveal].is-visible:nth-child(3),
+  .culture-page .signals-list__item[data-reveal].is-visible:nth-child(3) {
+    transition-delay: 140ms;
+  }
+
+  .culture-page .principle-card[data-reveal].is-visible:nth-child(4),
+  .culture-page .signals-list__item[data-reveal].is-visible:nth-child(4) {
+    transition-delay: 200ms;
+  }
+
+  .culture-page .mode-row[data-reveal].is-visible:nth-child(2) {
+    transition-delay: 70ms;
+  }
+
+  .culture-page .mode-row[data-reveal].is-visible:nth-child(3) {
+    transition-delay: 140ms;
+  }
+
+  .culture-page .mode-row[data-reveal].is-visible:nth-child(4) {
+    transition-delay: 210ms;
+  }
+
+  @media (max-width: 960px) {
+    .culture-hero__grid,
+    .chapter__grid,
+    .chapter__body,
+    .mode-row__content,
+    .signals-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .culture-hero {
+      min-height: auto;
+      padding-block: 4rem;
+    }
+
+    .culture-hero__meta {
+      gap: var(--space-3);
+    }
+
+    .chapter__rail {
+      position: static;
+    }
+
+    .culture-hero__title,
+    .chapter__headline {
+      max-width: 12ch;
+    }
+
+    .principles-grid,
+    .signals-list {
+      grid-template-columns: 1fr;
+    }
+
+    .mode-row {
+      grid-template-columns: 1fr;
+      gap: var(--space-2);
+    }
   }
 
   @media (max-width: 640px) {
-    .culture-hero {
-      min-height: 100svh;
-      padding-top: calc(72px + var(--space-3));
+    .culture-page {
+      --motion-distance: 1.5rem;
     }
 
-    .culture-hero::after {
-      inset: -5rem -7rem auto auto;
-      width: 21rem;
-      opacity: 0.48;
+    .culture-hero__title {
+      max-width: 9ch;
+      font-size: clamp(2.8rem, 16vw, 4.4rem);
+      line-height: 0.98;
     }
 
-    .culture-hero__inner,
-    .culture-scroll {
-      margin-left: clamp(3.4rem, 17vw, 4.2rem);
-    }
-
-    .culture-label {
-      margin-bottom: clamp(var(--space-5), 20vh, 9rem);
-    }
-
-    .culture-hero h1 {
-      font-size: clamp(3.2rem, 15vw, 5rem);
-      max-width: 7.6ch;
-    }
-
-    .culture-hero__inner > p:last-child {
-      max-width: 22ch;
-      font-size: 1rem;
-    }
-
-    .culture-scroll {
-      margin-top: var(--space-5);
-      font-size: 0.78rem;
-    }
-
-    .culture-statement {
-      min-height: 92svh;
-    }
-
-    .culture-statement p {
-      margin-left: clamp(3.4rem, 17vw, 4.2rem);
-      font-size: clamp(2.6rem, 12vw, 4rem);
-      max-width: 11ch;
-    }
-
-    .culture-field {
-      min-height: 150rem;
-      padding-top: var(--space-6);
-    }
-
-    .culture-fragment {
-      width: auto;
-    }
-
-    .culture-fragment span {
-      margin-bottom: var(--space-3);
-      font-size: clamp(2.2rem, 12vw, 3.8rem);
-    }
-
-    .culture-fragment h2 {
+    .culture-hero__intro,
+    .chapter__lead {
       font-size: 1.05rem;
-      line-height: 1.3;
+      max-width: 30ch;
     }
 
-    .fragment--explore {
-      left: var(--gutter);
-      right: 18vw;
-      top: 2rem;
+    .chapter__headline {
+      font-size: clamp(1.8rem, 9vw, 2.8rem);
     }
 
-    .fragment--play {
-      left: 42vw;
-      right: var(--gutter);
-      top: 25rem;
+    .chapter__text,
+    .principle-card__body,
+    .mode-row__body,
+    .signals-list__item {
+      font-size: 0.92rem;
     }
 
-    .fragment--build {
-      left: 14vw;
-      right: var(--gutter);
-      top: 49rem;
+    .principle-card {
+      min-height: 0;
+      gap: var(--space-4);
     }
 
-    .fragment--co {
-      left: var(--gutter);
-      right: 27vw;
-      top: 83rem;
+    .signals-list__item {
+      min-height: 0;
+      align-items: flex-start;
     }
+  }
 
-    .fragment--tools {
-      left: 32vw;
-      right: var(--gutter);
-      top: 112rem;
-    }
-
-    .culture-close {
-      min-height: 50svh;
-    }
-
-    .culture-close p,
-    .culture-close a {
-      font-size: clamp(2.3rem, 11vw, 3.4rem);
+  @media (prefers-reduced-motion: reduce) {
+    .culture-page [data-reveal] {
+      opacity: 1;
+      transform: none;
+      transition: none;
     }
   }
 </style>

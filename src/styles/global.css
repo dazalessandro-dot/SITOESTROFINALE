@@ -2,9 +2,12 @@
    ESTRO — Global Styles
    =============================================================
 
-   FONT SETUP
-   Futura is used globally when available on the device, with close geometric
-   sans-serif fallbacks for browsers that do not ship it.
+   FONT SETUP — DeFontePlus (self-hosted)
+   Drop the 4 TTF files into public/fonts/ to activate:
+     DeFontePlus-Leger.ttf    (weight 300 — labels, footer)
+     DeFontePlus-Normale.ttf  (weight 400 — body prose)
+     DeFontePlus-DemiGras.ttf (weight 600 — buttons, CTAs)
+     DeFontePlus-Gros.ttf     (weight 700 — headings, nav, wordmark)
    ============================================================= */
 
 @font-face {
@@ -46,8 +49,8 @@
   --color-muted:  #555;    /* secondary / caption text */
 
   /* Typography */
-  --font-display: Futura, 'Futura PT', 'Futura Std', 'Avenir Next', Avenir, Montserrat, system-ui, sans-serif;
-  --font-body:    Futura, 'Futura PT', 'Futura Std', 'Avenir Next', Avenir, Montserrat, system-ui, sans-serif;
+  --font-display: 'DeFontePlus', 'Avenir Next', sans-serif;
+  --font-body:    'Futura', 'Futura PT', 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
 
   /* Type scale */
   --text-hero: clamp(5rem, 18vw, 14rem);
@@ -161,11 +164,11 @@ input, textarea { font-family: inherit; }
 
 /* ── Section label — reusable across pages ─────────────────── */
 .section-label {
-  font-family: var(--font-body);
-  font-weight: 300;
+  font-family: var(--font-display);
+  font-weight: 400;
   font-size: var(--text-xs);
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.16em;
   color: var(--color-muted);
   margin-bottom: var(--space-4);
 }

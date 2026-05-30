@@ -1,192 +1,160 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/editorial-pages.css';
+
+const modes = [
+  {
+    label: '01',
+    title: 'Residencies',
+    body: 'We embed inside teams and help turn uncertainty into direction, faster than an external process ever could.',
+  },
+  {
+    label: '02',
+    title: 'Sprints',
+    body: 'When the window is tight, we compress research, framing, and making into a week that actually changes something.',
+  },
+  {
+    label: '03',
+    title: 'Advisory',
+    body: 'For founders and operators who need a clear outside perspective, not another layer of abstraction.',
+  },
+];
+
+const signals = [
+  {
+    title: 'Strategy inside the room',
+    body: 'Not abstract recommendations. Shared language, sharper decisions, and clearer momentum.',
+  },
+  {
+    title: 'Design with operating weight',
+    body: 'Work that can survive implementation, socialisation, and the politics of real organisations.',
+  },
+  {
+    title: 'Futures without theatrics',
+    body: 'Research that expands what is possible while staying grounded in business reality.',
+  },
+  {
+    title: 'Creative pressure where it helps',
+    body: 'Enough experimentation to open new paths, enough discipline to make them usable.',
+  },
+];
 ---
 
 <BaseLayout
   title="Home"
-  description="Estro — nomadic innovation hub. We go where the work is."
+  description="Estro — nomadic innovation hub. Editorial strategy, embedded design, and futures-minded execution."
   showFooter={false}
 >
-  <div class="home-screen">
+  <div class="editorial-page home-page">
+    <section class="editorial-hero">
+      <div class="container editorial-grid">
+        <div class="editorial-rail" data-reveal="hero-meta">
+          <p class="section-label">Estro</p>
+          <p class="editorial-rail-note">Nomadic innovation for teams building products, services, and new directions in motion.</p>
+        </div>
 
-    <!-- Immediate editorial + contact block -->
-    <div class="home-screen__content">
-      <div class="home-screen__body">
-        <p class="home-screen__headline">
-          Nomadic innovation.<br />
-          We go where the work is,<br />
-          embedding with teams,<br />
-          building things that matter.
-        </p>
-        <div class="home-screen__contact" aria-label="Contact">
-          <a href="mailto:hello@estro.io" class="home-screen__contact-link">hello@estro.io</a>
-          <span>Wherever the work is.</span>
+        <div class="editorial-main" data-reveal="hero-content">
+          <h1 class="editorial-title editorial-title--wide">We go where the work is, then help it move with more clarity.</h1>
+          <p class="editorial-intro">
+            Estro works like an embedded studio: part strategy partner, part design pressure, part translation layer between ambition and execution.
+          </p>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- Bottom strip -->
-    <div class="home-screen__strip">
-      <span>Contact</span>
+    <hr class="rule" />
+
+    <section class="editorial-section" data-reveal="chapter">
+      <div class="container editorial-grid">
+        <div class="editorial-rail editorial-rail--sticky" data-reveal="rail">
+          <p class="section-label">How we engage</p>
+        </div>
+
+        <div class="editorial-content" data-reveal="content">
+          <h2 class="editorial-headline">Small enough to be close. Senior enough to matter.</h2>
+          <div class="editorial-columns">
+            <p class="editorial-lead">
+              We are at our best in moments when a team knows something important needs to change, but the shape of that change is still unclear.
+            </p>
+            <p class="editorial-text">
+              That might mean a new product direction, a broken operating rhythm, a future-facing initiative that needs form, or a leadership team that wants better shared judgment. We do not arrive with a prefabricated system. We arrive to make the situation legible, then work from inside it.
+            </p>
+          </div>
+
+          <div class="editorial-list">
+            {modes.map((mode) => (
+              <article class="editorial-row" data-reveal="row">
+                <p class="editorial-row__index">{mode.label}</p>
+                <div class="editorial-row__content">
+                  <h3 class="editorial-row__title">{mode.title}</h3>
+                  <p class="editorial-row__body">{mode.body}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule" />
+
+    <section class="editorial-section" data-reveal="chapter">
+      <div class="container editorial-grid">
+        <div class="editorial-rail editorial-rail--sticky" data-reveal="rail">
+          <p class="section-label">What it feels like</p>
+        </div>
+
+        <div class="editorial-content" data-reveal="content">
+          <h2 class="editorial-headline">A studio presence that is calm, demanding, and useful.</h2>
+          <div class="editorial-card-grid">
+            {signals.map((signal) => (
+              <article class="editorial-card" data-reveal="card">
+                <p class="editorial-card__title">{signal.title}</p>
+                <p class="editorial-card__body">{signal.body}</p>
+              </article>
+            ))}
+          </div>
+
+          <a href="/culture" class="editorial-cta" data-reveal="cta">See how we work</a>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule" />
+
+    <div class="home-page__strip">
+      <span>Wherever the work is.</span>
       <span>&copy; {new Date().getFullYear()} Estro</span>
     </div>
-
   </div>
 </BaseLayout>
 
 <style>
-  /* Override main padding — home is full-viewport */
   :global(#main-content) {
     padding-top: 0 !important;
-    background: #fff;
   }
 
-  .home-screen {
-    height: 100dvh;
-    display: grid;
-    grid-template-rows: 1fr auto;
-    overflow: hidden;
-    padding-top: 72px; /* account for fixed nav */
-    background: #fff;
-  }
-
-  /* Content block — vertically centred */
-  .home-screen__content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .home-screen__body {
-    padding-inline: var(--gutter);
-    padding-block: clamp(var(--space-4), 4vh, var(--space-6));
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    align-items: end;
-    gap: clamp(var(--space-5), 9vw, var(--space-6));
-    width: 100%;
-  }
-
-  .home-screen__headline {
-    font-family: var(--font-display);
-    font-size: clamp(1.6rem, 5.5vw, 3.5rem);
-    font-weight: 700;
-    line-height: 1.08;
-    letter-spacing: 0;
-    max-width: 22ch;
-  }
-
-  .home-screen__contact {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-1);
-    min-width: max-content;
-  }
-
-  .home-screen__contact,
-  .home-screen__contact-link {
-    font-family: var(--font-body);
-    font-weight: 400;
-    font-size: var(--text-sm);
-    color: var(--color-text);
-  }
-
-  .home-screen__contact span {
-    color: var(--color-muted);
-    font-weight: 300;
-  }
-
-  .home-screen__contact-link {
-    text-decoration: underline;
-    text-underline-offset: 4px;
-    text-decoration-thickness: 1px;
-    transition: opacity var(--duration-fast) var(--easing);
-  }
-
-  .home-screen__contact-link:hover { opacity: 0.6; }
-
-  /* Bottom strip */
-  .home-screen__strip {
-    padding-inline: var(--gutter);
-    padding-block: var(--space-3);
+  .home-page__strip {
+    border-top: 1px solid var(--color-rule);
+    padding: var(--space-3) var(--gutter);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: var(--space-3);
   }
 
-  .home-screen__strip span {
+  .home-page__strip span {
     font-family: var(--font-body);
     font-size: var(--text-xs);
-    font-weight: 300;
     color: var(--color-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
   }
 
   @media (max-width: 640px) {
-    .home-screen {
-      min-height: 100dvh;
-      height: 100dvh;
-      padding-top: 72px;
-      grid-template-rows: 1fr auto;
-    }
-
-    .home-screen__content {
-      align-items: center;
-      justify-content: center;
-      padding-inline: var(--gutter);
-    }
-
-    .home-screen__body {
-      width: min(100%, 22rem);
-      min-height: 61dvh;
-      justify-content: center;
-      align-items: center;
-      gap: clamp(var(--space-5), 9vh, var(--space-6));
-      padding: 0;
-      text-align: center;
-      display: flex;
+    .home-page__strip {
       flex-direction: column;
+      align-items: flex-start;
     }
-
-    .home-screen__headline {
-      font-size: clamp(2rem, 11vw, 3.2rem);
-      font-weight: 400;
-      line-height: 0.98;
-      max-width: 9.5ch;
-      text-wrap: balance;
-    }
-
-    .home-screen__contact {
-      align-items: center;
-      min-width: 0;
-      max-width: 100%;
-      gap: var(--space-2);
-    }
-
-    .home-screen__contact,
-    .home-screen__contact-link {
-      font-size: 0.82rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .home-screen__contact-link {
-      text-decoration: none;
-      border: 1px solid currentColor;
-      border-radius: 999px;
-      padding: 0.75rem 1rem;
-      line-height: 1;
-    }
-
-    .home-screen__strip {
-      padding-block: var(--space-4);
-      align-items: flex-end;
-    }
-
-    .home-screen__strip span {
-      font-size: 0.68rem;
-      line-height: 1.2;
-    }
-
-    .home-screen__strip span:first-child { max-width: 9ch; }
   }
 </style>

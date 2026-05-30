@@ -1,238 +1,105 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/editorial-pages.css';
+
+const metrics = [
+  { value: '12+', label: 'initiatives shaped across product, culture, and new venture contexts' },
+  { value: '4', label: 'core working modes, adapted to the pace and politics of the team' },
+  { value: '1', label: 'shared standard: work that remains credible after the workshop ends' },
+];
 
 const projects = [
-  ['Kelp', 'Sustainable packaging / Residency / 2024'],
-  ['Meridian', 'Urban mobility / Sprint / 2024'],
-  ['Forma', 'Design systems / Advisory / 2023'],
-  ['Tidal', 'Clean energy / Venture / 2023'],
-  ['Nomad Stack', 'Distributed work / Sprint / 2022'],
-  ['Atlas', 'Knowledge platforms / Residency / 2022'],
+  { title: 'Kelp', sector: 'Sustainable packaging', format: 'Residency', year: '2024', summary: 'A cross-functional program to reframe packaging as a product and systems problem rather than a material choice.', tint: 'linear-gradient(155deg, #dde0d3 0%, #cfd2c5 100%)' },
+  { title: 'Meridian', sector: 'Urban mobility', format: 'Sprint', year: '2024', summary: 'A compressed decision sprint to align service, policy, and user experience around a new public-facing offer.', tint: 'linear-gradient(155deg, #d8dbd5 0%, #cacdc6 100%)' },
+  { title: 'Forma', sector: 'Design systems', format: 'Advisory', year: '2023', summary: 'A long-view collaboration that translated scaling pain into a clearer product language and a working governance model.', tint: 'linear-gradient(155deg, #d5d2c8 0%, #c7c4b9 100%)' },
+  { title: 'Tidal', sector: 'Clean energy', format: 'Venture', year: '2023', summary: 'An early-stage proposition shaped through positioning, ecosystem mapping, and concrete experience concepts.', tint: 'linear-gradient(155deg, #d2d0c6 0%, #c5c2b7 100%)' },
+  { title: 'Nomad Stack', sector: 'Distributed work', format: 'Sprint', year: '2022', summary: 'A research-led engagement exploring what operational trust needs to look like in globally distributed teams.', tint: 'linear-gradient(155deg, #cfcdc3 0%, #c2c0b5 100%)' },
+  { title: 'Atlas', sector: 'Knowledge platforms', format: 'Residency', year: '2022', summary: 'A platform rethink shaped around editorial hierarchy, contribution flows, and more resilient collaboration patterns.', tint: 'linear-gradient(155deg, #cccac0 0%, #bfbdb2 100%)' },
 ];
 ---
 
 <BaseLayout
   title="Projects"
-  description="A selection of projects from Estro's nomadic innovation practice."
-  showFooter={false}
+  description="Selected Estro work across product, systems, culture, and future-facing initiatives."
 >
-  <section class="project-page" aria-labelledby="projects-title">
-    <div class="project-intro">
-      <p>Projects</p>
-      <h1 id="projects-title">Selected work, still moving.</h1>
-      <span>Experiments, ventures, systems, and strategic prototypes.</span>
-    </div>
+  <div class="editorial-page">
+    <section class="editorial-hero">
+      <div class="container editorial-grid">
+        <div class="editorial-rail" data-reveal="hero-meta">
+          <p class="section-label">Projects</p>
+          <p class="editorial-rail-note">A selection of work shaped through proximity, strong framing, and an editorial approach to complexity.</p>
+        </div>
 
-    <div class="project-media" aria-hidden="true">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
+        <div class="editorial-main" data-reveal="hero-content">
+          <h1 class="editorial-title editorial-title--wide">Projects where strategy, systems, and experience had to move together.</h1>
+          <p class="editorial-intro">
+            The specifics change from client to client. The throughline is usually the same: a difficult transition, an unclear opportunity, or a team that needs a stronger shared shape for the work.
+          </p>
+        </div>
+      </div>
+    </section>
 
-    <ul class="project-ledger" role="list">
-      {projects.map(([title, meta], index) => (
-        <li>
-          <a href="#">
-            <span class="project-ledger__count">{String(index + 1).padStart(2, '0')}</span>
-            <strong>{title}</strong>
-            <em>{meta}</em>
-          </a>
-        </li>
-      ))}
-    </ul>
-  </section>
+    <hr class="rule" />
+
+    <section class="editorial-section" data-reveal="chapter">
+      <div class="container editorial-grid">
+        <div class="editorial-rail editorial-rail--sticky" data-reveal="rail">
+          <p class="section-label">Context</p>
+        </div>
+
+        <div class="editorial-content" data-reveal="content">
+          <h2 class="editorial-headline">Different sectors, same preference for work that can survive implementation.</h2>
+          <div class="editorial-metric-grid">
+            {metrics.map((metric) => (
+              <article class="editorial-metric" data-reveal="card">
+                <p class="editorial-metric__value">{metric.value}</p>
+                <p class="editorial-metric__label">{metric.label}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule" />
+
+    <section class="editorial-section" data-reveal="chapter">
+      <div class="container editorial-grid">
+        <div class="editorial-rail editorial-rail--sticky" data-reveal="rail">
+          <p class="section-label">Selected work</p>
+        </div>
+
+        <div class="editorial-content" data-reveal="content">
+          <div class="editorial-card-grid project-grid">
+            {projects.map((project) => (
+              <article class="editorial-card project-card" data-reveal="card">
+                <div class="editorial-card__visual" style={`background:${project.tint};`}></div>
+                <div class="project-card__copy">
+                  <p class="editorial-card__meta">{project.sector} / {project.format} / {project.year}</p>
+                  <p class="editorial-card__title">{project.title}</p>
+                  <p class="editorial-card__body">{project.summary}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 </BaseLayout>
 
 <style>
-  :global(#main-content) {
-    padding-top: 0 !important;
-    background: #f7f7f5;
+  .project-grid .editorial-card__visual {
+    aspect-ratio: 4 / 3;
   }
 
-  .project-page {
-    min-height: 100svh;
-    padding: calc(72px + var(--space-4)) var(--gutter) var(--space-6);
-    position: relative;
-    overflow: hidden;
-    background: #f7f7f5;
+  .project-card {
+    justify-content: flex-start;
   }
 
-  .project-intro {
-    min-height: 70svh;
+  .project-card__copy {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    position: relative;
-    z-index: 2;
-    max-width: 42rem;
-  }
-
-  .project-intro p,
-  .project-ledger__count {
-    font-size: 0.72rem;
-    color: rgba(17, 17, 17, 0.48);
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-  }
-
-  .project-intro h1 {
-    margin-top: clamp(var(--space-5), 14vh, var(--space-6));
-    max-width: 8ch;
-    font-family: var(--font-display);
-    font-size: clamp(4rem, 13vw, 10rem);
-    font-weight: 400;
-    line-height: 0.86;
-  }
-
-  .project-intro span {
-    display: block;
-    margin-top: var(--space-4);
-    max-width: 26ch;
-    font-size: clamp(1rem, 1.8vw, 1.28rem);
-    line-height: 1.32;
-  }
-
-  .project-media {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-  }
-
-  .project-media span {
-    position: absolute;
-    display: block;
-    border: 1px solid rgba(17, 17, 17, 0.08);
-  }
-
-  .project-media span:nth-child(1) {
-    width: min(38vw, 32rem);
-    height: min(56vw, 44rem);
-    right: -5vw;
-    top: 12svh;
-    background: linear-gradient(145deg, rgba(255,255,255,0.7), rgba(17,17,17,0.12));
-    transform: rotate(4deg);
-  }
-
-  .project-media span:nth-child(2) {
-    width: min(30vw, 24rem);
-    height: min(24vw, 18rem);
-    left: 18vw;
-    top: 64svh;
-    background: #d93430;
-    opacity: 0.78;
-    transform: rotate(-8deg);
-  }
-
-  .project-media span:nth-child(3) {
-    width: min(42vw, 36rem);
-    height: min(18vw, 14rem);
-    right: 14vw;
-    bottom: 10svh;
-    background: #111;
-    transform: rotate(2deg);
-  }
-
-  .project-ledger {
-    position: relative;
-    z-index: 2;
-    list-style: none;
-    padding: var(--space-6) 0 0;
-    margin: 0;
-  }
-
-  .project-ledger li {
-    border-top: 1px solid rgba(17, 17, 17, 0.18);
-  }
-
-  .project-ledger li:last-child {
-    border-bottom: 1px solid rgba(17, 17, 17, 0.18);
-  }
-
-  .project-ledger a {
-    min-height: clamp(7rem, 16vw, 14rem);
-    display: grid;
-    grid-template-columns: 4rem minmax(0, 1fr) minmax(12rem, 0.38fr);
-    gap: var(--space-4);
-    align-items: center;
-    color: var(--color-text);
-    text-decoration: none;
-  }
-
-  .project-ledger strong {
-    font-family: var(--font-display);
-    font-size: clamp(3rem, 8vw, 7rem);
-    font-weight: 400;
-    line-height: 0.9;
-  }
-
-  .project-ledger em {
-    max-width: 22ch;
-    font-style: normal;
-    color: var(--color-muted);
-    font-size: 0.78rem;
-    line-height: 1.35;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-  }
-
-  .project-ledger a:hover strong {
-    transform: translateX(0.35rem);
-  }
-
-  .project-ledger strong {
-    transition: transform 160ms ease;
-  }
-
-  @media (max-width: 640px) {
-    .project-page {
-      padding-top: calc(72px + var(--space-3));
-    }
-
-    .project-intro {
-      min-height: 82svh;
-    }
-
-    .project-intro h1 {
-      font-size: clamp(3.5rem, 18vw, 5.8rem);
-      max-width: 6.4ch;
-    }
-
-    .project-media span:nth-child(1) {
-      width: 54vw;
-      height: 80vw;
-      right: -18vw;
-      top: 14svh;
-    }
-
-    .project-media span:nth-child(2) {
-      width: 42vw;
-      height: 34vw;
-      left: -8vw;
-      top: 61svh;
-    }
-
-    .project-media span:nth-child(3) {
-      width: 58vw;
-      height: 24vw;
-      right: -6vw;
-      bottom: 7svh;
-    }
-
-    .project-ledger a {
-      min-height: 9rem;
-      grid-template-columns: 2.2rem minmax(0, 1fr);
-      gap: var(--space-3);
-      align-items: start;
-      padding-block: var(--space-4);
-    }
-
-    .project-ledger em {
-      grid-column: 2;
-      max-width: 18ch;
-    }
-
-    .project-ledger strong {
-      font-size: clamp(2.7rem, 13vw, 4.2rem);
-    }
+    gap: var(--space-2);
   }
 </style>

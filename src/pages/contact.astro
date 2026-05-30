@@ -1,192 +1,156 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/editorial-pages.css';
 
-const links = [
-  ['Instagram', '#'],
-  ['LinkedIn', '#'],
-  ['Are.na', '#'],
+const channels = [
+  { label: 'Email', value: 'hello@estro.io', href: 'mailto:hello@estro.io' },
+  { label: 'Base', value: 'Wherever the work is.', href: '' },
+  { label: 'Follow', value: 'Instagram / LinkedIn / Are.na', href: '' },
 ];
 ---
 
 <BaseLayout
   title="Contact"
-  description="Get in touch with Estro — hello@estro.io"
-  showFooter={false}
+  description="Get in touch with Estro."
 >
-  <section class="contact-signal" aria-labelledby="contact-title">
-    <p>Contact</p>
-    <h1 id="contact-title">Send the unfinished thing.</h1>
-    <a class="contact-email" href="mailto:hello@estro.io">hello@estro.io</a>
+  <div class="editorial-page contact-page">
+    <section class="editorial-hero">
+      <div class="container editorial-grid">
+        <div class="editorial-rail" data-reveal="hero-meta">
+          <p class="section-label">Contact</p>
+          <p class="editorial-rail-note">Tell us what the team is trying to move, what is stuck, or what kind of shape the next phase needs.</p>
+        </div>
 
-    <div class="contact-orbit" aria-hidden="true">
-      <span></span>
-      <span></span>
-    </div>
-  </section>
+        <div class="editorial-main" data-reveal="hero-content">
+          <h1 class="editorial-title editorial-title--wide">If the work matters, it is probably worth the conversation.</h1>
+          <p class="editorial-intro">
+            We work with companies, founders, and operators who need clarity under pressure. Strange questions are welcome. So are early signals of something not fully formed yet.
+          </p>
+        </div>
+      </div>
+    </section>
 
-  <section class="contact-lines" aria-label="Other contact routes">
-    <p>Wherever the work is.</p>
-    <ul role="list">
-      {links.map(([label, href]) => (
-        <li>
-          <a href={href}>{label}<span aria-hidden="true">→</span></a>
-        </li>
-      ))}
-    </ul>
-  </section>
+    <hr class="rule" />
+
+    <section class="editorial-section" data-reveal="chapter">
+      <div class="container editorial-grid">
+        <div class="editorial-rail editorial-rail--sticky" data-reveal="rail">
+          <p class="section-label">Reach us</p>
+        </div>
+
+        <div class="editorial-content" data-reveal="content">
+          <div class="editorial-columns contact-columns">
+            <div class="contact-page__info">
+              {channels.map((channel) => (
+                <div class="contact-page__row">
+                  <p class="editorial-card__meta">{channel.label}</p>
+                  {channel.href ? (
+                    <a href={channel.href} class="contact-page__value">{channel.value}</a>
+                  ) : (
+                    <p class="contact-page__value">{channel.value}</p>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            <div class="contact-page__form-wrap">
+              <form class="contact-page__form" id="contact-form" novalidate>
+                <div class="contact-page__field">
+                  <label for="name" class="editorial-card__meta">Name</label>
+                  <input type="text" id="name" name="name" required autocomplete="name" class="contact-page__input" />
+                </div>
+
+                <div class="contact-page__field">
+                  <label for="email" class="editorial-card__meta">Email</label>
+                  <input type="email" id="email" name="email" required autocomplete="email" class="contact-page__input" />
+                </div>
+
+                <div class="contact-page__field">
+                  <label for="message" class="editorial-card__meta">Message</label>
+                  <textarea id="message" name="message" required rows="5" class="contact-page__input contact-page__textarea"></textarea>
+                </div>
+
+                <button type="submit" class="editorial-cta contact-page__submit">Send message</button>
+              </form>
+
+              <div class="contact-page__thanks" id="form-thanks" hidden>
+                <p class="editorial-headline">Thank you.</p>
+                <p class="editorial-text">We will be in touch.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 </BaseLayout>
 
 <style>
-  :global(#main-content) {
-    padding-top: 0 !important;
-    background: #050505;
+  .contact-columns {
+    align-items: start;
   }
 
-  .contact-signal,
-  .contact-lines {
-    padding-inline: var(--gutter);
-  }
-
-  .contact-signal {
-    min-height: 100svh;
-    padding-top: calc(72px + var(--space-4));
-    padding-bottom: var(--space-5);
-    position: relative;
+  .contact-page__info,
+  .contact-page__form {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    overflow: hidden;
-    background: #050505;
-    color: #fff;
+    gap: var(--space-5);
   }
 
-  .contact-signal > p {
-    margin-bottom: clamp(var(--space-5), 16vh, var(--space-6));
-    color: rgba(255,255,255,0.48);
-    font-size: 0.78rem;
-  }
-
-  .contact-signal h1 {
-    position: relative;
-    z-index: 2;
-    max-width: 8ch;
-    font-family: var(--font-display);
-    font-size: clamp(4rem, 13vw, 10rem);
-    font-weight: 400;
-    line-height: 0.86;
-  }
-
-  .contact-email {
-    position: relative;
-    z-index: 2;
-    width: max-content;
-    margin-top: var(--space-5);
-    color: #fff;
-    font-size: clamp(1.25rem, 3vw, 2.4rem);
-    text-decoration: underline;
-    text-underline-offset: 0.18em;
-  }
-
-  .contact-orbit {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-  }
-
-  .contact-orbit span {
-    position: absolute;
-    display: block;
-    border: 1px solid rgba(255,255,255,0.09);
-  }
-
-  .contact-orbit span:first-child {
-    width: min(50vw, 42rem);
-    height: min(62vw, 50rem);
-    right: -10vw;
-    top: 14svh;
-    background: #d93430;
-    opacity: 0.86;
-    transform: rotate(7deg);
-  }
-
-  .contact-orbit span:last-child {
-    width: min(36vw, 30rem);
-    height: min(22vw, 18rem);
-    right: 14vw;
-    bottom: 9svh;
-    background: rgba(255,255,255,0.88);
-    transform: rotate(-4deg);
-  }
-
-  .contact-lines {
-    min-height: 70svh;
-    padding-block: var(--space-6);
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(14rem, 0.55fr);
-    gap: var(--space-6);
-    align-items: end;
-    background: #f7f7f5;
-    color: var(--color-text);
-  }
-
-  .contact-lines p {
-    max-width: 8ch;
-    font-family: var(--font-display);
-    font-size: clamp(2.8rem, 8vw, 6rem);
-    line-height: 0.92;
-  }
-
-  .contact-lines ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  .contact-page__row {
     display: flex;
     flex-direction: column;
-    gap: var(--space-3);
+    gap: var(--space-1);
   }
 
-  .contact-lines a {
+  .contact-page__value {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 2.2vw, 2rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+
+  .contact-page__field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .contact-page__input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--color-rule);
+    padding-block: var(--space-3);
+    font-family: var(--font-body);
+    font-size: var(--text-base);
     color: var(--color-text);
-    text-decoration: none;
-    font-size: clamp(1.4rem, 3vw, 2.2rem);
+    outline: none;
+    border-radius: 0;
+    appearance: none;
   }
 
-  .contact-lines span {
-    display: inline-block;
-    margin-left: var(--space-2);
-    color: #d93430;
-    transition: transform 160ms ease;
+  .contact-page__textarea {
+    resize: vertical;
   }
 
-  .contact-lines a:hover span {
-    transform: translateX(0.35rem);
+  .contact-page__submit {
+    background: none;
+    margin-top: var(--space-2);
   }
 
-  @media (max-width: 640px) {
-    .contact-signal h1 {
-      font-size: clamp(3rem, 14vw, 4.9rem);
-      max-width: 7.4ch;
-    }
-
-    .contact-orbit span:first-child {
-      width: 62vw;
-      height: 82vw;
-      right: -24vw;
-      top: 15svh;
-    }
-
-    .contact-orbit span:last-child {
-      width: 48vw;
-      height: 28vw;
-      right: -7vw;
-      bottom: 11svh;
-    }
-
-    .contact-lines {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: flex-end;
-    }
+  .contact-page__thanks {
+    padding-block: var(--space-5);
   }
 </style>
+
+<script>
+  const form = document.getElementById('contact-form');
+  const thanks = document.getElementById('form-thanks');
+
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    form.hidden = true;
+    if (thanks) thanks.hidden = false;
+  });
+</script>

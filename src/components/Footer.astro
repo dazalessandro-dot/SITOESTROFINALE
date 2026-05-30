@@ -7,7 +7,7 @@ const year = new Date().getFullYear();
 
     <a href="/" class="footer-logo" aria-label="Estro — home">
       <img
-        src="/images/estro-mark.png"
+        src="/favicon.svg"
         alt="Estro"
         class="footer-mark"
         width="30"
@@ -15,7 +15,7 @@ const year = new Date().getFullYear();
         loading="lazy"
         decoding="async"
       />
-      <span class="footer-wordmark">Estro</span>
+      <span class="footer-wordmark">ESTRO</span>
     </a>
 
     <p class="footer-tagline">Wherever the work is.</p>
@@ -56,8 +56,10 @@ const year = new Date().getFullYear();
 
   .footer-wordmark {
     font-family: var(--font-display);
-    font-weight: 700;
+    font-weight: 400;
     font-size: var(--text-sm);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
     color: var(--color-text);
     line-height: 1;
   }
