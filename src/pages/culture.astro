@@ -243,7 +243,7 @@ const signals = [
     font-size: clamp(3.5rem, 8vw, 6.8rem);
     font-weight: 400;
     line-height: 0.94;
-    letter-spacing: -0.045em;
+    letter-spacing: var(--display-tracking-tight);
     text-wrap: balance;
   }
 
@@ -272,7 +272,7 @@ const signals = [
     font-size: clamp(2rem, 4.6vw, 4rem);
     font-weight: 400;
     line-height: 1;
-    letter-spacing: -0.04em;
+    letter-spacing: var(--display-tracking-tight);
   }
 
   .chapter__body {
@@ -300,7 +300,7 @@ const signals = [
     font-family: var(--font-display);
     font-size: clamp(1.3rem, 2.2vw, 2rem);
     line-height: 1.18;
-    letter-spacing: -0.03em;
+    letter-spacing: var(--display-tracking-tight);
   }
 
   .principles-grid {
@@ -326,7 +326,7 @@ const signals = [
     font-size: clamp(1.5rem, 2.4vw, 2.2rem);
     font-weight: 400;
     line-height: 1.02;
-    letter-spacing: -0.03em;
+    letter-spacing: var(--display-tracking-tight);
   }
 
   .principle-card__body,
@@ -528,10 +528,25 @@ const signals = [
       --motion-distance: 1.5rem;
     }
 
+    .culture-page [data-reveal="hero-meta"],
+    .culture-page [data-reveal="rail"] {
+      transform: translate3d(0, var(--motion-distance), 0);
+    }
+
+    .culture-hero {
+      padding-block: 2.75rem 3.25rem;
+    }
+
+    .culture-hero__grid,
+    .chapter__grid {
+      gap: 1.75rem;
+    }
+
     .culture-hero__title {
-      max-width: 9ch;
-      font-size: clamp(2.8rem, 16vw, 4.4rem);
-      line-height: 0.98;
+      max-width: 100%;
+      font-size: clamp(2.65rem, 12.4vw, 3.8rem);
+      line-height: 1.02;
+      overflow-wrap: anywhere;
     }
 
     .culture-hero__intro,

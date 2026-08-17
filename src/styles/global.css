@@ -51,6 +51,8 @@
   /* Typography */
   --font-display: 'DeFontePlus', 'Avenir Next', sans-serif;
   --font-body:    'Futura', 'Futura PT', 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+  --display-tracking: 0.018em;
+  --display-tracking-tight: 0.01em;
 
   /* Type scale */
   --text-hero: clamp(5rem, 18vw, 14rem);

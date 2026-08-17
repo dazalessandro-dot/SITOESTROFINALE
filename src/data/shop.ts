@@ -3,7 +3,7 @@ export const shopItems = [
     slug: 'achille',
     title: 'Achille',
     status: 'coming soon',
-    description: 'Un piccolo strumento trasparente per portare scrittura, misura e appunti dentro il movimento.',
+    description: 'A small transparent tool for carrying writing, measuring, and notes into movement.',
     images: [
       '/shop/achille/1.jpg',
       '/shop/achille/2.jpg',
@@ -14,7 +14,7 @@ export const shopItems = [
     slug: 'travel-pouch',
     title: 'Travel pouch',
     status: 'prototype',
-    description: 'Una custodia morbida per tenere insieme strumenti, oggetti piccoli e materiali da campo.',
+    description: 'A soft pouch for keeping tools, small objects, and field materials together.',
     images: [
       '/shop/travel-pouch/1.jpg',
       '/shop/travel-pouch/2.jpg',
@@ -25,7 +25,7 @@ export const shopItems = [
     slug: 'field-bag',
     title: 'Field bag',
     status: 'prototype',
-    description: 'Una borsa morbida e tecnica per portare strumenti, materiali e piccoli oggetti dentro situazioni di lavoro mobili.',
+    description: 'A soft technical bag for carrying tools, materials, and small objects through mobile work situations.',
     images: [
       '/shop/field-bag/1.jpg',
       '/shop/field-bag/2.jpg',
@@ -36,7 +36,7 @@ export const shopItems = [
     slug: 'hammock',
     title: 'Hammock',
     status: 'prototype',
-    description: 'Un oggetto leggero per fermarsi, sospendere il corpo e lasciare spazio al pensiero fuori dalla postazione.',
+    description: 'A light object for pausing, suspending the body, and making space for thought away from the desk.',
     images: [
       '/shop/hammock/1.jpg',
       '/shop/hammock/2.jpg',
@@ -47,7 +47,7 @@ export const shopItems = [
     slug: 'bandana',
     title: 'Bandana',
     status: 'concept',
-    description: 'Una superficie grafica pieghevole: accessorio, segnale e piccolo campo visivo da portare con sé.',
+    description: 'A foldable graphic surface: accessory, signal, and small visual field to carry with you.',
     images: [
       '/shop/bandana/1.jpg',
     ],

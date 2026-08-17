@@ -209,7 +209,8 @@ const relatedProjects = (project.related ?? [])
     font-size: clamp(4rem, 9vw, 9.8rem);
     font-weight: 400;
     line-height: 0.9;
-    letter-spacing: 0;
+    letter-spacing: var(--display-tracking-tight);
+    overflow-wrap: anywhere;
   }
 
   .project-hero__intro {
@@ -314,7 +315,7 @@ const relatedProjects = (project.related ?? [])
     font-size: clamp(2.4rem, 5vw, 5.7rem);
     font-weight: 400;
     line-height: 0.98;
-    letter-spacing: 0;
+    letter-spacing: var(--display-tracking-tight);
     color: var(--color-text);
   }
 
@@ -331,7 +332,7 @@ const relatedProjects = (project.related ?? [])
     font-size: clamp(2rem, 4vw, 4.5rem);
     font-weight: 400;
     line-height: 0.98;
-    letter-spacing: 0;
+    letter-spacing: var(--display-tracking-tight);
   }
 
   .project-text-block p {
@@ -440,7 +441,7 @@ const relatedProjects = (project.related ?? [])
     font-size: clamp(2.6rem, 6vw, 7.5rem);
     font-weight: 400;
     line-height: 0.95;
-    letter-spacing: 0;
+    letter-spacing: var(--display-tracking-tight);
   }
 
   .project-related__grid {
@@ -478,7 +479,7 @@ const relatedProjects = (project.related ?? [])
     font-size: clamp(1.8rem, 3vw, 3.4rem);
     font-weight: 400;
     line-height: 0.95;
-    letter-spacing: 0;
+    letter-spacing: var(--display-tracking-tight);
   }
 
   .project-related__card p {
@@ -531,8 +532,9 @@ const relatedProjects = (project.related ?? [])
     }
 
     .project-hero h1 {
-      max-width: 7.5ch;
-      font-size: clamp(3.5rem, 19vw, 5.7rem);
+      max-width: 100%;
+      font-size: clamp(3rem, 13vw, 5rem);
+      line-height: 0.94;
     }
 
     .project-feature img {

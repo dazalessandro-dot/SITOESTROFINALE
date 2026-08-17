@@ -3,9 +3,9 @@ export const projects = [
     slug: 'workshop-cludo',
     title: 'workshop cludo',
     summary:
-      'Un workshop breve di rapid foresight. I partecipanti raccolgono segnali, scelgono le incertezze più rilevanti e costruiscono scenari per discutere il presente attraverso il futuro.',
+      'A compact rapid foresight workshop. Participants collect signals, identify the most relevant uncertainties, and build scenarios to discuss the present through the future.',
     note:
-      'Il formato traduce strumenti di futures thinking in una sequenza accessibile di domande, mappe e decisioni condivise.',
+      'The format translates futures thinking tools into an accessible sequence of questions, maps, and shared decisions.',
     tags: ['Foresight', 'Workshop', 'Sensemaking'],
     images: [
       '/projects/workshop-cludo/1.jpg',
@@ -15,11 +15,11 @@ export const projects = [
       '/projects/workshop-cludo/5.jpg',
     ],
     imageCaptions: [
-      'Facilitazione e discussione intorno al futuro dell’apprendimento.',
-      'Una soglia narrativa semplice: chiudere gli occhi e spostare la conversazione al 2050.',
-      'La lavagna raccoglie segnali, assi e connessioni emerse dal gruppo.',
-      'Il lavoro alterna momenti individuali, confronto al tavolo e sintesi collettiva.',
-      'Il workshop rende visibile il passaggio da segnali dispersi a scenari discutibili.',
+      'Facilitation and discussion around the future of learning.',
+      'A simple narrative threshold: closing the eyes and moving the conversation to 2050.',
+      'The board collects signals, axes, and connections that emerged from the group.',
+      'The work moves between individual moments, table discussion, and collective synthesis.',
+      'The workshop makes the shift from scattered signals to discussable scenarios visible.',
     ],
     tint: 'linear-gradient(155deg, #dde0d3 0%, #cfd2c5 100%)',
     meta: [
@@ -29,14 +29,14 @@ export const projects = [
       ['Role', 'Concept, method, facilitation, visual deck'],
     ],
     question:
-      'Come può un gruppo leggere un tema complesso senza cercare subito una risposta unica?',
+      'How can a group read a complex topic without rushing toward a single answer?',
     context:
-      'Cludo nasce come formato di foresight accessibile. Il futuro non viene trattato come previsione, ma come superficie di lavoro: un modo per far emergere presupposti, tensioni, segnali deboli e decisioni possibili.',
+      'Cludo was developed as an accessible foresight format. The future is not treated as prediction, but as a working surface: a way to reveal assumptions, tensions, weak signals, and possible decisions.',
     approach: [
-      'Introduzione a wicked problems e sensemaking con un linguaggio non accademico.',
-      'Esplorazione STEEP per raccogliere trasformazioni sociali, tecnologiche, economiche, ambientali e politiche.',
-      'Selezione di due incertezze forti e costruzione di una scenario matrix a quattro quadranti.',
-      'Discussione finale sulle implicazioni dei mondi immaginati per il presente.',
+      'Introduction to wicked problems and sensemaking through a non-academic language.',
+      'STEEP exploration to collect social, technological, economic, environmental, and political shifts.',
+      'Selection of two strong uncertainties and construction of a four-quadrant scenario matrix.',
+      'Final discussion on what the imagined worlds imply for present decisions.',
     ],
     outputs: [
       'Workshop format',
@@ -47,16 +47,16 @@ export const projects = [
       'Implications discussion',
     ],
     reflection:
-      'Il valore del format sta nella sua compressione: in poco tempo un gruppo passa da contributi frammentati a una struttura comune, abbastanza chiara da orientare una conversazione strategica.',
+      'The value of the format lies in compression: in a short time, a group moves from fragmented contributions to a shared structure clear enough to guide a strategic conversation.',
     related: ['workshop-vu-amsterdam', 'dominamente'],
   },
   {
     slug: 'bistro-il-riccio',
     title: 'bistro il riccio',
     summary:
-      'Un piccolo servizio di cucina leggera nato nella comunità studentesca del Politecnico di Milano. Ricette, prezzi, prenotazioni e feedback sono stati provati direttamente con le persone che avrebbero usato il servizio.',
+      'A small light-food service born inside the Politecnico di Milano student community. Recipes, pricing, booking, and feedback were tested directly with the people who would use the service.',
     note:
-      'Il progetto tiene insieme food design, identità visiva e ricerca attraverso il servizio: un pasto semplice diventa un modo per osservare energia, concentrazione e vita universitaria.',
+      'The project brings together food design, visual identity, and service-led research: a simple meal becomes a way to observe energy, focus, and university life.',
     tags: ['Food design', 'Service', 'Brand'],
     images: [
       '/projects/bistro-il-riccio/1.jpg',
@@ -64,9 +64,9 @@ export const projects = [
       '/projects/bistro-il-riccio/3.jpg',
     ],
     imageCaptions: [
-      'Il riccio come segno semplice, riconoscibile e leggero.',
-      'Un linguaggio visivo minimale pensato per packaging, menu e comunicazione digitale.',
-      'Il menu nasce da piatti completi, vegetali e compatibili con una giornata di studio.',
+      'The hedgehog as a simple, recognizable, and light sign.',
+      'A minimal visual language designed for packaging, menus, and digital communication.',
+      'The menu is built around complete, plant-based meals suited to a day of study.',
     ],
     tint: 'linear-gradient(155deg, #d8dbd5 0%, #cacdc6 100%)',
     meta: [
@@ -76,14 +76,14 @@ export const projects = [
       ['Role', 'Co-founder, service design, brand, digital concept'],
     ],
     question:
-      'Che forma prende un servizio di pranzo pensato davvero per la giornata mentale degli studenti?',
+      'What shape does a lunch service take when it is designed around the mental rhythm of students?',
     context:
-      'Bistrò il Riccio nasce come alternativa ai pasti universitari pesanti, costosi o poco nutrienti. Non è solo una proposta di cucina: è un esperimento di servizio, community e identità, testato con persone reali.',
+      'Bistro il Riccio was created as an alternative to heavy, expensive, or nutritionally weak university meals. It is not only a food offer: it is a service, community, and identity experiment tested with real people.',
     approach: [
-      'Definizione di una proposta accessibile, vegetariana e funzionale allo studio.',
-      'Prove su ricette, porzioni, prezzo, contenitori, prenotazioni e comunicazione.',
-      'Creazione di una community WhatsApp e raccolta di feedback dopo i pasti.',
-      'Sviluppo di un’identità visiva capace di restare semplice senza diventare infantile.',
+      'Definition of an accessible, vegetarian offer designed around studying.',
+      'Tests on recipes, portions, price, containers, booking, and communication.',
+      'Creation of a WhatsApp community and collection of feedback after meals.',
+      'Development of a visual identity that stays simple without becoming childish.',
     ],
     outputs: [
       'Meal service prototype',
@@ -95,16 +95,16 @@ export const projects = [
       'Website concept',
     ],
     reflection:
-      'Il progetto usa il servizio come ricerca. Ogni pranzo produce anche informazioni: sazietà, concentrazione, prezzo percepito, desiderio di ritorno e possibilità di comunità.',
+      'The project uses service as research. Every lunch also produces information: satiety, focus, perceived price, willingness to return, and the possibility of community.',
     related: ['alveari', 'dominamente'],
   },
   {
     slug: 'arcteryx-pouch',
     title: 'arcteryx pouch',
     summary:
-      'Un pouch tecnico osservato come piccolo sistema portatile. Tasche, zip, interno colorato e gesto di apertura diventano il punto di partenza per ragionare su accesso, ordine e strumenti in movimento.',
+      'A technical pouch observed as a small portable system. Pockets, zips, colored lining, and the gesture of opening become a way to think about access, order, and tools in motion.',
     note:
-      'Il progetto entra nell’archivio come studio su un oggetto compatto: una custodia da leggere attraverso uso, dettagli costruttivi e relazione con ciò che deve contenere.',
+      'The project enters the archive as a study of a compact object: a case read through use, construction details, and its relationship with what it has to hold.',
     tags: ['Object study', 'Gear', 'Portable tools'],
     images: [
       '/projects/arcteryx-pouch/1.jpg',
@@ -114,11 +114,11 @@ export const projects = [
       '/projects/arcteryx-pouch/5.jpg',
     ],
     imageCaptions: [
-      'L’interno ad alta visibilità rende leggibile l’organizzazione degli strumenti.',
-      'Il gesto di apertura mostra il pouch come interfaccia, non solo come contenitore.',
-      'Il dettaglio della tasca diventa un riferimento per accesso rapido e orientamento.',
-      'La forma chiusa chiarisce scala, portabilità e protezione.',
-      'La struttura esterna viene letta in relazione a zip, cordini e gesto d’uso.',
+      'The high-visibility interior makes tool organization legible.',
+      'The opening gesture shows the pouch as an interface, not only as a container.',
+      'The pocket detail becomes a reference for quick access and orientation.',
+      'The closed form clarifies scale, portability, and protection.',
+      'The outer structure is read in relation to zips, cords, and use gestures.',
     ],
     tint: 'linear-gradient(155deg, #d6d8d1 0%, #c3c7bf 100%)',
     meta: [
@@ -128,14 +128,14 @@ export const projects = [
       ['Role', 'Observation, documentation, archive reference'],
     ],
     question:
-      'Cosa rende uno strumento portatile davvero accessibile quando viene usato in movimento?',
+      'What makes a portable tool truly accessible when it is used in motion?',
     context:
-      'Questo non viene presentato come un nuovo prodotto Estro, ma come uno studio d’archivio. L’oggetto è osservato per capire come contenere, proteggere e rendere immediatamente trovabili piccoli strumenti.',
+      'This is not presented as a new Estro product, but as an archive study. The object is observed to understand how small tools can be contained, protected, and made immediately findable.',
     approach: [
-      'Lettura dell’oggetto aperto e chiuso, osservando cosa cambia nel gesto.',
-      'Analisi del contrasto tra esterno tecnico e interno ad alta visibilità.',
-      'Osservazione di zip, tasche, cordini e superfici di contenimento come micro-interazioni.',
-      'Traduzione dei dettagli in riferimenti utili per futuri gear e tool da campo.',
+      'Reading the object open and closed, observing what changes in the gesture.',
+      'Analysis of the contrast between a technical exterior and a high-visibility interior.',
+      'Observation of zips, pockets, cords, and holding surfaces as micro-interactions.',
+      'Translation of details into useful references for future field gear and tools.',
     ],
     outputs: [
       'Photographic study',
@@ -144,16 +144,16 @@ export const projects = [
       'Detail archive',
     ],
     reflection:
-      'A questa scala, il design non è decorazione. È orientamento: sapere dove sono le cose, aprire con una mano, distinguere interno ed esterno, preparare l’azione successiva.',
+      'At this scale, design is not decoration. It is orientation: knowing where things are, opening with one hand, distinguishing inside from outside, and preparing the next action.',
     related: ['dominamente', 'kera'],
   },
   {
     slug: 'kera',
     title: 'Kera',
     summary:
-      'Una seduta sperimentale realizzata nel Sud dell’India a partire dal cocco. Il progetto nasce durante un viaggio, osservando come una risorsa quotidiana possa diventare materiale, struttura e racconto.',
+      'An experimental seat made in South India from coconut-related resources. The project began during a journey, observing how an everyday resource can become material, structure, and narrative.',
     note:
-      'KERA lavora con ciò che il luogo rende disponibile: prove fisiche, vincoli reali e una forma costruita più attraverso il fare che attraverso un disegno chiuso in partenza.',
+      'KERA works with what the place makes available: physical trials, real constraints, and a form built more through making than through a fixed drawing.',
     tags: ['Field research', 'Object', 'Making'],
     images: [
       '/projects/kera/1.jpg',
@@ -163,11 +163,11 @@ export const projects = [
       '/projects/kera/5.jpg',
     ],
     imageCaptions: [
-      'La seduta viene provata nel luogo in cui è stata costruita.',
-      'Il nodo e il punto di giunzione raccontano il progetto più di una vista pulita.',
-      'L’oggetto resta leggibile come struttura temporanea, leggera e site-specific.',
-      'La documentazione in studio isola il profilo e il comportamento della forma.',
-      'Il making avviene attraverso prove fisiche e adattamenti progressivi.',
+      'The seat is tested in the place where it was built.',
+      'The knot and joint tell more about the project than a clean product view.',
+      'The object remains legible as a temporary, light, site-specific structure.',
+      'Studio documentation isolates the profile and behavior of the form.',
+      'Making happens through physical trials and progressive adjustments.',
     ],
     tint: 'linear-gradient(155deg, #d5d2c8 0%, #c7c4b9 100%)',
     meta: [
@@ -177,14 +177,14 @@ export const projects = [
       ['Role', 'Research, concept, making, documentation'],
     ],
     question:
-      'Come può un luogo suggerire un oggetto prima ancora che esista un disegno definitivo?',
+      'How can a place suggest an object before a final drawing exists?',
     context:
-      'KERA nasce dal viaggio come metodo di ricerca. Il cocco non viene trattato come semplice immagine del paesaggio, ma come sistema materiale quotidiano: cibo, acqua, fibra, riparo, struttura, gesto.',
+      'KERA begins with travel as a research method. Coconut is not treated as a simple image of the landscape, but as an everyday material system: food, water, fiber, shelter, structure, gesture.',
     approach: [
-      'Osservazione delle risorse disponibili e dei modi in cui vengono usate nel contesto.',
-      'Sperimentazione diretta con curvature, resistenza, appoggio, legature e stabilità.',
-      'Costruzione sul campo, accettando vincoli reali e strumenti disponibili.',
-      'Documentazione della seduta come oggetto e come traccia del processo.',
+      'Observation of available resources and the ways they are used in context.',
+      'Direct experimentation with curvature, resistance, support, tying, and stability.',
+      'Field construction, accepting real constraints and available tools.',
+      'Documentation of the seat as both object and trace of process.',
     ],
     outputs: [
       'Full-scale seating prototype',
@@ -194,16 +194,16 @@ export const projects = [
       'Project identity',
     ],
     reflection:
-      'KERA non prova a importare una soluzione. Lavora con una condizione: ciò che il luogo rende possibile, ciò che resiste, ciò che si lascia trasformare.',
+      'KERA does not try to import a solution. It works with a condition: what the place makes possible, what resists, and what allows itself to be transformed.',
     related: ['kin', 'arcteryx-pouch'],
   },
   {
     slug: 'workshop-vu-amsterdam',
     title: 'workshop vu amsterdam',
     summary:
-      'Un progetto transdisciplinare alla Vrije Universiteit Amsterdam sulla citizen science. Il gruppo ha spostato il brief dalla semplice visibilità dei progetti a una domanda più precisa su inclusività, reciprocità e impatto condiviso.',
+      'A transdisciplinary project at Vrije Universiteit Amsterdam on citizen science. The group shifted the brief from simple project visibility to a sharper question around inclusivity, reciprocity, and shared impact.',
     note:
-      'Il lavoro ha prodotto mappe, criteri, una checklist di reciprocità e una sessione finale interattiva per rendere discutibili concetti che rischiavano di restare astratti.',
+      'The work produced maps, criteria, a reciprocity checklist, and an interactive final session to make abstract concepts discussable.',
     tags: ['Research design', 'Citizen science', 'Workshop'],
     images: [
       '/projects/workshop-vu-amsterdam/1.jpg',
@@ -213,11 +213,11 @@ export const projects = [
       '/projects/workshop-vu-amsterdam/5.jpg',
     ],
     imageCaptions: [
-      'La restituzione finale mostra il reframing del brief e i passaggi di ricerca.',
-      'Il gruppo lavora tra discussione, fonti, criteri e sintesi condivisa.',
-      'Il progetto trasforma definizioni astratte in domande utilizzabili.',
-      'Il tavolo di lavoro tiene insieme discipline, documenti e decisioni.',
-      'La presentazione finale rende visibile il percorso dal mapping alla reciprocità.',
+      'The final presentation shows the reframing of the brief and the research steps.',
+      'The group works across discussion, sources, criteria, and shared synthesis.',
+      'The project turns abstract definitions into usable questions.',
+      'The working table holds disciplines, documents, and decisions together.',
+      'The final deck makes the path from mapping to reciprocity visible.',
     ],
     tint: 'linear-gradient(155deg, #d2d0c6 0%, #c5c2b7 100%)',
     meta: [
@@ -227,14 +227,14 @@ export const projects = [
       ['Role', 'Research design, visual synthesis, facilitation'],
     ],
     question:
-      'A quali condizioni la citizen science può diventare inclusiva, reciproca e utile per le comunità coinvolte?',
+      'Under what conditions can citizen science become inclusive, reciprocal, and useful for the communities involved?',
     context:
-      'Il brief iniziale chiedeva di rendere più visibili iniziative frammentate. Durante il lavoro, il gruppo ha riconosciuto che una mappa non bastava: il tema centrale era la qualità della relazione tra università, progetti e comunità.',
+      'The initial brief asked for fragmented initiatives to become more visible. During the work, the group recognized that a map was not enough: the central issue was the quality of the relationship between university, projects, and communities.',
     approach: [
-      'Analisi di iniziative esistenti, letteratura e casi di riferimento.',
-      'Reframing del problema da mapping e visibility a inclusivity, reciprocity e shared impact.',
-      'Costruzione di criteri e strumenti per discutere il ruolo delle comunità nella ricerca.',
-      'Sviluppo di una sessione finale interattiva per rendere il tema partecipabile.',
+      'Analysis of existing initiatives, literature, and reference cases.',
+      'Reframing of the problem from mapping and visibility to inclusivity, reciprocity, and shared impact.',
+      'Construction of criteria and tools to discuss the role of communities in research.',
+      'Development of an interactive final session that made the topic participatory.',
     ],
     outputs: [
       'Conceptual map',
@@ -245,16 +245,16 @@ export const projects = [
       'Visual synthesis',
     ],
     reflection:
-      'Il contributo progettuale sta nel rendere maneggiabili concetti complessi: inclusione, impatto e reciprocità diventano strumenti di discussione, non solo parole corrette.',
+      'The design contribution lies in making complex concepts handleable: inclusion, impact, and reciprocity become tools for discussion, not just correct words.',
     related: ['workshop-cludo', 'bistro-il-riccio'],
   },
   {
     slug: 'kin',
     title: 'KIN',
     summary:
-      'Una doppia teiera in black clay sviluppata in Meghalaya, nel Nord-Est dell’India. Due corpi distinti, modellati per restare autonomi e allo stesso tempo appartenere allo stesso rituale.',
+      'A double teapot in black clay developed in Meghalaya, North-East India. Two distinct bodies, shaped to remain autonomous while belonging to the same ritual.',
     note:
-      'Il progetto nasce in dialogo con la lavorazione locale della black pottery, adattando proporzioni, gesti e forma ai vincoli reali della produzione manuale.',
+      'The project grew through dialogue with local black pottery practices, adapting proportions, gestures, and form to the real constraints of hand production.',
     tags: ['Ceramic design', 'Craft', 'Field research'],
     images: [
       '/projects/kin/1.jpg',
@@ -264,11 +264,11 @@ export const projects = [
       '/projects/kin/5.jpg',
     ],
     imageCaptions: [
-      'I due corpi mantengono autonomia e relazione nello stesso rituale.',
-      'Il contesto produttivo rende visibili quantità, ripetizione e sapere manuale.',
-      'La teiera singola mostra proporzioni, superficie e carattere materico.',
-      'La cottura tradizionale entra nel progetto come vincolo e trasformazione.',
-      'La relazione con gli artigiani è parte del processo, non sfondo narrativo.',
+      'The two bodies maintain autonomy and relation within the same ritual.',
+      'The production context makes quantity, repetition, and manual knowledge visible.',
+      'The single teapot shows proportion, surface, and material character.',
+      'Traditional firing enters the project as constraint and transformation.',
+      'The relationship with craftspeople is part of the process, not narrative background.',
     ],
     tint: 'linear-gradient(155deg, #cfcdc3 0%, #c2c0b5 100%)',
     meta: [
@@ -278,14 +278,14 @@ export const projects = [
       ['Role', 'Field research, concept, form, proportions, documentation'],
     ],
     question:
-      'Come si progetta una coppia di oggetti che restano separati ma appartengono allo stesso gesto?',
+      'How do you design a pair of objects that remain separate while belonging to the same gesture?',
     context:
-      'KIN nasce durante una ricerca sul campo sulla black pottery. Il progetto lavora sulla relazione tra due corpi, due presenze e un rituale condiviso, evitando una lettura troppo letterale della dualità.',
+      'KIN was born during field research into black pottery. The project works on the relationship between two bodies, two presences, and a shared ritual, avoiding an overly literal reading of duality.',
     approach: [
-      'Osservazione del materiale, delle tecniche locali e dei limiti della produzione manuale.',
-      'Sviluppo di proporzioni e viste capaci di far dialogare i due corpi.',
-      'Adattamento della forma immaginata alle possibilità reali degli artigiani e della cottura.',
-      'Documentazione del processo come incontro tra intenzione contemporanea e vincolo produttivo.',
+      'Observation of the material, local techniques, and limits of manual production.',
+      'Development of proportions and views able to make the two bodies converse.',
+      'Adaptation of the imagined form to the real possibilities of craftspeople and firing.',
+      'Documentation of the process as a meeting between contemporary intention and production constraint.',
     ],
     outputs: [
       'Pair of teapots',
@@ -295,16 +295,16 @@ export const projects = [
       'Narrative direction',
     ],
     reflection:
-      'KIN non usa l’artigianato locale come estetica pronta. Il progetto esiste nella negoziazione tra idea, tecnica, luogo e mani che danno forma alla materia.',
+      'KIN does not use local craft as a ready-made aesthetic. The project exists in the negotiation between idea, technique, place, and the hands that give matter its form.',
     related: ['kera', 'alveari'],
   },
   {
     slug: 'alveari',
     title: 'alveari',
     summary:
-      'Una fanzine accompagnata da una custodia stampata in 3D. Il packaging non protegge soltanto la pubblicazione: la incornicia, la espone e cambia il modo in cui viene incontrata.',
+      'A fanzine paired with a 3D-printed case. The packaging does not only protect the publication: it frames it, exposes it, and changes the way it is first encountered.',
     note:
-      'Alessandro ha sviluppato il modello 3D della custodia, traducendo l’immagine dei santini negli alveari in un oggetto fisico fatto di aperture, protezione e parti lasciate visibili.',
+      'Alessandro developed the 3D model for the case, translating the image of devotional cards inside beehives into a physical object made of openings, protection, and visible parts.',
     tags: ['Editorial', 'Packaging', '3D printing'],
     images: [
       '/projects/alveari/1.jpg',
@@ -314,11 +314,11 @@ export const projects = [
       '/projects/alveari/5.jpg',
     ],
     imageCaptions: [
-      'La custodia espone la fanzine invece di nasconderla completamente.',
-      'Il modello 3D traduce alveare, apertura e protezione in una forma stampabile.',
-      'La stampa 3D rende il packaging un oggetto fisico con tolleranze reali.',
-      'La pubblicazione vive anche nella situazione di lancio e scambio.',
-      'La trama alveare non è solo pattern: costruisce il rapporto tra pieno, vuoto e immagine.',
+      'The case exposes the fanzine instead of hiding it completely.',
+      'The 3D model translates beehive, opening, and protection into a printable form.',
+      '3D printing turns the packaging into a physical object with real tolerances.',
+      'The publication also lives in the moment of launch and exchange.',
+      'The hive texture is not only a pattern: it builds the relationship between solid, void, and image.',
     ],
     tint: 'linear-gradient(155deg, #cccac0 0%, #bfbdb2 100%)',
     meta: [
@@ -328,14 +328,14 @@ export const projects = [
       ['Collaborative', 'Editorial project with multiple contributors'],
     ],
     question:
-      'Come può un packaging cambiare il modo in cui una pubblicazione viene vista, tenuta e conservata?',
+      'How can packaging change the way a publication is seen, held, and kept?',
     context:
-      'Alveari mette in relazione editoria indipendente e prodotto. La custodia nasce dall’immagine dei santini negli alveari: una struttura cresce intorno a una figura, proteggendola senza cancellarla.',
+      'Alveari connects independent publishing and product design. The case starts from the image of devotional cards inside beehives: a structure grows around a figure, protecting it without erasing it.',
     approach: [
-      'Traduzione del riferimento visivo in un volume tridimensionale.',
-      'Studio di aperture, pieni e vuoti per lasciare visibile una parte significativa della fanzine.',
-      'Sviluppo del modello 3D e adattamento alla stampa.',
-      'Dialogo con il linguaggio collettivo, urbano e ibrido della pubblicazione.',
+      'Translation of the visual reference into a three-dimensional volume.',
+      'Study of openings, solids, and voids to leave a meaningful part of the fanzine visible.',
+      'Development of the 3D model and adaptation for printing.',
+      'Dialogue with the collective, urban, and hybrid language of the publication.',
     ],
     outputs: [
       '3D model',
@@ -345,16 +345,16 @@ export const projects = [
       'Launch documentation',
     ],
     reflection:
-      'Il packaging funziona come una seconda soglia editoriale. Non aggiunge solo protezione: decide cosa resta visibile, cosa viene custodito e come si apre il primo incontro con la fanzine.',
+      'The packaging works as a second editorial threshold. It does not only add protection: it decides what remains visible, what is held, and how the first encounter with the fanzine opens.',
     related: ['bistro-il-riccio', 'kin'],
   },
   {
     slug: 'workshop-team-building-unicredit',
     title: 'workshop team building unicredit',
     summary:
-      'Un workshop aziendale per UniCredit che ha coinvolto circa 80 persone in un’attività collettiva di street art. Il gruppo ha dipinto insieme, trasformando contributi individuali in un’opera condivisa.',
+      'A corporate workshop for UniCredit involving around 80 people in a collective street art activity. The group painted together, turning individual contributions into a shared work.',
     note:
-      'La street art è stata usata come strumento concreto di team building: mani, materiali, spazio comune e una traccia visibile costruita dal gruppo.',
+      'Street art was used as a concrete team-building tool: hands, materials, shared space, and a visible trace built by the group.',
     tags: ['Team building', 'Street art', 'Corporate'],
     images: [
       '/projects/workshop-team-building-unicredit/1.jpg',
@@ -364,11 +364,11 @@ export const projects = [
       '/projects/workshop-team-building-unicredit/5.jpg',
     ],
     imageCaptions: [
-      'Il gruppo lavora nello stesso spazio, alternando ascolto e azione.',
-      'Il materiale diventa un modo diretto per superare la distanza dal “non so disegnare”.',
-      'Le opere finali tengono insieme contributi individuali e composizione comune.',
-      'La preparazione dei materiali è parte della qualità dell’esperienza.',
-      'Il setting trasforma un workshop corporate in un’attività fisica e visibile.',
+      'The group works in the same space, alternating listening and action.',
+      'The material becomes a direct way to move past the distance of "I cannot draw".',
+      'The final works hold individual contributions and shared composition together.',
+      'Material preparation is part of the quality of the experience.',
+      'The setting turns a corporate workshop into a physical and visible activity.',
     ],
     tint: 'linear-gradient(155deg, #dcd8cd 0%, #c9c4b8 100%)',
     meta: [
@@ -378,14 +378,14 @@ export const projects = [
       ['Participants', 'Around 80 people'],
     ],
     question:
-      'Come si crea collaborazione quando il gruppo deve produrre qualcosa insieme, non solo parlarne?',
+      'How do you create collaboration when the group has to produce something together, not only talk about it?',
     context:
-      'Il workshop usa la street art come linguaggio accessibile, immediato e collettivo. L’obiettivo non è insegnare una tecnica artistica, ma costruire le condizioni perché molte persone possano contribuire a un risultato comune.',
+      'The workshop uses street art as an accessible, immediate, and collective language. The goal is not to teach an artistic technique, but to build the conditions for many people to contribute to a common result.',
     approach: [
-      'Definizione di un setting capace di reggere un gruppo numeroso.',
-      'Organizzazione di materiali, superfici e momenti di lavoro condivisi.',
-      'Facilitazione di un’attività pittorica in cui il contributo individuale entra in una composizione collettiva.',
-      'Restituzione finale attraverso opere e documentazione dell’esperienza.',
+      'Definition of a setting able to hold a large group.',
+      'Organization of materials, surfaces, and shared working moments.',
+      'Facilitation of a painting activity where individual contributions enter a collective composition.',
+      'Final restitution through artworks and documentation of the experience.',
     ],
     outputs: [
       'Team building experience',
@@ -395,16 +395,16 @@ export const projects = [
       'Photo and video documentation',
     ],
     reflection:
-      'La forza del format è fisica: persone, colore, superfici, tempo comune. Il gruppo non viene invitato a dichiarare collaborazione, ma a costruirne una traccia visibile.',
+      'The strength of the format is physical: people, color, surfaces, shared time. The group is not asked to declare collaboration, but to build a visible trace of it.',
     related: ['dominamente', 'workshop-cludo'],
   },
   {
     slug: 'dominamente',
     title: 'DOMINAMENTE',
     summary:
-      'Un gioco creativo ispirato al domino. Invece di collegare numeri, i partecipanti collegano immagini, simboli e concetti, rendendo visibili le associazioni mentali del gruppo.',
+      'A creative game inspired by dominoes. Instead of connecting numbers, participants connect images, symbols, and concepts, making the group mental associations visible.',
     note:
-      'DOMINAMENTE è pensato come tool professionale di facilitazione: un oggetto modulare per attivare pensiero laterale, conversazioni e letture condivise di ciò che emerge sul tavolo.',
+      'DOMINAMENTE is designed as a professional facilitation tool: a modular object for activating lateral thinking, conversations, and shared readings of what emerges on the table.',
     tags: ['Game design', 'Tool', 'Facilitation'],
     images: [
       '/projects/dominamente/1.jpg',
@@ -414,11 +414,11 @@ export const projects = [
       '/projects/dominamente/5.jpg',
     ],
     imageCaptions: [
-      'Il set porta il gioco dentro un linguaggio più essenziale e professionale.',
-      'Le connessioni tra simboli rendono fisica l’associazione mentale.',
-      'La disposizione delle tessere permette di leggere forma, ritmo e interpretazioni del gruppo.',
-      'La sequenza ordinata mostra il sistema come oggetto modulare.',
-      'La configurazione aperta sostituisce la risposta corretta con una lettura condivisa.',
+      'The set brings play into a more essential and professional language.',
+      'Connections between symbols make mental association physical.',
+      'The arrangement of tiles makes form, rhythm, and group interpretation readable.',
+      'The ordered sequence shows the system as a modular object.',
+      'The open configuration replaces the correct answer with a shared reading.',
     ],
     tint: 'linear-gradient(155deg, #d7d3c7 0%, #c4bfb2 100%)',
     meta: [
@@ -428,14 +428,14 @@ export const projects = [
       ['Role', 'Concept, game design, physical system, facilitation modes'],
     ],
     question:
-      'Come si trasforma il pensiero laterale in qualcosa che un gruppo può vedere, toccare e discutere?',
+      'How can lateral thinking become something a group can see, touch, and discuss?',
     context:
-      'DOMINAMENTE nasce dalla volontà di superare il classico mazzo di carte per la creatività aziendale. Il domino diventa una struttura modulare: ogni tessera chiede una relazione, ogni relazione apre una conversazione.',
+      'DOMINAMENTE began from the desire to move beyond the classic card deck for corporate creativity. Dominoes become a modular structure: every tile asks for a relation, and every relation opens a conversation.',
     approach: [
-      'Definizione di meccaniche basate su associazione, metafora, turnazione e interpretazione.',
-      'Sviluppo di un sistema di tessere con simboli, immagini o concetti da collegare.',
-      'Esplorazione di modalità di workshop in cui la configurazione finale viene letta dal gruppo.',
-      'Progettazione del tool come oggetto serio, giocoso e adatto a contesti professionali.',
+      'Definition of mechanics based on association, metaphor, turn-taking, and interpretation.',
+      'Development of a tile system with symbols, images, or concepts to connect.',
+      'Exploration of workshop modes where the final configuration is read by the group.',
+      'Design of the tool as a serious, playful object suited to professional contexts.',
     ],
     outputs: [
       'Name and concept',
@@ -447,7 +447,7 @@ export const projects = [
       'Packaging direction',
     ],
     reflection:
-      'Il gioco non serve a vincere. Serve a osservare come un gruppo costruisce significato: quali ponti crea, quali salti accetta, quali storie riesce a leggere in una forma comune.',
+      'The game is not about winning. It is a way to observe how a group builds meaning: which bridges it creates, which leaps it accepts, and which stories it can read in a common form.',
     related: ['workshop-team-building-unicredit', 'workshop-cludo'],
   },
 ];
