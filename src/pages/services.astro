@@ -1,107 +1,692 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import '../styles/editorial-pages.css';
 
-const disciplines = [
+const serviceGroups = [
   {
-    title: 'Creative culture & team',
-    body: 'Culture strategy, facilitation, internal storytelling, and leadership support for organisations that need better shared energy and clearer patterns of collaboration.',
+    index: '01',
+    title: 'Creative culture and teams',
+    body: 'We work with teams when energy is present but scattered. We read the way people collaborate, make tacit patterns visible, and design formats that help groups think, decide, and create together.',
+    items: [
+      'Creative culture design',
+      'Team building workshops',
+      'Facilitation systems',
+      'Internal storytelling',
+      'Leadership sensemaking',
+    ],
   },
   {
-    title: 'Futures & innovation',
-    body: 'Signals, scenarios, opportunity framing, and concept development for teams moving toward a market or technological shift they cannot ignore.',
+    index: '02',
+    title: 'AI studio and prototypes',
+    body: 'We help organisations use AI as a material for imagination, not as a layer of noise. Concepts, prototypes, tools, and workflows are tested through real use before they become part of the system.',
+    items: [
+      'AI studio projects',
+      'Creative workflow design',
+      'Prompt and agent systems',
+      'Prototype labs',
+      'Sensemaking boards',
+    ],
   },
   {
-    title: 'Product & experience',
-    body: 'Product strategy, interface direction, prototyping, and decision support for offers that need to become clearer, more coherent, and more resilient.',
+    index: '03',
+    title: 'Products, stories and field objects',
+    body: 'We move from observation to objects, services, narratives, and field-ready experiments. The work stays close to context, so strategy becomes something people can touch, use, and share.',
+    items: [
+      'Product and gear concepts',
+      'Experience design',
+      'Storytelling systems',
+      'Field research',
+      'Launch narratives',
+    ],
   },
 ];
 
-const process = [
+const proofImages = [
   {
-    label: '01',
-    title: 'Read the terrain',
-    body: 'We start by understanding what is actually blocked, what is merely noisy, and what kind of decision the team is truly facing.',
+    src: '/projects/workshop-cludo/1.jpg',
+    alt: '',
+    label: 'Workshop formats',
   },
   {
-    label: '02',
-    title: 'Shape the frame',
-    body: 'Then we tighten the brief, define the level of ambition, and choose the right working format for the moment.',
+    src: '/projects/kin/1.jpg',
+    alt: '',
+    label: 'Narrative systems',
   },
   {
-    label: '03',
-    title: 'Make it tangible',
-    body: 'Concepts become proposals, prototypes, systems, narratives, or rituals that people can respond to in concrete terms.',
+    src: '/projects/arcteryx-pouch/1.jpg',
+    alt: '',
+    label: 'Field objects',
+  },
+  {
+    src: '/projects/dominamente/1.jpg',
+    alt: '',
+    label: 'Playable tools',
+  },
+];
+
+const fields = [
+  'Creative learning',
+  'AI for imagination',
+  'Team rituals',
+  'Product experiments',
+  'Storytelling',
+  'Field research',
+  'Sensemaking',
+  'Workshops',
+  'Creative gear',
+  'Internal culture',
+];
+
+const workingPrinciples = [
+  {
+    title: 'Working from context',
+    body: 'We begin with the situation in front of us: people, tensions, materials, language, and the decision that needs to move.',
+  },
+  {
+    title: 'Working through prototypes',
+    body: 'Ideas become boards, objects, prompts, maps, stories, and tools early enough for people to react to them.',
+  },
+  {
+    title: 'Working with teams',
+    body: 'The format is part of the service. We design the room, the rhythm, and the shared artifacts that let collaboration happen.',
+  },
+  {
+    title: 'Working across media',
+    body: 'Digital systems, physical gear, workshops, and narratives can belong to the same project when they clarify the work.',
   },
 ];
 ---
 
 <BaseLayout
   title="Services"
-  description="Strategy, culture, futures, and product services delivered from inside your team."
+  description="Creative culture, AI studio, product, and storytelling services from Estro."
+  showFooter={false}
 >
-  <div class="editorial-page">
-    <section class="editorial-hero">
-      <div class="container editorial-grid">
-        <div class="editorial-rail" data-reveal="hero-meta">
-          <p class="section-label">Services</p>
-          <p class="editorial-rail-note">Three connected practice areas, held together by one method: get close, frame well, and make the work usable.</p>
+  <div class="services-page">
+    <section class="services-hero">
+      <div class="container services-hero__inner">
+        <p class="services-label">Services</p>
+        <div class="services-hero__grid">
+          <h1>creativity made useful.</h1>
+          <div class="services-hero__copy">
+            <p>
+              Estro works between workshops, AI, storytelling, objects, and team culture. The service is not a fixed package: it is the right format for the work that needs to move.
+            </p>
+            <a href="#service-menu" class="services-hero__link">discover services <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+      </div>
+      <img class="services-hero__mark" src="/branding/estro-logo-transparent.png" alt="" loading="eager" decoding="async" />
+    </section>
+
+    <section id="service-menu" class="service-menu">
+      <div class="container">
+        <header class="service-menu__header">
+          <p class="services-label">End-to-end creative projects</p>
+          <h2>Three doors into the same studio practice.</h2>
+        </header>
+
+        <div class="service-menu__grid" aria-label="Service areas">
+          {serviceGroups.map((group) => (
+            <article class="service-pillar">
+              <p class="service-pillar__index">{group.index}</p>
+              <div class="service-pillar__copy">
+                <h3>{group.title}</h3>
+                <p>{group.body}</p>
+              </div>
+
+              <ul class="service-list">
+                {group.items.map((item) => (
+                  <li>
+                    <span>{item}</span>
+                    <span aria-hidden="true">→</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="proof-strip" aria-label="Work in practice">
+      <div class="container proof-strip__inner">
+        <div class="proof-strip__rail">
+          <p class="services-label">In practice</p>
+          <p>Services stay close to the material: rooms, tools, images, objects, conversations, and prototypes.</p>
         </div>
 
-        <div class="editorial-main" data-reveal="hero-content">
-          <h1 class="editorial-title editorial-title--wide">Strategy, culture, and product thinking for teams already in motion.</h1>
-          <p class="editorial-intro">
-            Our services are less a menu than a set of working disciplines. Most engagements move across them as the real shape of the problem becomes clearer.
+        <div class="proof-strip__grid">
+          {proofImages.map((image) => (
+            <figure>
+              <img src={image.src} alt={image.alt} loading="lazy" decoding="async" />
+              <figcaption>{image.label}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="expertise-section">
+      <div class="container expertise-section__inner">
+        <div>
+          <p class="services-label">Our field</p>
+          <h2>We move between culture, technology, play, and making.</h2>
+        </div>
+        <p class="expertise-section__text">
+          The point is not to separate strategy from execution. We build enough structure to think clearly, and enough tangible material to test what the idea is becoming.
+        </p>
+        <ul class="field-list" aria-label="Fields">
+          {fields.map((field) => (
+            <li>{field}</li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="method-section">
+      <div class="container method-section__inner">
+        <div class="method-section__intro">
+          <p class="services-label services-label--dark">How we work</p>
+          <h2>A service is a way of paying attention.</h2>
+          <p>
+            We do not start from a deck of answers. We start from the situation, then choose the smallest useful artifact that can make the next decision clearer.
           </p>
         </div>
-      </div>
-    </section>
 
-    <hr class="rule" />
-
-    <section class="editorial-section" data-reveal="chapter">
-      <div class="container editorial-grid">
-        <div class="editorial-rail editorial-rail--sticky" data-reveal="rail">
-          <p class="section-label">Practice areas</p>
-        </div>
-
-        <div class="editorial-content" data-reveal="content">
-          <h2 class="editorial-headline">The work usually enters through one door, then expands into adjacent decisions.</h2>
-          <div class="editorial-card-grid">
-            {disciplines.map((discipline) => (
-              <article class="editorial-card" data-reveal="card">
-                <p class="editorial-card__title">{discipline.title}</p>
-                <p class="editorial-card__body">{discipline.body}</p>
-              </article>
-            ))}
-          </div>
+        <div class="method-list">
+          {workingPrinciples.map((principle) => (
+            <article>
+              <h3>{principle.title}</h3>
+              <p>{principle.body}</p>
+            </article>
+          ))}
         </div>
       </div>
-    </section>
-
-    <hr class="rule" />
-
-    <section class="editorial-section" data-reveal="chapter">
-      <div class="container editorial-grid">
-        <div class="editorial-rail editorial-rail--sticky" data-reveal="rail">
-          <p class="section-label">Method</p>
-        </div>
-
-        <div class="editorial-content" data-reveal="content">
-          <h2 class="editorial-headline">The service is not just expertise. It is the quality of attention applied to a live problem.</h2>
-          <div class="editorial-list">
-            {process.map((step) => (
-              <article class="editorial-row" data-reveal="row">
-                <p class="editorial-row__index">{step.label}</p>
-                <div class="editorial-row__content">
-                  <h3 class="editorial-row__title">{step.title}</h3>
-                  <p class="editorial-row__body">{step.body}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </div>
+      <img class="method-section__mark" src="/branding/estro-logo-transparent.png" alt="" loading="lazy" decoding="async" />
     </section>
   </div>
 </BaseLayout>
+
+<style>
+  .services-page {
+    background: var(--color-bg);
+    color: var(--color-text);
+  }
+
+  .services-label {
+    font-family: var(--font-display);
+    font-size: var(--text-xs);
+    line-height: 1;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  .services-label--dark {
+    color: rgba(242, 240, 234, 0.62);
+  }
+
+  .services-hero {
+    min-height: calc(82dvh - 72px);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: stretch;
+    background: var(--color-text);
+    color: var(--color-bg);
+  }
+
+  .services-hero__inner {
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: clamp(2rem, 5vw, 5rem);
+    padding-block: clamp(1.5rem, 4vw, 3.5rem);
+  }
+
+  .services-hero__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 0.48fr);
+    gap: clamp(2rem, 5vw, 6rem);
+    align-items: end;
+  }
+
+  .services-hero h1 {
+    max-width: 13ch;
+    font-family: var(--font-display);
+    font-size: clamp(4.25rem, 9.4vw, 9.4rem);
+    font-weight: 400;
+    line-height: 0.88;
+    letter-spacing: 0;
+    text-wrap: balance;
+  }
+
+  .services-hero__copy {
+    max-width: 31ch;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    padding-bottom: 0.3rem;
+    font-family: var(--font-body);
+    font-size: clamp(1.05rem, 1.6vw, 1.45rem);
+    line-height: 1.28;
+  }
+
+  .services-hero .services-label {
+    color: rgba(242, 240, 234, 0.62);
+  }
+
+  .services-hero__link {
+    width: fit-content;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 0.28rem;
+    font-size: var(--text-xs);
+    line-height: 1;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .services-hero__mark {
+    position: absolute;
+    right: max(-6rem, -7vw);
+    top: clamp(1rem, 5vw, 4rem);
+    width: min(38vw, 540px);
+    opacity: 0.07;
+    filter: invert(1);
+  }
+
+  .service-menu,
+  .proof-strip,
+  .expertise-section {
+    padding-block: clamp(4rem, 8vw, 8rem);
+  }
+
+  .service-menu__header {
+    display: grid;
+    grid-template-columns: minmax(0, 0.32fr) minmax(0, 0.68fr);
+    gap: clamp(1.5rem, 5vw, 5rem);
+    align-items: start;
+    margin-bottom: clamp(2.5rem, 5vw, 5rem);
+  }
+
+  .service-menu__header h2,
+  .expertise-section h2,
+  .method-section h2 {
+    max-width: 12ch;
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 7vw, 7rem);
+    font-weight: 400;
+    line-height: 0.9;
+    letter-spacing: 0;
+  }
+
+  .service-menu__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1px;
+    background: rgba(17, 17, 17, 0.22);
+    border-block: 1px solid rgba(17, 17, 17, 0.22);
+  }
+
+  .service-pillar {
+    min-height: 760px;
+    background: var(--color-bg);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: clamp(2rem, 4vw, 4rem);
+    padding: clamp(1.1rem, 2.4vw, 2rem);
+  }
+
+  .service-pillar__index {
+    width: fit-content;
+    border: 1px solid rgba(17, 17, 17, 0.36);
+    border-radius: 999px;
+    padding: 0.42rem 0.72rem;
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    line-height: 1;
+    color: var(--color-muted);
+  }
+
+  .service-pillar__copy {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1.4rem, 3vw, 2.8rem);
+  }
+
+  .service-pillar h3 {
+    max-width: 9ch;
+    font-family: var(--font-display);
+    font-size: clamp(2.9rem, 5.1vw, 6.1rem);
+    font-weight: 400;
+    line-height: 0.88;
+    letter-spacing: 0;
+  }
+
+  .service-pillar__copy p {
+    max-width: 28ch;
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 1.45vw, 1.28rem);
+    line-height: 1.34;
+    color: var(--color-muted);
+  }
+
+  .service-list {
+    border-top: 1px solid var(--color-rule);
+  }
+
+  .service-list li {
+    min-height: clamp(3.3rem, 4.6vw, 4.6rem);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    border-bottom: 1px solid var(--color-rule);
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 1.85vw, 2rem);
+    line-height: 1.05;
+  }
+
+  .service-list li span:first-child {
+    min-width: 0;
+  }
+
+  .service-list li span:last-child {
+    flex: 0 0 auto;
+    font-family: var(--font-body);
+  }
+
+  .proof-strip {
+    border-top: 1px solid rgba(17, 17, 17, 0.16);
+    border-bottom: 1px solid rgba(17, 17, 17, 0.16);
+    background: #e9e6dc;
+  }
+
+  .proof-strip__inner {
+    display: grid;
+    grid-template-columns: minmax(180px, 0.22fr) minmax(0, 0.78fr);
+    gap: clamp(1.5rem, 5vw, 5rem);
+    align-items: start;
+  }
+
+  .proof-strip__rail {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    position: sticky;
+    top: 96px;
+  }
+
+  .proof-strip__rail p:last-child {
+    max-width: 22ch;
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    line-height: 1.5;
+    color: var(--color-muted);
+  }
+
+  .proof-strip__grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1px;
+    background: rgba(17, 17, 17, 0.2);
+  }
+
+  .proof-strip figure {
+    position: relative;
+    min-height: 360px;
+    overflow: hidden;
+    background: var(--color-bg);
+  }
+
+  .proof-strip figure:nth-child(2),
+  .proof-strip figure:nth-child(4) {
+    margin-top: clamp(2rem, 6vw, 6rem);
+  }
+
+  .proof-strip img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    filter: saturate(0.9);
+  }
+
+  .proof-strip figcaption {
+    position: absolute;
+    left: var(--space-3);
+    right: var(--space-3);
+    bottom: var(--space-3);
+    color: white;
+    font-family: var(--font-display);
+    font-size: clamp(1.2rem, 2vw, 2rem);
+    line-height: 1;
+    text-shadow: 0 1px 14px rgba(0, 0, 0, 0.45);
+  }
+
+  .expertise-section__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 0.45fr) minmax(0, 0.55fr);
+    gap: clamp(2rem, 6vw, 7rem);
+    align-items: start;
+  }
+
+  .expertise-section h2 {
+    margin-top: var(--space-4);
+  }
+
+  .expertise-section__text {
+    max-width: 33ch;
+    font-family: var(--font-body);
+    font-size: clamp(1.25rem, 2vw, 2rem);
+    line-height: 1.24;
+  }
+
+  .field-list {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    padding-top: clamp(2rem, 4vw, 4rem);
+  }
+
+  .field-list li {
+    border: 1px solid rgba(17, 17, 17, 0.36);
+    border-radius: 999px;
+    padding: 0.58rem 0.86rem 0.5rem;
+    font-family: var(--font-display);
+    font-size: clamp(1.05rem, 1.6vw, 1.65rem);
+    line-height: 1;
+  }
+
+  .method-section {
+    position: relative;
+    overflow: hidden;
+    background: var(--color-text);
+    color: var(--color-bg);
+    padding-block: clamp(4rem, 8vw, 8rem);
+  }
+
+  .method-section__inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 0.42fr) minmax(0, 0.58fr);
+    gap: clamp(2rem, 7vw, 8rem);
+    align-items: start;
+  }
+
+  .method-section__intro {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1.5rem, 3vw, 3rem);
+  }
+
+  .method-section__intro p:last-child {
+    max-width: 31ch;
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 1.5vw, 1.35rem);
+    line-height: 1.35;
+    color: rgba(242, 240, 234, 0.74);
+  }
+
+  .method-list {
+    border-top: 1px solid rgba(242, 240, 234, 0.34);
+  }
+
+  .method-list article {
+    display: grid;
+    grid-template-columns: minmax(0, 0.42fr) minmax(0, 0.58fr);
+    gap: clamp(1.2rem, 4vw, 4rem);
+    padding-block: clamp(1.4rem, 3vw, 2.4rem);
+    border-bottom: 1px solid rgba(242, 240, 234, 0.34);
+  }
+
+  .method-list h3 {
+    font-family: var(--font-display);
+    font-size: clamp(1.55rem, 2.4vw, 2.6rem);
+    font-weight: 400;
+    line-height: 0.98;
+  }
+
+  .method-list p {
+    max-width: 34ch;
+    font-family: var(--font-body);
+    font-size: clamp(0.98rem, 1.25vw, 1.12rem);
+    line-height: 1.55;
+    color: rgba(242, 240, 234, 0.72);
+  }
+
+  .method-section__mark {
+    position: absolute;
+    left: -8vw;
+    bottom: -16vw;
+    width: min(62vw, 760px);
+    opacity: 0.08;
+    filter: invert(1);
+  }
+
+  @media (max-width: 1120px) {
+    .services-hero__grid,
+    .service-menu__header,
+    .proof-strip__inner,
+    .expertise-section__inner,
+    .method-section__inner {
+      grid-template-columns: 1fr;
+    }
+
+    .services-hero h1 {
+      max-width: 10ch;
+    }
+
+    .services-hero__copy,
+    .proof-strip__rail {
+      position: static;
+    }
+
+    .service-menu__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .service-pillar {
+      min-height: auto;
+      display: grid;
+      grid-template-columns: 72px minmax(0, 0.95fr) minmax(320px, 1.05fr);
+      align-items: start;
+    }
+
+    .service-pillar__copy {
+      align-self: start;
+    }
+
+    .proof-strip__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .proof-strip figure:nth-child(2),
+    .proof-strip figure:nth-child(4) {
+      margin-top: 0;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .services-hero {
+      min-height: calc(88dvh - 72px);
+    }
+
+    .services-hero__inner {
+      padding-block: var(--space-4);
+    }
+
+    .services-hero h1 {
+      max-width: 10ch;
+      font-size: clamp(3.8rem, 20vw, 6.7rem);
+      line-height: 0.88;
+    }
+
+    .services-hero__copy {
+      font-size: 1rem;
+    }
+
+    .services-hero__mark {
+      width: 78vw;
+      right: -22vw;
+      top: 18vh;
+    }
+
+    .service-menu,
+    .proof-strip,
+    .expertise-section,
+    .method-section {
+      padding-block: var(--space-5);
+    }
+
+    .service-menu__header h2,
+    .expertise-section h2,
+    .method-section h2 {
+      font-size: clamp(2.8rem, 16vw, 4.7rem);
+    }
+
+    .service-pillar {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+      padding: var(--space-4) 0;
+    }
+
+    .service-pillar h3 {
+      max-width: 8.5ch;
+      font-size: clamp(3rem, 17vw, 5rem);
+    }
+
+    .service-pillar__copy p,
+    .expertise-section__text {
+      font-size: 1.06rem;
+      line-height: 1.42;
+    }
+
+    .service-list li {
+      min-height: 3.8rem;
+      font-size: clamp(1.25rem, 7vw, 1.9rem);
+    }
+
+    .proof-strip__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .proof-strip figure {
+      min-height: 280px;
+    }
+
+    .method-list article {
+      grid-template-columns: 1fr;
+      gap: var(--space-2);
+    }
+  }
+</style>

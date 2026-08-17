@@ -1,160 +1,132 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import '../styles/editorial-pages.css';
 
-const modes = [
-  {
-    label: '01',
-    title: 'Residencies',
-    body: 'We embed inside teams and help turn uncertainty into direction, faster than an external process ever could.',
-  },
-  {
-    label: '02',
-    title: 'Sprints',
-    body: 'When the window is tight, we compress research, framing, and making into a week that actually changes something.',
-  },
-  {
-    label: '03',
-    title: 'Advisory',
-    body: 'For founders and operators who need a clear outside perspective, not another layer of abstraction.',
-  },
-];
-
-const signals = [
-  {
-    title: 'Strategy inside the room',
-    body: 'Not abstract recommendations. Shared language, sharper decisions, and clearer momentum.',
-  },
-  {
-    title: 'Design with operating weight',
-    body: 'Work that can survive implementation, socialisation, and the politics of real organisations.',
-  },
-  {
-    title: 'Futures without theatrics',
-    body: 'Research that expands what is possible while staying grounded in business reality.',
-  },
-  {
-    title: 'Creative pressure where it helps',
-    body: 'Enough experimentation to open new paths, enough discipline to make them usable.',
-  },
+const words = [
+  { label: 'play', color: '#ff4f7b', font: 'DeFontePlus, Avenir Next, sans-serif' },
+  { label: 'AI', color: '#2454ff', font: 'Futura, Futura PT, Avenir Next, sans-serif' },
+  { label: 'storytelling', color: '#008f6f', font: 'Georgia, Times New Roman, serif' },
+  { label: 'sensemaking', color: '#e16a00', font: 'DeFontePlus, Avenir Next, sans-serif' },
+  { label: 'team building', color: '#7b3ff2', font: 'Helvetica Neue, Arial, sans-serif' },
+  { label: 'sensemaking', color: '#111111', font: 'Futura, Futura PT, Avenir Next, sans-serif' },
 ];
 ---
 
 <BaseLayout
   title="Home"
-  description="Estro — nomadic innovation hub. Editorial strategy, embedded design, and futures-minded execution."
+  description="Estro enhances creativity through play, AI, storytelling, sensemaking, and team building."
   showFooter={false}
 >
-  <div class="editorial-page home-page">
-    <section class="editorial-hero">
-      <div class="container editorial-grid">
-        <div class="editorial-rail" data-reveal="hero-meta">
-          <p class="section-label">Estro</p>
-          <p class="editorial-rail-note">Nomadic innovation for teams building products, services, and new directions in motion.</p>
-        </div>
+  <section class="landing" aria-labelledby="landing-title">
+    <h1 id="landing-title" class="landing__title">
+      <span class="landing__fixed">we enhance creativity through</span>
+      <span class="landing__word" aria-live="polite">play</span>
+    </h1>
+  </section>
 
-        <div class="editorial-main" data-reveal="hero-content">
-          <h1 class="editorial-title editorial-title--wide">We go where the work is, then help it move with more clarity.</h1>
-          <p class="editorial-intro">
-            Estro works like an embedded studio: part strategy partner, part design pressure, part translation layer between ambition and execution.
-          </p>
-        </div>
-      </div>
-    </section>
+  <script define:vars={{ words }} is:inline>
+    const rotatingWord = document.querySelector('.landing__word');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let index = 0;
 
-    <hr class="rule" />
+    function applyWord(nextIndex) {
+      const word = words[nextIndex];
+      rotatingWord.textContent = word.label;
+      rotatingWord.style.color = word.color;
+      rotatingWord.style.fontFamily = word.font;
+    }
 
-    <section class="editorial-section" data-reveal="chapter">
-      <div class="container editorial-grid">
-        <div class="editorial-rail editorial-rail--sticky" data-reveal="rail">
-          <p class="section-label">How we engage</p>
-        </div>
+    applyWord(index);
 
-        <div class="editorial-content" data-reveal="content">
-          <h2 class="editorial-headline">Small enough to be close. Senior enough to matter.</h2>
-          <div class="editorial-columns">
-            <p class="editorial-lead">
-              We are at our best in moments when a team knows something important needs to change, but the shape of that change is still unclear.
-            </p>
-            <p class="editorial-text">
-              That might mean a new product direction, a broken operating rhythm, a future-facing initiative that needs form, or a leadership team that wants better shared judgment. We do not arrive with a prefabricated system. We arrive to make the situation legible, then work from inside it.
-            </p>
-          </div>
+    if (!reduceMotion) {
+      window.setInterval(() => {
+        rotatingWord.classList.add('is-changing');
 
-          <div class="editorial-list">
-            {modes.map((mode) => (
-              <article class="editorial-row" data-reveal="row">
-                <p class="editorial-row__index">{mode.label}</p>
-                <div class="editorial-row__content">
-                  <h3 class="editorial-row__title">{mode.title}</h3>
-                  <p class="editorial-row__body">{mode.body}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <hr class="rule" />
-
-    <section class="editorial-section" data-reveal="chapter">
-      <div class="container editorial-grid">
-        <div class="editorial-rail editorial-rail--sticky" data-reveal="rail">
-          <p class="section-label">What it feels like</p>
-        </div>
-
-        <div class="editorial-content" data-reveal="content">
-          <h2 class="editorial-headline">A studio presence that is calm, demanding, and useful.</h2>
-          <div class="editorial-card-grid">
-            {signals.map((signal) => (
-              <article class="editorial-card" data-reveal="card">
-                <p class="editorial-card__title">{signal.title}</p>
-                <p class="editorial-card__body">{signal.body}</p>
-              </article>
-            ))}
-          </div>
-
-          <a href="/culture" class="editorial-cta" data-reveal="cta">See how we work</a>
-        </div>
-      </div>
-    </section>
-
-    <hr class="rule" />
-
-    <div class="home-page__strip">
-      <span>Wherever the work is.</span>
-      <span>&copy; {new Date().getFullYear()} Estro</span>
-    </div>
-  </div>
+        window.setTimeout(() => {
+          index = (index + 1) % words.length;
+          applyWord(index);
+          rotatingWord.classList.remove('is-changing');
+        }, 180);
+      }, 950);
+    }
+  </script>
 </BaseLayout>
 
 <style>
+  :global(html),
+  :global(body) {
+    overflow: hidden;
+  }
+
+  :global(body) {
+    min-height: 100dvh;
+  }
+
   :global(#main-content) {
-    padding-top: 0 !important;
+    min-height: calc(100dvh - 72px);
+    animation: none !important;
   }
 
-  .home-page__strip {
-    border-top: 1px solid var(--color-rule);
-    padding: var(--space-3) var(--gutter);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: var(--space-3);
+  .landing {
+    min-height: calc(100dvh - 72px);
+    width: 100%;
+    display: grid;
+    place-items: center;
+    padding: clamp(1.25rem, 4vw, 3rem);
+    background: var(--color-bg);
   }
 
-  .home-page__strip span {
-    font-family: var(--font-body);
-    font-size: var(--text-xs);
-    color: var(--color-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
+  .landing__title {
+    width: min(1180px, 100%);
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    row-gap: 0.1em;
+    color: var(--color-text);
+    font-family: var(--font-display);
+    font-size: clamp(2.1rem, 5.7vw, 6.9rem);
+    font-weight: 400;
+    line-height: 0.98;
+    letter-spacing: 0;
+    text-align: center;
   }
 
-  @media (max-width: 640px) {
-    .home-page__strip {
-      flex-direction: column;
-      align-items: flex-start;
+  .landing__fixed {
+    white-space: nowrap;
+  }
+
+  .landing__word {
+    display: block;
+    min-height: 1em;
+    font-weight: 700;
+    white-space: nowrap;
+    text-align: center;
+    transition:
+      color 220ms ease,
+      opacity 180ms ease,
+      transform 180ms ease;
+    vertical-align: baseline;
+  }
+
+  .landing__word.is-changing {
+    opacity: 0;
+    transform: translateY(0.16em);
+  }
+
+  @media (max-width: 700px) {
+    .landing {
+      place-items: center;
+      padding-top: clamp(5rem, 18dvh, 9rem);
+    }
+
+    .landing__title {
+      row-gap: 0.14em;
+      font-size: clamp(2.3rem, 12vw, 4.8rem);
+      text-align: center;
+    }
+
+    .landing__fixed,
+    .landing__word {
+      white-space: normal;
     }
   }
 </style>

@@ -1,0 +1,561 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { projects } from '../../data/projects';
+
+export function getStaticPaths() {
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const gallery = project.images.map((src, index) => ({
+  src,
+  caption: project.imageCaptions?.[index] ?? `${project.title} image ${index + 1}`,
+}));
+const relatedProjects = (project.related ?? [])
+  .map((slug) => projects.find((item) => item.slug === slug))
+  .filter(Boolean);
+---
+
+<BaseLayout title={project.title} description={project.summary} showFooter={false}>
+  <article class="project-page">
+    <div class="container project-page__inner">
+      <a href="/projects" class="project-page__back">Projects</a>
+
+      <header class="project-hero">
+        <div class="project-hero__copy">
+          <ul class="project-hero__tags" aria-label={`${project.title} tags`}>
+            {project.tags.map((tag) => (
+              <li>{tag}</li>
+            ))}
+          </ul>
+          <h1>{project.title}</h1>
+        </div>
+
+        <div class="project-hero__intro">
+          <p class="project-hero__summary">{project.summary}</p>
+          <p>{project.note}</p>
+        </div>
+      </header>
+
+      {gallery[0] && (
+        <figure class="project-feature">
+          <img
+            src={gallery[0].src}
+            alt={gallery[0].caption}
+            loading="eager"
+            decoding="async"
+          />
+          <figcaption>{gallery[0].caption}</figcaption>
+        </figure>
+      )}
+
+      <section class="project-overview" aria-label="Project overview">
+        <dl class="project-meta">
+          {project.meta.map(([label, value]) => (
+            <div>
+              <dt>{label}</dt>
+              <dd>{value}</dd>
+            </div>
+          ))}
+        </dl>
+
+        <div class="project-overview__body">
+          <div class="project-question">
+            <span>Question</span>
+            <p>{project.question}</p>
+          </div>
+          <div class="project-text-block">
+            <h2>Context</h2>
+            <p>{project.context}</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="project-process" aria-label="Project process">
+        <div class="project-section-heading">
+          <span>Process</span>
+          <h2>How it was built</h2>
+        </div>
+        <ol>
+          {project.approach.map((step, index) => (
+            <li>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <p>{step}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section class="project-output" aria-label="Project outputs">
+        <div class="project-section-heading">
+          <span>Outputs</span>
+          <h2>What came out</h2>
+        </div>
+        <ul>
+          {project.outputs.map((output) => (
+            <li>{output}</li>
+          ))}
+        </ul>
+      </section>
+
+      {gallery.length > 1 && (
+        <section class="project-gallery" aria-label={`${project.title} gallery`}>
+          {gallery.slice(1).map((image, index) => (
+            <figure class:list={['project-gallery__item', index === 0 || index === 3 ? 'is-wide' : '']}>
+              <img src={image.src} alt={image.caption} loading="lazy" decoding="async" />
+              <figcaption>{image.caption}</figcaption>
+            </figure>
+          ))}
+        </section>
+      )}
+
+      <section class="project-reflection" aria-label="Project reflection">
+        <span>Why it matters</span>
+        <p>{project.reflection}</p>
+      </section>
+
+      {relatedProjects.length > 0 && (
+        <aside class="project-related" aria-label="Related projects">
+          <div class="project-section-heading">
+            <span>Related</span>
+            <h2>Connected work</h2>
+          </div>
+          <div class="project-related__grid">
+            {relatedProjects.map((related) => (
+              <a href={`/projects/${related.slug}`} class="project-related__card">
+                <img src={related.images[0]} alt="" loading="lazy" decoding="async" />
+                <div>
+                  <h3>{related.title}</h3>
+                  <p>{related.summary}</p>
+                </div>
+              </a>
+            ))}
+          </div>
+        </aside>
+      )}
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  :global(#main-content) {
+    padding-top: 72px !important;
+  }
+
+  .project-page {
+    padding-block: var(--space-3) clamp(4rem, 9vw, 7rem);
+    background:
+      linear-gradient(180deg, rgba(17, 17, 17, 0.025), rgba(17, 17, 17, 0) 24rem),
+      var(--color-bg);
+  }
+
+  .project-page__inner {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(2rem, 5vw, 4.5rem);
+  }
+
+  .project-page__back {
+    width: fit-content;
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-muted);
+  }
+
+  .project-page__back:hover {
+    color: var(--color-text);
+  }
+
+  .project-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(19rem, 0.8fr);
+    gap: clamp(2rem, 6vw, 7rem);
+    align-items: end;
+    min-height: clamp(22rem, 46dvh, 36rem);
+  }
+
+  .project-hero__copy {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1.25rem, 2vw, 2rem);
+  }
+
+  .project-hero__tags,
+  .project-output ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+
+  .project-hero__tags li,
+  .project-output li {
+    border: 1px solid rgba(17, 17, 17, 0.22);
+    border-radius: 999px;
+    padding: 0.48rem 0.82rem;
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    line-height: 1;
+    color: var(--color-text);
+  }
+
+  .project-hero h1 {
+    max-width: 11ch;
+    font-family: var(--font-display);
+    font-size: clamp(4rem, 9vw, 9.8rem);
+    font-weight: 400;
+    line-height: 0.9;
+    letter-spacing: 0;
+  }
+
+  .project-hero__intro {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    max-width: 39rem;
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 1.35vw, 1.2rem);
+    line-height: 1.55;
+    color: var(--color-muted);
+  }
+
+  .project-hero__summary {
+    color: var(--color-text);
+  }
+
+  .project-feature,
+  .project-gallery__item,
+  .project-related__card {
+    margin: 0;
+  }
+
+  .project-feature {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .project-feature img {
+    width: 100%;
+    height: min(72dvh, 54rem);
+    min-height: 32rem;
+    object-fit: cover;
+    border-radius: 8px;
+    background: #d8d5ca;
+  }
+
+  figcaption {
+    max-width: 44rem;
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    line-height: 1.45;
+    color: var(--color-muted);
+  }
+
+  .project-overview {
+    display: grid;
+    grid-template-columns: minmax(14rem, 0.35fr) minmax(0, 0.65fr);
+    gap: clamp(2rem, 6vw, 6rem);
+    align-items: start;
+  }
+
+  .project-meta {
+    position: sticky;
+    top: 6rem;
+    display: grid;
+    border-top: 1px solid rgba(17, 17, 17, 0.22);
+  }
+
+  .project-meta div {
+    display: grid;
+    gap: 0.35rem;
+    padding-block: 1rem;
+    border-bottom: 1px solid rgba(17, 17, 17, 0.18);
+  }
+
+  .project-meta dt,
+  .project-section-heading span,
+  .project-question span,
+  .project-reflection span {
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    line-height: 1;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  .project-meta dd {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    line-height: 1.45;
+    color: var(--color-text);
+  }
+
+  .project-overview__body {
+    display: grid;
+    gap: clamp(2rem, 4vw, 3.5rem);
+  }
+
+  .project-question {
+    display: grid;
+    gap: 1.1rem;
+    padding-block: clamp(1.5rem, 3vw, 2.4rem);
+    border-top: 1px solid rgba(17, 17, 17, 0.22);
+    border-bottom: 1px solid rgba(17, 17, 17, 0.22);
+  }
+
+  .project-question p {
+    max-width: 58rem;
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 5vw, 5.7rem);
+    font-weight: 400;
+    line-height: 0.98;
+    letter-spacing: 0;
+    color: var(--color-text);
+  }
+
+  .project-text-block {
+    display: grid;
+    grid-template-columns: minmax(9rem, 0.28fr) minmax(0, 0.72fr);
+    gap: clamp(1.5rem, 4vw, 4rem);
+    align-items: start;
+  }
+
+  .project-text-block h2,
+  .project-section-heading h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 4.5rem);
+    font-weight: 400;
+    line-height: 0.98;
+    letter-spacing: 0;
+  }
+
+  .project-text-block p {
+    max-width: 48rem;
+    font-family: var(--font-body);
+    font-size: clamp(1.05rem, 1.45vw, 1.28rem);
+    line-height: 1.58;
+    color: var(--color-text);
+  }
+
+  .project-process,
+  .project-output,
+  .project-related {
+    display: grid;
+    grid-template-columns: minmax(13rem, 0.32fr) minmax(0, 0.68fr);
+    gap: clamp(2rem, 6vw, 6rem);
+    padding-top: clamp(2rem, 4vw, 3.5rem);
+    border-top: 1px solid rgba(17, 17, 17, 0.18);
+  }
+
+  .project-section-heading {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .project-process ol {
+    display: grid;
+  }
+
+  .project-process li {
+    display: grid;
+    grid-template-columns: 4rem minmax(0, 1fr);
+    gap: clamp(1rem, 3vw, 3rem);
+    padding-block: clamp(1.2rem, 2vw, 1.8rem);
+    border-top: 1px solid rgba(17, 17, 17, 0.16);
+  }
+
+  .project-process li:first-child {
+    border-top: 0;
+    padding-top: 0;
+  }
+
+  .project-process li span {
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    color: var(--color-muted);
+  }
+
+  .project-process li p {
+    max-width: 48rem;
+    font-family: var(--font-body);
+    font-size: clamp(1.05rem, 1.35vw, 1.2rem);
+    line-height: 1.55;
+    color: var(--color-text);
+  }
+
+  .project-output ul {
+    align-content: start;
+  }
+
+  .project-output li {
+    font-size: clamp(0.9rem, 1.15vw, 1rem);
+  }
+
+  .project-gallery {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: clamp(1rem, 1.8vw, 1.5rem);
+    align-items: start;
+  }
+
+  .project-gallery__item {
+    display: grid;
+    grid-column: span 6;
+    gap: 0.75rem;
+  }
+
+  .project-gallery__item.is-wide {
+    grid-column: 2 / span 10;
+  }
+
+  .project-gallery__item img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 8px;
+    background: #d8d5ca;
+  }
+
+  .project-gallery__item.is-wide img {
+    aspect-ratio: 16 / 9;
+  }
+
+  .project-reflection {
+    display: grid;
+    gap: clamp(1rem, 2vw, 1.5rem);
+    padding-block: clamp(2rem, 5vw, 4rem);
+    border-top: 1px solid rgba(17, 17, 17, 0.22);
+    border-bottom: 1px solid rgba(17, 17, 17, 0.22);
+  }
+
+  .project-reflection p {
+    max-width: 74rem;
+    font-family: var(--font-display);
+    font-size: clamp(2.6rem, 6vw, 7.5rem);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: 0;
+  }
+
+  .project-related__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(1rem, 2vw, 1.5rem);
+  }
+
+  .project-related__card {
+    display: grid;
+    gap: 1rem;
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .project-related__card img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 8px;
+    background: #d8d5ca;
+    filter: saturate(0.92);
+    transition:
+      filter var(--duration-fast) var(--easing),
+      transform 360ms ease;
+  }
+
+  .project-related__card:hover img {
+    filter: saturate(1.08);
+    transform: scale(1.01);
+  }
+
+  .project-related__card h3 {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3vw, 3.4rem);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: 0;
+  }
+
+  .project-related__card p {
+    margin-top: 0.55rem;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    line-height: 1.45;
+    color: var(--color-muted);
+  }
+
+  @media (max-width: 980px) {
+    .project-hero,
+    .project-overview,
+    .project-process,
+    .project-output,
+    .project-related {
+      grid-template-columns: 1fr;
+    }
+
+    .project-hero {
+      min-height: auto;
+    }
+
+    .project-meta {
+      position: static;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .project-text-block {
+      grid-template-columns: 1fr;
+    }
+
+    .project-gallery__item,
+    .project-gallery__item.is-wide {
+      grid-column: span 12;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .project-page {
+      padding-block: var(--space-3) var(--space-5);
+    }
+
+    .project-page__inner {
+      gap: var(--space-5);
+    }
+
+    .project-hero h1 {
+      max-width: 7.5ch;
+      font-size: clamp(3.5rem, 19vw, 5.7rem);
+    }
+
+    .project-feature img {
+      min-height: 0;
+      height: auto;
+      aspect-ratio: 4 / 5;
+    }
+
+    .project-meta {
+      grid-template-columns: 1fr;
+    }
+
+    .project-question p,
+    .project-reflection p {
+      font-size: clamp(2.1rem, 12vw, 3.7rem);
+    }
+
+    .project-process li {
+      grid-template-columns: 2.8rem minmax(0, 1fr);
+    }
+
+    .project-related__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

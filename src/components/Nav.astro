@@ -3,7 +3,7 @@ const navLinks = [
   { href: '/services',  label: 'Services'  },
   { href: '/projects',  label: 'Projects'  },
   { href: '/culture',   label: 'Culture'   },
-  { href: '/research',  label: 'Research'  },
+  { href: '/ai-studio', label: 'AI Studio' },
   { href: '/contact',   label: 'Contact'   },
 ];
 ---
@@ -11,18 +11,17 @@ const navLinks = [
 <header class="site-header" role="banner">
   <div class="header-inner container">
 
-    <!-- Left: logo mark + wordmark -->
+    <!-- Left: logo mark -->
     <a href="/" class="logo-link" aria-label="Estro — home">
       <img
-        src="/favicon.svg"
-        alt=""
+        src="/branding/estro-logo-transparent.png"
+        alt="Estro"
         class="logo-mark"
-        width="36"
+        width="96"
         height="36"
         loading="eager"
         decoding="async"
       />
-      <span class="wordmark">ESTRO</span>
     </a>
 
     <!-- Centre: hamburger -->
@@ -99,21 +98,11 @@ const navLinks = [
   }
 
   .logo-mark {
-    width: 36px;
+    width: 96px;
     height: 36px;
     object-fit: contain;
     mix-blend-mode: multiply;
     flex-shrink: 0;
-  }
-
-  .wordmark {
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-size: var(--text-base);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--color-text);
-    line-height: 1;
   }
 
   /* ── Hamburger ──────────────────────────────────────────── */
