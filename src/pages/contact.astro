@@ -12,11 +12,51 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <h1 class="contact-page__title">contact</h1>
 
       <div class="contact-page__details">
-        <a href="mailto:alessandro.daz@estro-studio.it" class="contact-page__email">alessandro.daz@estro-studio.it</a>
+        <div class="contact-page__email-row">
+          <a href="mailto:alessandro.daz@estro-studio.it" class="contact-page__email" data-contact-email>alessandro.daz@estro-studio.it</a>
+          <button class="contact-page__copy" type="button" aria-label="Copy email address" data-copy-email>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="8" y="8" width="11" height="11" rx="1.6"></rect>
+              <path d="M5 15V5.8C5 5.36 5.36 5 5.8 5H15"></path>
+            </svg>
+          </button>
+          <span class="visually-hidden" aria-live="polite" data-copy-status></span>
+        </div>
         <p>Wherever the work is.</p>
       </div>
     </div>
   </section>
+
+  <script>
+    const copyButton = document.querySelector('[data-copy-email]');
+    const emailLink = document.querySelector('[data-contact-email]');
+    const copyStatus = document.querySelector('[data-copy-status]');
+
+    copyButton?.addEventListener('click', async () => {
+      const email = emailLink?.textContent?.trim();
+      if (!email) return;
+
+      try {
+        await navigator.clipboard.writeText(email);
+      } catch {
+        const textArea = document.createElement('textarea');
+        textArea.value = email;
+        textArea.setAttribute('readonly', '');
+        textArea.style.position = 'fixed';
+        textArea.style.opacity = '0';
+        document.body.append(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        textArea.remove();
+      }
+
+      copyButton.classList.add('is-copied');
+      copyStatus.textContent = 'Email address copied.';
+      window.setTimeout(() => {
+        copyButton.classList.remove('is-copied');
+      }, 1400);
+    });
+  </script>
 </BaseLayout>
 
 <style>
@@ -29,8 +69,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   .contact-page__inner {
     display: grid;
-    grid-template-columns: 1fr minmax(18rem, 0.7fr);
-    gap: clamp(3rem, 8vw, 8rem);
+    grid-template-columns: minmax(0, 1fr) max-content;
+    gap: clamp(2rem, 6vw, 6rem);
     align-items: end;
   }
 
@@ -53,16 +93,59 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     color: var(--color-muted);
   }
 
+  .contact-page__email-row {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: clamp(0.6rem, 1.2vw, 1rem);
+    min-width: 0;
+  }
+
   .contact-page__email {
     font-family: var(--font-display);
-    font-size: clamp(1.8rem, 3.8vw, 4rem);
+    font-size: clamp(1rem, 2.05vw, 2.45rem);
     line-height: 1;
+    letter-spacing: var(--display-tracking);
     color: var(--color-text);
-    overflow-wrap: anywhere;
+    white-space: nowrap;
   }
 
   .contact-page__email:hover {
     color: var(--color-muted);
+  }
+
+  .contact-page__copy {
+    width: clamp(2.15rem, 3vw, 2.75rem);
+    height: clamp(2.15rem, 3vw, 2.75rem);
+    flex: 0 0 auto;
+    display: inline-grid;
+    place-items: center;
+    border: 1px solid rgba(17, 17, 17, 0.34);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--color-text);
+    cursor: pointer;
+    transition:
+      background var(--duration-fast) var(--easing),
+      color var(--duration-fast) var(--easing),
+      border-color var(--duration-fast) var(--easing);
+  }
+
+  .contact-page__copy:hover,
+  .contact-page__copy.is-copied {
+    background: var(--color-text);
+    color: var(--color-bg);
+    border-color: var(--color-text);
+  }
+
+  .contact-page__copy svg {
+    width: 52%;
+    height: 52%;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
   }
 
   @media (max-width: 760px) {
@@ -75,6 +158,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       grid-template-columns: 1fr;
       gap: var(--space-5);
       align-items: start;
+    }
+
+    .contact-page__email {
+      font-size: clamp(0.92rem, 4.1vw, 1.08rem);
     }
   }
 </style>
