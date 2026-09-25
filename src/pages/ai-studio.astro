@@ -1,129 +1,39 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-
-const aiProjects = [
-  {
-    title: 'Concept labs',
-    type: 'AI experiments',
-    description: 'Prompts, images, prototypes, and small trials that turn open intuitions into visible directions.',
-  },
-  {
-    title: 'Story systems',
-    type: 'Narrative tools',
-    description: 'Structures for using AI in writing, project storytelling, and the construction of shared languages.',
-  },
-  {
-    title: 'Sensemaking boards',
-    type: 'Research support',
-    description: 'Maps, clusters, and syntheses for reading messy material without losing context, doubt, or weak signals.',
-  },
-  {
-    title: 'Visual studies',
-    type: 'Image generation',
-    description: 'Visual series, references, and controlled variations to explore form, atmosphere, objects, and identity.',
-  },
-  {
-    title: 'Workshop tools',
-    type: 'Facilitation',
-    description: 'AI tools for preparing activities, generating scenarios, collecting contributions, and making thought visible.',
-  },
-  {
-    title: 'Agents and workflows',
-    type: 'Studio systems',
-    description: 'Semi-automated processes for archives, content, research, prototyping, and project material management.',
-  },
-];
 ---
 
 <BaseLayout
   title="AI Studio"
-  description="AI projects, experiments, tools, and workflows from Estro."
+  description="AI Studio from Estro. Coming soon."
   showFooter={false}
 >
   <section class="ai-page">
-    <div class="container">
-      <div class="ai-grid" aria-label="AI Studio projects">
-        {aiProjects.map((project) => (
-          <article class="ai-card">
-            <p class="ai-card__type">{project.type}</p>
-            <h1 class="ai-card__title">{project.title}</h1>
-            <p class="ai-card__description">{project.description}</p>
-          </article>
-        ))}
-      </div>
+    <div class="container ai-page__inner">
+      <h1>Coming soon.</h1>
     </div>
   </section>
 </BaseLayout>
 
 <style>
   .ai-page {
-    padding-block: var(--space-3) clamp(3rem, 8vw, 6rem);
-  }
-
-  .ai-grid {
+    min-height: calc(100dvh - 72px);
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1px;
-    background: rgba(17, 17, 17, 0.18);
+    align-items: center;
+    padding-block: clamp(4rem, 10vw, 8rem);
   }
 
-  .ai-card {
-    min-height: clamp(19rem, 28vw, 28rem);
-    background: var(--color-bg);
-    padding: clamp(1.2rem, 2.6vw, 2.25rem);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: var(--space-5);
+  .ai-page__inner {
+    display: grid;
+    place-items: center;
   }
 
-  .ai-card__type {
-    width: fit-content;
-    border: 1px solid rgba(17, 17, 17, 0.42);
-    border-radius: 999px;
-    padding: 0.38rem 0.72rem;
-    font-family: var(--font-body);
-    font-size: var(--text-xs);
-    line-height: 1;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--color-muted);
-  }
-
-  .ai-card__title {
+  .ai-page h1 {
     font-family: var(--font-display);
-    font-size: clamp(1.8rem, 3.4vw, 3.6rem);
+    font-size: clamp(2.6rem, 7vw, 6rem);
     font-weight: 400;
-    line-height: 0.95;
-    letter-spacing: var(--display-tracking-tight);
+    line-height: 0.9;
+    letter-spacing: var(--display-tracking);
+    text-align: center;
     color: var(--color-text);
-  }
-
-  .ai-card__description {
-    max-width: 34ch;
-    font-family: var(--font-body);
-    font-size: var(--text-sm);
-    line-height: 1.6;
-    color: var(--color-muted);
-  }
-
-  @media (max-width: 980px) {
-    .ai-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-
-  @media (max-width: 640px) {
-    .ai-page {
-      padding-block: var(--space-3) var(--space-5);
-    }
-
-    .ai-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .ai-card {
-      min-height: 18rem;
-    }
   }
 </style>

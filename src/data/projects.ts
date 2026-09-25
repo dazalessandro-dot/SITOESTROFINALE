@@ -346,7 +346,60 @@ export const projects = [
     ],
     reflection:
       'The packaging works as a second editorial threshold. It does not only add protection: it decides what remains visible, what is held, and how the first encounter with the fanzine opens.',
-    related: ['bistro-il-riccio', 'kin'],
+    related: ['bilia-e-aquilone', 'bistro-il-riccio'],
+  },
+  {
+    slug: 'bilia-e-aquilone',
+    title: 'Bilia e Aquilone',
+    summary:
+      "A children's book created during a journey through North-East India. Photographs taken on the road become the ground for illustrated characters and a story about adventure.",
+    note:
+      'The project turns a shared travel experience into a gentle editorial object: part field diary, part visual story, part invitation to stay open to what arrives.',
+    tags: ["Children's book", 'Illustration', 'Travel story'],
+    images: [
+      '/projects/bilia-e-aquilone/1.jpg',
+      '/projects/bilia-e-aquilone/2.jpg',
+      '/projects/bilia-e-aquilone/3.jpg',
+      '/projects/bilia-e-aquilone/4.jpg',
+      '/projects/bilia-e-aquilone/5.jpg',
+      '/projects/bilia-e-aquilone/6.jpg',
+    ],
+    imageCaptions: [
+      'The cover frames the book as a small adventure held between travel, image, and drawing.',
+      'The closed book makes the project feel like an object, not only a digital story.',
+      'The spreads show how colour, photography, and short text move through the book.',
+      'A real place becomes a page once illustration enters the photograph.',
+      'The book keeps the memory of the journey visible without becoming a literal diary.',
+      'Each spread holds a small scene where adventure is present but never fully explained.',
+    ],
+    tint: 'linear-gradient(155deg, #ded6cb 0%, #c9c0b2 100%)',
+    meta: [
+      ["Type", "Illustrated children's book"],
+      ['Place', 'North-East India'],
+      ['Period', 'June 2026'],
+      ['Authors', 'Alessandro Daz and Leila Penna'],
+    ],
+    question:
+      "How can a journey become a children's book without losing the openness of the adventure that produced it?",
+    context:
+      'Bilia e Aquilone was born and completed while travelling through North-East India. The project does not simply document the trip: it transforms days, places, and encounters into a story for children about how adventures arrive, pass, and leave us ready for the next one.',
+    approach: [
+      'Collecting photographs during the journey as a direct record of places and days.',
+      'Building a narrative around adventure as something temporary, shared, and unpredictable.',
+      'Drawing characters and signs over the images so the real landscape could open into fiction.',
+      'Composing the book as an editorial object, balancing photographs, colour fields, short text, and illustrated interventions.',
+    ],
+    outputs: [
+      "Children's book",
+      'Cover design',
+      'Illustrated photographic spreads',
+      'Travel narrative',
+      'Editorial mockups',
+      'Visual system for photo and drawing',
+    ],
+    reflection:
+      'The project matters because it keeps the work close to the moment that generated it. A lived adventure becomes a form that can travel further: from two people, to a book, to the imagination of a child.',
+    related: ['kera', 'kin', 'alveari'],
   },
   {
     slug: 'workshop-team-building-unicredit',

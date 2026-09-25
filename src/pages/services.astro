@@ -7,11 +7,11 @@ const serviceGroups = [
     title: 'Creative culture and teams',
     body: 'We work with teams when energy is present but scattered. We read the way people collaborate, make tacit patterns visible, and design formats that help groups think, decide, and create together.',
     items: [
-      'Creative culture design',
-      'Team building workshops',
-      'Facilitation systems',
-      'Internal storytelling',
-      'Leadership sensemaking',
+      { label: 'Team building workshops', href: '/workshops' },
+      { label: 'Team alignment workshops' },
+      { label: 'Future visioning for companies' },
+      { label: 'Creative confidence workshops' },
+      { label: 'Creative games' },
     ],
   },
   {
@@ -19,11 +19,11 @@ const serviceGroups = [
     title: 'AI studio and prototypes',
     body: 'We help organisations use AI as a material for imagination, not as a layer of noise. Concepts, prototypes, tools, and workflows are tested through real use before they become part of the system.',
     items: [
-      'AI studio projects',
-      'Creative workflow design',
-      'Prompt and agent systems',
-      'Prototype labs',
-      'Sensemaking boards',
+      { label: 'AI video' },
+      { label: 'AI commercial video' },
+      { label: 'Future thinking AI video' },
+      { label: 'Creative AI software research' },
+      { label: 'Collaborative AI generation' },
     ],
   },
   {
@@ -31,18 +31,18 @@ const serviceGroups = [
     title: 'Products, stories and field objects',
     body: 'We move from observation to objects, services, narratives, and field-ready experiments. The work stays close to context, so strategy becomes something people can touch, use, and share.',
     items: [
-      'Product and gear concepts',
-      'Experience design',
-      'Storytelling systems',
-      'Field research',
-      'Launch narratives',
+      { label: 'Product development' },
+      { label: 'Digital manufacturing' },
+      { label: 'Prototyping' },
+      { label: 'Field research' },
+      { label: 'Branding' },
     ],
   },
 ];
 
 const proofImages = [
   {
-    src: '/projects/workshop-cludo/1.jpg',
+    src: '/projects/workshop-team-building-unicredit/1.jpg',
     alt: '',
     label: 'Workshop formats',
   },
@@ -52,7 +52,7 @@ const proofImages = [
     label: 'Narrative systems',
   },
   {
-    src: '/projects/arcteryx-pouch/1.jpg',
+    src: '/projects/arcteryx-pouch/field-objects.jpg',
     alt: '',
     label: 'Field objects',
   },
@@ -120,11 +120,6 @@ const workingPrinciples = [
 
     <section id="service-menu" class="service-menu">
       <div class="container">
-        <header class="service-menu__header">
-          <p class="services-label">End-to-end creative projects</p>
-          <h2>Three doors into the same studio practice.</h2>
-        </header>
-
         <div class="service-menu__grid" aria-label="Service areas">
           {serviceGroups.map((group) => (
             <article class="service-pillar">
@@ -137,8 +132,17 @@ const workingPrinciples = [
               <ul class="service-list">
                 {group.items.map((item) => (
                   <li>
-                    <span>{item}</span>
-                    <span aria-hidden="true">→</span>
+                    {item.href ? (
+                      <a href={item.href}>
+                        <span>{item.label}</span>
+                        <span aria-hidden="true">→</span>
+                      </a>
+                    ) : (
+                      <>
+                        <span>{item.label}</span>
+                        <span aria-hidden="true">→</span>
+                      </>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -260,7 +264,7 @@ const workingPrinciples = [
     font-size: clamp(4.25rem, 9.4vw, 9.4rem);
     font-weight: 400;
     line-height: 0.88;
-    letter-spacing: 0;
+    letter-spacing: var(--display-tracking-tight);
     text-wrap: balance;
   }
 
@@ -323,7 +327,7 @@ const workingPrinciples = [
     font-size: clamp(3rem, 7vw, 7rem);
     font-weight: 400;
     line-height: 0.9;
-    letter-spacing: 0;
+    letter-spacing: var(--display-tracking-tight);
   }
 
   .service-menu__grid {
@@ -367,7 +371,7 @@ const workingPrinciples = [
     font-size: clamp(2.9rem, 5.1vw, 6.1rem);
     font-weight: 400;
     line-height: 0.88;
-    letter-spacing: 0;
+    letter-spacing: var(--display-tracking-tight);
   }
 
   .service-pillar__copy p {
@@ -384,14 +388,29 @@ const workingPrinciples = [
 
   .service-list li {
     min-height: clamp(3.3rem, 4.6vw, 4.6rem);
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: var(--space-3);
     border-bottom: 1px solid var(--color-rule);
     font-family: var(--font-display);
-    font-size: clamp(1.25rem, 1.85vw, 2rem);
-    line-height: 1.05;
+    font-size: clamp(1.15rem, 1.55vw, 1.72rem);
+    line-height: 1.12;
+    letter-spacing: var(--display-tracking);
+  }
+
+  .service-list li a {
+    min-height: inherit;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+  }
+
+  .service-list li a:hover {
+    color: var(--color-muted);
   }
 
   .service-list li span:first-child {
@@ -443,7 +462,7 @@ const workingPrinciples = [
     position: relative;
     min-height: 360px;
     overflow: hidden;
-    background: var(--color-bg);
+    background: #dedacf;
   }
 
   .proof-strip figure:nth-child(2),
@@ -455,7 +474,8 @@ const workingPrinciples = [
     width: 100%;
     height: 100%;
     aspect-ratio: 3 / 4;
-    object-fit: cover;
+    object-fit: contain;
+    padding: clamp(0.55rem, 1.3vw, 1rem);
     filter: saturate(0.9);
   }
 

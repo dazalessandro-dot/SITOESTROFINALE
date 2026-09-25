@@ -1,0 +1,84 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="After payment — Shop"
+  description="Next steps after an Estro shop payment."
+  showFooter={false}
+>
+  <section class="after-payment">
+    <div class="container after-payment__inner">
+      <p class="after-payment__label">Estro shop</p>
+      <h1>Check your Stripe confirmation.</h1>
+      <div class="after-payment__copy">
+        <p>
+          This page does not confirm payment status. Stripe handles payment confirmation, receipts, and order details.
+        </p>
+        <p>
+          If you completed a purchase, check the email address used at checkout for the Stripe receipt and next steps.
+        </p>
+        <a href="/shop">Return to shop</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .after-payment {
+    min-height: calc(100dvh - 72px);
+    display: grid;
+    align-items: center;
+    padding-block: clamp(4rem, 10vw, 8rem);
+  }
+
+  .after-payment__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 0.65fr) minmax(18rem, 0.35fr);
+    gap: clamp(2rem, 7vw, 7rem);
+    align-items: end;
+  }
+
+  .after-payment__label {
+    grid-column: 1 / -1;
+    font-family: var(--font-display);
+    font-size: var(--text-xs);
+    line-height: 1;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  .after-payment h1 {
+    max-width: 9ch;
+    font-family: var(--font-display);
+    font-size: clamp(4rem, 11vw, 10rem);
+    font-weight: 400;
+    line-height: 0.9;
+    letter-spacing: var(--display-tracking-tight);
+  }
+
+  .after-payment__copy {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 1.35vw, 1.18rem);
+    line-height: 1.45;
+    color: var(--color-muted);
+  }
+
+  .after-payment__copy a {
+    width: fit-content;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 0.25rem;
+    color: var(--color-text);
+  }
+
+  @media (max-width: 760px) {
+    .after-payment__inner {
+      grid-template-columns: 1fr;
+      align-items: start;
+    }
+  }
+</style>

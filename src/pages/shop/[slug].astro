@@ -1,0 +1,645 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { isPurchasable, shopItems } from '../../data/shop';
+
+export function getStaticPaths() {
+  return shopItems.map((item) => ({
+    params: { slug: item.slug },
+    props: { item },
+  }));
+}
+
+const { item } = Astro.props;
+const canBuy = isPurchasable(item);
+const pageTitle = `${item.title} — Shop`;
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={item.description}
+  showFooter={false}
+>
+  <article class="product-page">
+    <div class="container">
+      <a class="product-back" href="/shop">← shop</a>
+
+      <section class="product-hero" aria-labelledby="product-title">
+        <div class="product-gallery-shell" data-product-gallery>
+          <div class="product-gallery" aria-label={`${item.title} image gallery. Scroll horizontally to view more images.`}>
+            {item.images.map((image, index) => (
+              <figure>
+                <img
+                  src={image}
+                  alt=""
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                  decoding="async"
+                />
+              </figure>
+            ))}
+          </div>
+
+          {item.images.length > 1 && (
+            <div class="product-gallery__controls" aria-label="Gallery controls">
+              <button class="gallery-arrow" type="button" data-gallery-prev aria-label="Previous image">←</button>
+              <div class="gallery-dots" aria-label="Gallery position">
+                {item.images.map((_, index) => (
+                  <button
+                    class:list={['gallery-dot', index === 0 && 'is-active']}
+                    type="button"
+                    data-gallery-dot={index}
+                    aria-label={`Show image ${index + 1}`}
+                    aria-current={index === 0 ? 'true' : 'false'}
+                  ></button>
+                ))}
+              </div>
+              <button class="gallery-arrow" type="button" data-gallery-next aria-label="Next image">→</button>
+            </div>
+          )}
+        </div>
+
+        <aside class="product-buy" aria-label={`${item.title} purchase information`}>
+          <h1 id="product-title">{item.title}</h1>
+          <p class="product-description">{item.longDescription}</p>
+
+          <div class="purchase-panel">
+            <div class="purchase-panel__row">
+              <span>Price</span>
+              <strong>{item.price ? `€${item.price}` : 'To be confirmed'}</strong>
+            </div>
+            <div class="purchase-panel__row">
+              <span>Availability</span>
+              <strong>{item.availability}</strong>
+            </div>
+
+            {item.variants.length > 0 && !item.colorOptions && (
+              <div class="variant-list" aria-label="Variants">
+                {item.variants.map((variant) => (
+                  <div>
+                    <p>{variant.name}</p>
+                    <ul>
+                      {variant.options.map((option) => (
+                        <li>{option}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {item.colorOptions && (
+              <div class="color-selector" aria-label="Choose color">
+                <p>Color</p>
+                <div class="color-selector__options">
+                  {item.colorOptions.map((color, index) => (
+                    <button
+                      class:list={['color-option', index === 0 && 'is-active']}
+                      type="button"
+                      data-color-images={JSON.stringify(color.images)}
+                      aria-label={`Show ${color.label}`}
+                      aria-pressed={index === 0 ? 'true' : 'false'}
+                    >
+                      <span style={`--swatch-color: ${color.value}`}></span>
+                      <em>{color.label}</em>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {canBuy ? (
+              <a
+                class="buy-button"
+                href={item.stripePaymentLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Buy with Stripe
+              </a>
+            ) : (
+              <button class="buy-button buy-button--disabled" type="button" disabled>
+                Not available yet
+              </button>
+            )}
+
+            <p class="purchase-panel__note">
+              Payments are handled by Stripe Payment Links. Order confirmation and payment status are managed by Stripe.
+            </p>
+          </div>
+        </aside>
+      </section>
+
+      <section class="product-info" aria-label={`${item.title} details`}>
+        <div class="product-info__block">
+          <p class="product-label">Practical details</p>
+          <ul>
+            {item.practicalDetails.map((detail) => (
+              <li>{detail}</li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="product-info__block">
+          <p class="product-label">Shipping</p>
+          <p>{item.shipping}</p>
+        </div>
+
+        <div class="product-info__block">
+          <p class="product-label">Returns</p>
+          <p>{item.returns}</p>
+        </div>
+      </section>
+
+      <section class="product-process" aria-labelledby="process-title">
+        <div>
+          <p class="product-label">Estro process</p>
+          <h2 id="process-title">A tool for creativity in motion.</h2>
+        </div>
+        <div class="product-process__notes">
+          {item.processNotes.map((note) => (
+            <p>{note}</p>
+          ))}
+        </div>
+      </section>
+    </div>
+  </article>
+
+  <script is:inline>
+    const galleryShells = document.querySelectorAll('[data-product-gallery]');
+
+    galleryShells.forEach((shell) => {
+      const gallery = shell.querySelector('.product-gallery');
+      const previousButton = shell.querySelector('[data-gallery-prev]');
+      const nextButton = shell.querySelector('[data-gallery-next]');
+      const dots = Array.from(shell.querySelectorAll('[data-gallery-dot]'));
+      const colorButtons = Array.from(document.querySelectorAll('[data-color-images]'));
+
+      if (!gallery || !dots.length) return;
+
+      function getIndex() {
+        const width = gallery.clientWidth || 1;
+        return Math.round(gallery.scrollLeft / width);
+      }
+
+      function updateDots() {
+        const activeIndex = Math.max(0, Math.min(dots.length - 1, getIndex()));
+        dots.forEach((dot, index) => {
+          const isActive = index === activeIndex;
+          dot.classList.toggle('is-active', isActive);
+          dot.setAttribute('aria-current', isActive ? 'true' : 'false');
+        });
+
+      }
+
+      function scrollToIndex(index) {
+        const nextIndex = Math.max(0, Math.min(dots.length - 1, index));
+        gallery.scrollTo({
+          left: nextIndex * gallery.clientWidth,
+          behavior: 'smooth',
+        });
+      }
+
+      previousButton?.addEventListener('click', () => scrollToIndex(getIndex() - 1));
+      nextButton?.addEventListener('click', () => scrollToIndex(getIndex() + 1));
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => scrollToIndex(index));
+      });
+      colorButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          const images = JSON.parse(button.getAttribute('data-color-images') || '[]');
+          gallery.querySelectorAll('img').forEach((image, index) => {
+            if (!images[index]) return;
+            image.setAttribute('src', images[index]);
+          });
+
+          colorButtons.forEach((colorButton) => {
+            const isActive = colorButton === button;
+            colorButton.classList.toggle('is-active', isActive);
+            colorButton.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+          });
+
+          scrollToIndex(0);
+          updateDots();
+        });
+      });
+
+      gallery.addEventListener('scroll', () => {
+        window.requestAnimationFrame(updateDots);
+      }, { passive: true });
+
+      window.addEventListener('resize', updateDots);
+      updateDots();
+    });
+  </script>
+</BaseLayout>
+
+<style>
+  .product-page {
+    padding-block: clamp(1.5rem, 4vw, 3rem) clamp(4rem, 8vw, 7rem);
+  }
+
+  .product-back {
+    display: inline-flex;
+    margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    line-height: 1;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  .product-back:hover,
+  .product-back:focus-visible {
+    color: var(--color-text);
+  }
+
+  .product-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 0.63fr) minmax(320px, 0.37fr);
+    gap: clamp(1.2rem, 4vw, 4rem);
+    align-items: start;
+  }
+
+  .product-gallery-shell {
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  .product-gallery {
+    display: flex;
+    gap: 1px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    background: rgba(17, 17, 17, 0.18);
+  }
+
+  .product-gallery::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .product-gallery::-webkit-scrollbar-thumb {
+    background: rgba(17, 17, 17, 0.28);
+  }
+
+  .product-gallery figure {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    overflow: hidden;
+    background: #e1ded4;
+  }
+
+  .product-gallery img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .product-gallery figure {
+    aspect-ratio: 4 / 3;
+  }
+
+  .product-gallery__controls {
+    display: grid;
+    grid-template-columns: 2.75rem 1fr 2.75rem;
+    gap: var(--space-3);
+    align-items: center;
+  }
+
+  .gallery-arrow {
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 1px solid rgba(17, 17, 17, 0.34);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--color-text);
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 1.3rem;
+    line-height: 1;
+  }
+
+  .gallery-arrow:hover,
+  .gallery-arrow:focus-visible {
+    background: var(--color-text);
+    color: var(--color-bg);
+  }
+
+  .gallery-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.48rem;
+  }
+
+  .gallery-dot {
+    width: 0.54rem;
+    height: 0.54rem;
+    border: 1px solid rgba(17, 17, 17, 0.48);
+    border-radius: 999px;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .gallery-dot.is-active {
+    background: var(--color-text);
+  }
+
+  .product-buy {
+    position: sticky;
+    top: 96px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .product-buy h1 {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 8vw, 7.4rem);
+    font-weight: 400;
+    line-height: 0.9;
+    letter-spacing: var(--display-tracking-tight);
+  }
+
+  .product-description {
+    max-width: 34ch;
+    font-family: var(--font-body);
+    font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+    line-height: 1.45;
+    color: var(--color-muted);
+  }
+
+  .purchase-panel {
+    border-block: 1px solid rgba(17, 17, 17, 0.28);
+    padding-block: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .purchase-panel__row {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-4);
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    line-height: 1.35;
+  }
+
+  .purchase-panel__row span,
+  .purchase-panel__note {
+    color: var(--color-muted);
+  }
+
+  .purchase-panel__row strong {
+    max-width: 20ch;
+    font-weight: 400;
+    text-align: right;
+    color: var(--color-text);
+  }
+
+  .variant-list {
+    display: grid;
+    gap: var(--space-2);
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+  }
+
+  .variant-list p {
+    color: var(--color-text);
+  }
+
+  .variant-list ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-2);
+  }
+
+  .variant-list li {
+    border: 1px solid rgba(17, 17, 17, 0.24);
+    border-radius: 999px;
+    padding: 0.36rem 0.64rem;
+  }
+
+  .color-selector {
+    display: grid;
+    gap: var(--space-2);
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+  }
+
+  .color-selector > p {
+    color: var(--color-text);
+  }
+
+  .color-selector__options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .color-option {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.48rem;
+    border: 1px solid rgba(17, 17, 17, 0.26);
+    border-radius: 999px;
+    background: transparent;
+    padding: 0.38rem 0.68rem 0.38rem 0.44rem;
+    cursor: pointer;
+    color: var(--color-muted);
+  }
+
+  .color-option span {
+    width: 1rem;
+    height: 1rem;
+    border: 1px solid rgba(17, 17, 17, 0.32);
+    border-radius: 999px;
+    background: var(--swatch-color);
+  }
+
+  .color-option em {
+    font-style: normal;
+  }
+
+  .color-option:hover,
+  .color-option:focus-visible,
+  .color-option.is-active {
+    border-color: var(--color-text);
+    color: var(--color-text);
+  }
+
+  .buy-button {
+    min-height: 3.25rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--color-text);
+    border-radius: 999px;
+    background: var(--color-text);
+    padding: 0.9rem 1.1rem;
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    line-height: 1;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-bg);
+    cursor: pointer;
+  }
+
+  .buy-button:hover,
+  .buy-button:focus-visible {
+    background: transparent;
+    color: var(--color-text);
+  }
+
+  .buy-button--disabled,
+  .buy-button--disabled:hover {
+    border-color: rgba(17, 17, 17, 0.22);
+    background: rgba(17, 17, 17, 0.08);
+    color: rgba(17, 17, 17, 0.42);
+    cursor: not-allowed;
+  }
+
+  .purchase-panel__note {
+    max-width: 36ch;
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    line-height: 1.45;
+  }
+
+  .product-info,
+  .product-process {
+    border-top: 1px solid rgba(17, 17, 17, 0.18);
+    margin-top: clamp(3rem, 7vw, 7rem);
+    padding-top: clamp(1.5rem, 3vw, 2.5rem);
+  }
+
+  .product-info {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1px;
+    background: rgba(17, 17, 17, 0.18);
+    border-top: 0;
+    padding-top: 0;
+  }
+
+  .product-info__block {
+    min-height: 17rem;
+    background: var(--color-bg);
+    padding: clamp(1.1rem, 2vw, 1.8rem);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .product-label {
+    font-family: var(--font-display);
+    font-size: var(--text-xs);
+    line-height: 1;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  .product-info p,
+  .product-info li,
+  .product-process p {
+    font-family: var(--font-body);
+    font-size: clamp(0.98rem, 1.25vw, 1.12rem);
+    line-height: 1.55;
+    color: var(--color-muted);
+  }
+
+  .product-info ul {
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .product-info li {
+    border-bottom: 1px solid rgba(17, 17, 17, 0.16);
+    padding-bottom: var(--space-2);
+  }
+
+  .product-process {
+    display: grid;
+    grid-template-columns: minmax(0, 0.46fr) minmax(0, 0.54fr);
+    gap: clamp(2rem, 6vw, 7rem);
+    align-items: start;
+  }
+
+  .product-process h2 {
+    max-width: 10ch;
+    margin-top: var(--space-4);
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 7vw, 6.5rem);
+    font-weight: 400;
+    line-height: 0.92;
+    letter-spacing: var(--display-tracking-tight);
+  }
+
+  .product-process__notes {
+    display: grid;
+    gap: var(--space-4);
+    max-width: 42rem;
+  }
+
+  @media (max-width: 960px) {
+    .product-hero,
+    .product-process {
+      grid-template-columns: 1fr;
+    }
+
+    .product-buy {
+      position: static;
+    }
+
+    .product-info {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .product-page {
+      padding-block: var(--space-4) var(--space-5);
+    }
+
+    .product-hero {
+      gap: var(--space-4);
+    }
+
+    .product-buy {
+      order: -1;
+    }
+
+    .product-gallery figure {
+      aspect-ratio: 1 / 1;
+    }
+
+    .product-buy h1 {
+      font-size: clamp(3rem, 16vw, 5.2rem);
+    }
+
+    .purchase-panel {
+      position: sticky;
+      bottom: 0;
+      z-index: 5;
+      margin-inline: calc(var(--gutter) * -1);
+      padding: var(--space-3) var(--gutter);
+      background: color-mix(in srgb, var(--color-bg) 94%, white 6%);
+      border-top: 1px solid rgba(17, 17, 17, 0.22);
+      border-bottom: 0;
+    }
+
+    .product-info__block {
+      min-height: auto;
+    }
+
+    .product-process h2 {
+      font-size: clamp(2.7rem, 14vw, 4.4rem);
+    }
+  }
+</style>

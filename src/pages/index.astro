@@ -2,12 +2,12 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const words = [
-  { label: 'play', color: '#ff4f7b', font: 'DeFontePlus, Avenir Next, sans-serif' },
-  { label: 'AI', color: '#2454ff', font: 'Futura, Futura PT, Avenir Next, sans-serif' },
-  { label: 'storytelling', color: '#008f6f', font: 'Georgia, Times New Roman, serif' },
-  { label: 'sensemaking', color: '#e16a00', font: 'DeFontePlus, Avenir Next, sans-serif' },
-  { label: 'team building', color: '#7b3ff2', font: 'Helvetica Neue, Arial, sans-serif' },
-  { label: 'sensemaking', color: '#111111', font: 'Futura, Futura PT, Avenir Next, sans-serif' },
+  { label: 'play', color: '#ff3f6e', font: 'Cooper Black, Georgia, serif', weight: '700', style: 'normal', tracking: '0.006em' },
+  { label: 'AI', color: '#174cff', font: 'Futura, Futura PT, Avenir Next, sans-serif', weight: '700', style: 'normal', tracking: '0.08em' },
+  { label: 'storytelling', color: '#009b72', font: 'Georgia, Times New Roman, serif', weight: '700', style: 'italic', tracking: '0' },
+  { label: 'sensemaking', color: '#f06b00', font: 'Courier New, Courier, monospace', weight: '700', style: 'normal', tracking: '-0.01em' },
+  { label: 'team building', color: '#7b35ff', font: 'Gill Sans, Trebuchet MS, sans-serif', weight: '700', style: 'normal', tracking: '0.02em' },
+  { label: 'sensemaking', color: '#111111', font: 'Didot, Bodoni 72, Georgia, serif', weight: '700', style: 'normal', tracking: '0.004em' },
 ];
 ---
 
@@ -25,7 +25,6 @@ const words = [
 
   <script define:vars={{ words }} is:inline>
     const rotatingWord = document.querySelector('.landing__word');
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let index = 0;
 
     function applyWord(nextIndex) {
@@ -33,21 +32,17 @@ const words = [
       rotatingWord.textContent = word.label;
       rotatingWord.style.color = word.color;
       rotatingWord.style.fontFamily = word.font;
+      rotatingWord.style.fontWeight = word.weight;
+      rotatingWord.style.fontStyle = word.style;
+      rotatingWord.style.letterSpacing = word.tracking;
     }
 
     applyWord(index);
 
-    if (!reduceMotion) {
-      window.setInterval(() => {
-        rotatingWord.classList.add('is-changing');
-
-        window.setTimeout(() => {
-          index = (index + 1) % words.length;
-          applyWord(index);
-          rotatingWord.classList.remove('is-changing');
-        }, 180);
-      }, 950);
-    }
+    window.setInterval(() => {
+      index = (index + 1) % words.length;
+      applyWord(index);
+    }, 530);
   </script>
 </BaseLayout>
 
@@ -101,16 +96,7 @@ const words = [
     letter-spacing: var(--display-tracking-tight);
     white-space: nowrap;
     text-align: center;
-    transition:
-      color 220ms ease,
-      opacity 180ms ease,
-      transform 180ms ease;
     vertical-align: baseline;
-  }
-
-  .landing__word.is-changing {
-    opacity: 0;
-    transform: translateY(0.16em);
   }
 
   @media (max-width: 700px) {
