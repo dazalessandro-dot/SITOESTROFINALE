@@ -54,6 +54,16 @@ const navLinks = [
   hidden
 >
   <div class="menu-overlay__header container">
+    <a href="/" class="menu-overlay__logo" aria-label="Estro — home">
+      <img
+        src="/branding/estro-logo-transparent.png"
+        alt="Estro"
+        width="96"
+        height="36"
+        loading="lazy"
+        decoding="async"
+      />
+    </a>
     <button
       class="close-btn"
       id="menu-close"
@@ -163,9 +173,23 @@ const navLinks = [
 
   .menu-overlay__header {
     display: flex;
-    justify-content: flex-end;
+    align-items: center;
+    justify-content: space-between;
     padding-block: var(--space-3);
     flex-shrink: 0;
+  }
+
+  .menu-overlay__logo {
+    display: flex;
+    align-items: center;
+    line-height: 0;
+  }
+
+  .menu-overlay__logo img {
+    width: 96px;
+    height: 36px;
+    object-fit: contain;
+    mix-blend-mode: multiply;
   }
 
   /* ── Close button ───────────────────────────────────────── */
@@ -220,9 +244,59 @@ const navLinks = [
 
   .menu-nav__link:hover { opacity: 0.5; }
 
+  @media (max-width: 680px) {
+    .menu-overlay {
+      min-height: 100dvh;
+    }
+
+    .menu-overlay__header {
+      padding-block: 1.1rem 0.85rem;
+    }
+
+    .menu-overlay__logo img {
+      width: 82px;
+      height: 32px;
+    }
+
+    .close-btn {
+      min-width: 48px;
+      min-height: 48px;
+      font-size: 2rem;
+    }
+
+    .menu-nav {
+      justify-content: stretch;
+      padding-block: 0.5rem 1.5rem;
+    }
+
+    .menu-nav__list {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: stretch;
+    }
+
+    .menu-nav__item {
+      flex: 1;
+      display: flex;
+      min-height: 0;
+    }
+
+    .menu-nav__link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem var(--gutter);
+      font-size: clamp(2.8rem, 16vw, 5.25rem);
+      line-height: 0.88;
+      letter-spacing: 0;
+    }
+  }
+
   /* Focus styles */
   .hamburger:focus-visible,
   .close-btn:focus-visible,
+  .menu-overlay__logo:focus-visible,
   .menu-nav__link:focus-visible,
   .logo-link:focus-visible {
     outline: 2px solid var(--color-text);
