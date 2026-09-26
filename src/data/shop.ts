@@ -35,9 +35,9 @@ export const shopItems: ShopItem[] = [
     slug: 'achille',
     title: 'Achille',
     status: 'coming soon',
-    description: 'A small transparent tool for carrying writing, measuring, and notes into movement.',
+    description: 'A transparent pocket tool for notes and measurement.',
     longDescription:
-      'Achille is imagined as a compact writing and measuring companion for mobile creative work: light enough to disappear in a bag, precise enough to stay useful when ideas arrive away from the desk.',
+      'A compact writing and measuring companion for creative work away from the desk.',
     images: [
       '/shop/achille/yellow-1.jpg',
       '/shop/achille/yellow-2.jpg',
@@ -49,34 +49,34 @@ export const shopItems: ShopItem[] = [
     variants: [
       {
         name: 'Color',
-        options: ['Yellow', 'Orange', 'Violet', 'Green'],
+        options: ['Topazio', 'Ambra', 'Ametista', 'Kryptonite'],
       },
     ],
     colorOptions: [
       {
-        label: 'Yellow',
+        label: 'Topazio',
         value: '#f4d132',
         images: ['/shop/achille/yellow-1.jpg', '/shop/achille/yellow-2.jpg', '/shop/achille/yellow-3.jpg'],
       },
       {
-        label: 'Orange',
+        label: 'Ambra',
         value: '#f06a22',
         images: ['/shop/achille/orange-1.jpg', '/shop/achille/orange-2.jpg', '/shop/achille/orange-3.jpg'],
       },
       {
-        label: 'Violet',
+        label: 'Ametista',
         value: '#7067c9',
         images: ['/shop/achille/violet-1.jpg', '/shop/achille/violet-2.jpg', '/shop/achille/violet-3.jpg'],
       },
       {
-        label: 'Green',
+        label: 'Kryptonite',
         value: '#35d667',
         images: ['/shop/achille/green-1.jpg', '/shop/achille/green-2.jpg', '/shop/achille/green-3.jpg'],
       },
     ],
     practicalDetails: [
-      'Designed as a portable creative tool.',
-      'Transparent body for visibility and lightness.',
+      'Portable creative tool.',
+      'Transparent body.',
       'Final specifications still to be confirmed.',
     ],
     shipping: 'Shipping options will be defined before release.',
@@ -91,9 +91,9 @@ export const shopItems: ShopItem[] = [
     slug: 'travel-pouch',
     title: 'Travel pouch',
     status: 'prototype',
-    description: 'A soft pouch for keeping tools, small objects, and field materials together.',
+    description: 'A soft pouch for tools and field materials.',
     longDescription:
-      'The Travel pouch is a soft container for scattered studio objects: pens, cards, cables, samples, notes, and the small things that usually disappear at the bottom of a bag.',
+      'A soft container for pens, cards, cables, samples, notes, and small studio objects.',
     images: [
       '/shop/travel-pouch/1.jpg',
       '/shop/travel-pouch/2.jpg',
@@ -104,8 +104,8 @@ export const shopItems: ShopItem[] = [
     availability: 'Prototype under evaluation.',
     variants: [],
     practicalDetails: [
-      'Soft pouch format for daily movement.',
-      'Intended for tools, small objects, and field materials.',
+      'Soft daily pouch.',
+      'For tools, small objects, and field materials.',
       'Dimensions, materials, and production details still to be confirmed.',
     ],
     shipping: 'Shipping options will be defined if the prototype enters production.',
@@ -120,9 +120,9 @@ export const shopItems: ShopItem[] = [
     slug: 'field-bag',
     title: 'Field bag',
     status: 'prototype',
-    description: 'A soft technical bag for carrying tools, materials, and small objects through mobile work situations.',
+    description: 'A technical bag for mobile creative work.',
     longDescription:
-      'The Field bag is a mobile studio surface: a soft technical bag for carrying creative tools, documentation materials, and small objects through workshops, research days, and travel.',
+      'A mobile studio surface for tools, documentation materials, and small field objects.',
     images: [
       '/shop/field-bag/1.jpg',
       '/shop/field-bag/2.jpg',
@@ -133,8 +133,8 @@ export const shopItems: ShopItem[] = [
     availability: 'Prototype under evaluation.',
     variants: [],
     practicalDetails: [
-      'Designed for mobile work situations.',
-      'Intended for tools, materials, and compact field objects.',
+      'Designed for mobile work.',
+      'For tools, materials, and compact field objects.',
       'Final construction and material specifications still to be confirmed.',
     ],
     shipping: 'Shipping options will be defined if the prototype enters production.',
@@ -149,9 +149,9 @@ export const shopItems: ShopItem[] = [
     slug: 'hammock',
     title: 'Hammock',
     status: 'prototype',
-    description: 'A light object for pausing, suspending the body, and making space for thought away from the desk.',
+    description: 'A light object for pause and outdoor thinking.',
     longDescription:
-      'The Hammock treats rest as part of creative work. It is a light object for pausing, suspending the body, and letting thinking move outside the usual workstation.',
+      'A light object for rest, field days, and thinking away from the workstation.',
     images: [
       '/shop/hammock/1.jpg',
       '/shop/hammock/2.jpg',
@@ -162,8 +162,8 @@ export const shopItems: ShopItem[] = [
     availability: 'Prototype under evaluation.',
     variants: [],
     practicalDetails: [
-      'Light object for rest and outdoor thinking.',
-      'Intended for pauses, field days, and temporary creative setups.',
+      'For rest and outdoor thinking.',
+      'Made for pauses, field days, and temporary setups.',
       'Final load, material, and use specifications still to be confirmed.',
     ],
     shipping: 'Shipping options will be defined if the prototype enters production.',
@@ -178,9 +178,9 @@ export const shopItems: ShopItem[] = [
     slug: 'bandana',
     title: 'Bandana',
     status: 'concept',
-    description: 'A foldable graphic surface: accessory, signal, and small visual field to carry with you.',
+    description: 'A foldable graphic surface to wear, tie, or carry.',
     longDescription:
-      'The Bandana is a foldable graphic surface: part accessory, part signal, part portable visual field. It carries the studio language into a small object that can be worn, tied, packed, or displayed.',
+      'A foldable graphic surface: accessory, signal, and small portable visual field.',
     images: [
       '/shop/bandana/1.jpg',
     ],
@@ -189,8 +189,8 @@ export const shopItems: ShopItem[] = [
     availability: 'Concept not available for purchase yet.',
     variants: [],
     practicalDetails: [
-      'Foldable graphic textile concept.',
-      'Designed as an accessory, signal, and small portable visual field.',
+      'Graphic textile concept.',
+      'Can be worn, tied, packed, or displayed.',
       'Material, size, and production details still to be confirmed.',
     ],
     shipping: 'Shipping options will be defined before release.',

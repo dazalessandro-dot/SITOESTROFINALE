@@ -14,13 +14,23 @@ const gallery = project.images.map((src, index) => ({
   src,
   caption: project.imageCaptions?.[index] ?? `${project.title} image ${index + 1}`,
 }));
+const sketches = project.sketches ?? [];
+const decorativeSketches = sketches.length > 0 ? [...sketches, ...sketches] : [];
 const relatedProjects = (project.related ?? [])
   .map((slug) => projects.find((item) => item.slug === slug))
   .filter(Boolean);
 ---
 
 <BaseLayout title={project.title} description={project.summary} showFooter={false}>
-  <article class="project-page">
+  <article class:list={['project-page', sketches.length > 0 ? 'has-sketches' : '']}>
+    {decorativeSketches.length > 0 && (
+      <div class="project-sketch-layer" aria-hidden="true">
+        {decorativeSketches.slice(0, 4).map((sketch) => (
+          <img src={sketch.src} alt="" loading="lazy" decoding="async" />
+        ))}
+      </div>
+    )}
+
     <div class="container project-page__inner">
       <a href="/projects" class="project-page__back">Projects</a>
 
@@ -36,7 +46,6 @@ const relatedProjects = (project.related ?? [])
 
         <div class="project-hero__intro">
           <p class="project-hero__summary">{project.summary}</p>
-          <p>{project.note}</p>
         </div>
       </header>
 
@@ -48,7 +57,6 @@ const relatedProjects = (project.related ?? [])
             loading="eager"
             decoding="async"
           />
-          <figcaption>{gallery[0].caption}</figcaption>
         </figure>
       )}
 
@@ -64,11 +72,7 @@ const relatedProjects = (project.related ?? [])
 
         <div class="project-overview__body">
           <div class="project-question">
-            <span>Question</span>
-            <p>{project.question}</p>
-          </div>
-          <div class="project-text-block">
-            <h2>Context</h2>
+            <span>Context</span>
             <p>{project.context}</p>
           </div>
         </div>
@@ -77,10 +81,10 @@ const relatedProjects = (project.related ?? [])
       <section class="project-process" aria-label="Project process">
         <div class="project-section-heading">
           <span>Process</span>
-          <h2>How it was built</h2>
+          <h2>Process</h2>
         </div>
         <ol>
-          {project.approach.map((step, index) => (
+          {project.approach.slice(0, 3).map((step, index) => (
             <li>
               <span>{String(index + 1).padStart(2, '0')}</span>
               <p>{step}</p>
@@ -92,7 +96,7 @@ const relatedProjects = (project.related ?? [])
       <section class="project-output" aria-label="Project outputs">
         <div class="project-section-heading">
           <span>Outputs</span>
-          <h2>What came out</h2>
+          <h2>Outputs</h2>
         </div>
         <ul>
           {project.outputs.map((output) => (
@@ -106,16 +110,10 @@ const relatedProjects = (project.related ?? [])
           {gallery.slice(1).map((image, index) => (
             <figure class:list={['project-gallery__item', index === 0 || index === 3 ? 'is-wide' : '']}>
               <img src={image.src} alt={image.caption} loading="lazy" decoding="async" />
-              <figcaption>{image.caption}</figcaption>
             </figure>
           ))}
         </section>
       )}
-
-      <section class="project-reflection" aria-label="Project reflection">
-        <span>Why it matters</span>
-        <p>{project.reflection}</p>
-      </section>
 
       {relatedProjects.length > 0 && (
         <aside class="project-related" aria-label="Related projects">
@@ -129,7 +127,6 @@ const relatedProjects = (project.related ?? [])
                 <img src={related.images[0]} alt="" loading="lazy" decoding="async" />
                 <div>
                   <h3>{related.title}</h3>
-                  <p>{related.summary}</p>
                 </div>
               </a>
             ))}
@@ -146,16 +143,67 @@ const relatedProjects = (project.related ?? [])
   }
 
   .project-page {
+    position: relative;
+    isolation: isolate;
     padding-block: var(--space-3) clamp(4rem, 9vw, 7rem);
     background:
       linear-gradient(180deg, rgba(17, 17, 17, 0.025), rgba(17, 17, 17, 0) 24rem),
       var(--color-bg);
+    overflow: hidden;
   }
 
   .project-page__inner {
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     gap: clamp(2rem, 5vw, 4.5rem);
+  }
+
+  .project-sketch-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .project-sketch-layer img {
+    position: absolute;
+    width: min(58vw, 860px);
+    opacity: 0.18;
+    mix-blend-mode: multiply;
+    filter: contrast(1.12);
+  }
+
+  .project-sketch-layer img:nth-child(1) {
+    top: 7rem;
+    right: -6vw;
+    transform: rotate(-5deg);
+  }
+
+  .project-sketch-layer img:nth-child(2) {
+    top: 48rem;
+    left: -5vw;
+    width: min(48vw, 720px);
+    opacity: 0.15;
+    transform: rotate(6deg);
+  }
+
+  .project-sketch-layer img:nth-child(3) {
+    top: 96rem;
+    right: 2vw;
+    width: min(44vw, 660px);
+    opacity: 0.13;
+    transform: rotate(4deg);
+  }
+
+  .project-sketch-layer img:nth-child(4) {
+    top: 132rem;
+    left: 12vw;
+    width: min(40vw, 600px);
+    opacity: 0.1;
+    transform: rotate(-7deg);
   }
 
   .project-page__back {
@@ -279,8 +327,7 @@ const relatedProjects = (project.related ?? [])
 
   .project-meta dt,
   .project-section-heading span,
-  .project-question span,
-  .project-reflection span {
+  .project-question span {
     font-family: var(--font-body);
     font-size: var(--text-xs);
     line-height: 1;
@@ -310,12 +357,10 @@ const relatedProjects = (project.related ?? [])
   }
 
   .project-question p {
-    max-width: 58rem;
-    font-family: var(--font-display);
-    font-size: clamp(2.4rem, 5vw, 5.7rem);
-    font-weight: 400;
-    line-height: 0.98;
-    letter-spacing: var(--display-tracking-tight);
+    max-width: 52rem;
+    font-family: var(--font-body);
+    font-size: clamp(1.05rem, 1.45vw, 1.28rem);
+    line-height: 1.55;
     color: var(--color-text);
   }
 
@@ -427,23 +472,6 @@ const relatedProjects = (project.related ?? [])
     aspect-ratio: 16 / 9;
   }
 
-  .project-reflection {
-    display: grid;
-    gap: clamp(1rem, 2vw, 1.5rem);
-    padding-block: clamp(2rem, 5vw, 4rem);
-    border-top: 1px solid rgba(17, 17, 17, 0.22);
-    border-bottom: 1px solid rgba(17, 17, 17, 0.22);
-  }
-
-  .project-reflection p {
-    max-width: 74rem;
-    font-family: var(--font-display);
-    font-size: clamp(2.6rem, 6vw, 7.5rem);
-    font-weight: 400;
-    line-height: 0.95;
-    letter-spacing: var(--display-tracking-tight);
-  }
-
   .project-related__grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -482,18 +510,6 @@ const relatedProjects = (project.related ?? [])
     letter-spacing: var(--display-tracking-tight);
   }
 
-  .project-related__card p {
-    margin-top: 0.55rem;
-    display: -webkit-box;
-    overflow: hidden;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
-    font-family: var(--font-body);
-    font-size: var(--text-sm);
-    line-height: 1.45;
-    color: var(--color-muted);
-  }
-
   @media (max-width: 980px) {
     .project-hero,
     .project-overview,
@@ -501,6 +517,10 @@ const relatedProjects = (project.related ?? [])
     .project-output,
     .project-related {
       grid-template-columns: 1fr;
+    }
+
+    .project-sketch-layer {
+      display: none;
     }
 
     .project-hero {
@@ -547,9 +567,8 @@ const relatedProjects = (project.related ?? [])
       grid-template-columns: 1fr;
     }
 
-    .project-question p,
-    .project-reflection p {
-      font-size: clamp(2.1rem, 12vw, 3.7rem);
+    .project-question p {
+      font-size: 1rem;
     }
 
     .project-process li {

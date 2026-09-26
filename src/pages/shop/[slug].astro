@@ -121,9 +121,6 @@ const pageTitle = `${item.title} — Shop`;
               </button>
             )}
 
-            <p class="purchase-panel__note">
-              Payments are handled by Stripe Payment Links. Order confirmation and payment status are managed by Stripe.
-            </p>
           </div>
         </aside>
       </section>
@@ -146,18 +143,6 @@ const pageTitle = `${item.title} — Shop`;
         <div class="product-info__block">
           <p class="product-label">Returns</p>
           <p>{item.returns}</p>
-        </div>
-      </section>
-
-      <section class="product-process" aria-labelledby="process-title">
-        <div>
-          <p class="product-label">Estro process</p>
-          <h2 id="process-title">A tool for creativity in motion.</h2>
-        </div>
-        <div class="product-process__notes">
-          {item.processNotes.map((note) => (
-            <p>{note}</p>
-          ))}
         </div>
       </section>
     </div>
@@ -359,7 +344,8 @@ const pageTitle = `${item.title} — Shop`;
     font-size: clamp(3rem, 8vw, 7.4rem);
     font-weight: 400;
     line-height: 0.9;
-    letter-spacing: var(--display-tracking-tight);
+    letter-spacing: 0.04em;
+    word-spacing: 0.1em;
   }
 
   .product-description {
@@ -387,8 +373,7 @@ const pageTitle = `${item.title} — Shop`;
     line-height: 1.35;
   }
 
-  .purchase-panel__row span,
-  .purchase-panel__note {
+  .purchase-panel__row span {
     color: var(--color-muted);
   }
 
@@ -504,21 +489,10 @@ const pageTitle = `${item.title} — Shop`;
     cursor: not-allowed;
   }
 
-  .purchase-panel__note {
-    max-width: 36ch;
-    font-family: var(--font-body);
-    font-size: var(--text-xs);
-    line-height: 1.45;
-  }
-
-  .product-info,
-  .product-process {
+  .product-info {
     border-top: 1px solid rgba(17, 17, 17, 0.18);
     margin-top: clamp(3rem, 7vw, 7rem);
     padding-top: clamp(1.5rem, 3vw, 2.5rem);
-  }
-
-  .product-info {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1px;
@@ -546,8 +520,7 @@ const pageTitle = `${item.title} — Shop`;
   }
 
   .product-info p,
-  .product-info li,
-  .product-process p {
+  .product-info li {
     font-family: var(--font-body);
     font-size: clamp(0.98rem, 1.25vw, 1.12rem);
     line-height: 1.55;
@@ -564,32 +537,8 @@ const pageTitle = `${item.title} — Shop`;
     padding-bottom: var(--space-2);
   }
 
-  .product-process {
-    display: grid;
-    grid-template-columns: minmax(0, 0.46fr) minmax(0, 0.54fr);
-    gap: clamp(2rem, 6vw, 7rem);
-    align-items: start;
-  }
-
-  .product-process h2 {
-    max-width: 10ch;
-    margin-top: var(--space-4);
-    font-family: var(--font-display);
-    font-size: clamp(3rem, 7vw, 6.5rem);
-    font-weight: 400;
-    line-height: 0.92;
-    letter-spacing: var(--display-tracking-tight);
-  }
-
-  .product-process__notes {
-    display: grid;
-    gap: var(--space-4);
-    max-width: 42rem;
-  }
-
   @media (max-width: 960px) {
-    .product-hero,
-    .product-process {
+    .product-hero {
       grid-template-columns: 1fr;
     }
 
@@ -636,10 +585,6 @@ const pageTitle = `${item.title} — Shop`;
 
     .product-info__block {
       min-height: auto;
-    }
-
-    .product-process h2 {
-      font-size: clamp(2.7rem, 14vw, 4.4rem);
     }
   }
 </style>

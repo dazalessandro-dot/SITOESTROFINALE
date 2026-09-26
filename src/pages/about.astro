@@ -6,13 +6,13 @@ const founders = [
   {
     name: 'Marco Ricci',
     role: 'Strategy & Ventures',
-    bio: 'Marco spent a decade building and exiting startups across Southern Europe before co-founding Estro. He cares about strategic clarity, honest operating choices, and work that earns its momentum.',
+    bio: 'Strategy, ventures, and operating clarity for work that needs momentum.',
     tint: 'linear-gradient(170deg, #ddd9cf 0%, #c9c4b6 100%)',
   },
   {
     name: 'Sara Lundqvist',
     role: 'Design & Product',
-    bio: 'Sara has led product design from Stockholm to Sao Paulo. She brings a systems eye, editorial rigor, and a strong instinct for where better design creates better judgment.',
+    bio: 'Product design, systems thinking, and editorial precision.',
     tint: 'linear-gradient(170deg, #d6d1c6 0%, #c4beaf 100%)',
   },
 ];
@@ -33,13 +33,13 @@ const values = [
       <div class="container editorial-grid">
         <div class="editorial-rail" data-reveal="hero-meta">
           <p class="section-label">About</p>
-          <p class="editorial-rail-note">A small studio designed for high-trust work in moments that need both strategic depth and creative precision.</p>
+          <p class="editorial-rail-note">A small studio for strategic and creative work.</p>
         </div>
 
         <div class="editorial-main" data-reveal="hero-content">
-          <h1 class="editorial-title">We built Estro for work that needs closeness, range, and a useful outside point of view.</h1>
+          <h1 class="editorial-title">A compact studio for useful creative work.</h1>
           <p class="editorial-intro">
-            The studio is intentionally compact. That lets us stay senior, involved, and accountable to the work rather than protected from it.
+            Close to the problem, careful with the form, accountable to the result.
           </p>
         </div>
       </div>
@@ -54,17 +54,11 @@ const values = [
         </div>
 
         <div class="editorial-content" data-reveal="content">
-          <h2 class="editorial-headline">To help teams make better moves while the ground is still shifting.</h2>
+          <h2 class="editorial-headline">Better moves while the ground is still shifting.</h2>
           <div class="editorial-columns">
             <p class="editorial-lead">
-              We believe the best ideas are rarely produced at a safe distance. They emerge in the middle of constraint, momentum, disagreement, and unfinished information.
+              We help teams frame what matters and turn abstract ambition into something durable.
             </p>
-            <div class="editorial-content">
-              <p class="editorial-text">
-                Estro exists to work inside those conditions without making them heavier. We help teams frame what matters, make stronger decisions, and turn abstract ambition into something more durable.
-              </p>
-              <p class="editorial-quote">We are less interested in looking like a studio than in behaving like one when the work gets difficult.</p>
-            </div>
           </div>
         </div>
       </div>
@@ -79,7 +73,7 @@ const values = [
         </div>
 
         <div class="editorial-content" data-reveal="content">
-          <h2 class="editorial-headline">Two practices, one shared standard for what useful work should feel like.</h2>
+          <h2 class="editorial-headline">Two practices, one shared standard.</h2>
           <div class="editorial-card-grid founders-grid">
             {founders.map((founder) => (
               <article class="editorial-card founder-card" data-reveal="card">
@@ -105,16 +99,13 @@ const values = [
         </div>
 
         <div class="editorial-content" data-reveal="content">
-          <h2 class="editorial-headline">The culture of the studio is simple on purpose.</h2>
+          <h2 class="editorial-headline">Simple on purpose.</h2>
           <div class="editorial-list">
             {values.map((value, index) => (
               <article class="editorial-row" data-reveal="row">
                 <p class="editorial-row__index">0{index + 1}</p>
                 <div class="editorial-row__content">
                   <h3 class="editorial-row__title">{value}</h3>
-                  <p class="editorial-row__body">
-                    We try to keep the studio honest by returning to this standard in how we scope, write, design, and collaborate. If the work cannot stand up outside the room, it is not finished.
-                  </p>
                 </div>
               </article>
             ))}

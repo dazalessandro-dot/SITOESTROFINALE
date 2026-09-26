@@ -4,8 +4,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const serviceGroups = [
   {
     index: '01',
-    title: 'Creative culture and teams',
-    body: 'We work with teams when energy is present but scattered. We read the way people collaborate, make tacit patterns visible, and design formats that help groups think, decide, and create together.',
+    title: 'Creative team alignment',
+    body: 'Formats for teams that need shared direction, energy, and a visible way to work together.',
     items: [
       { label: 'Team building workshops', href: '/workshops' },
       { label: 'Team alignment workshops' },
@@ -16,8 +16,8 @@ const serviceGroups = [
   },
   {
     index: '02',
-    title: 'AI studio and prototypes',
-    body: 'We help organisations use AI as a material for imagination, not as a layer of noise. Concepts, prototypes, tools, and workflows are tested through real use before they become part of the system.',
+    title: 'AI creative systems',
+    body: 'AI used as a creative material: videos, tools, workflows, and shared generation processes.',
     items: [
       { label: 'AI video' },
       { label: 'AI commercial video' },
@@ -28,12 +28,12 @@ const serviceGroups = [
   },
   {
     index: '03',
-    title: 'Products, stories and field objects',
-    body: 'We move from observation to objects, services, narratives, and field-ready experiments. The work stays close to context, so strategy becomes something people can touch, use, and share.',
+    title: 'Strategic product design',
+    body: 'Objects, services, content, and brands shaped from context into things people can use.',
     items: [
       { label: 'Product development' },
       { label: 'Digital manufacturing' },
-      { label: 'Prototyping' },
+      { label: 'Content creation' },
       { label: 'Field research' },
       { label: 'Branding' },
     ],
@@ -79,19 +79,19 @@ const fields = [
 const workingPrinciples = [
   {
     title: 'Working from context',
-    body: 'We begin with the situation in front of us: people, tensions, materials, language, and the decision that needs to move.',
+    body: 'We start from people, constraints, language, and the decision that needs to move.',
   },
   {
     title: 'Working through prototypes',
-    body: 'Ideas become boards, objects, prompts, maps, stories, and tools early enough for people to react to them.',
+    body: 'Ideas become objects, prompts, maps, stories, and tools early.',
   },
   {
     title: 'Working with teams',
-    body: 'The format is part of the service. We design the room, the rhythm, and the shared artifacts that let collaboration happen.',
+    body: 'We design the room, rhythm, and artifacts that make collaboration visible.',
   },
   {
     title: 'Working across media',
-    body: 'Digital systems, physical gear, workshops, and narratives can belong to the same project when they clarify the work.',
+    body: 'Digital systems, objects, workshops, and narratives can belong to one project.',
   },
 ];
 ---
@@ -108,9 +108,7 @@ const workingPrinciples = [
         <div class="services-hero__grid">
           <h1>creativity made useful.</h1>
           <div class="services-hero__copy">
-            <p>
-              Estro works between workshops, AI, storytelling, objects, and team culture. The service is not a fixed package: it is the right format for the work that needs to move.
-            </p>
+            <p>Workshops, AI, storytelling, objects, and team culture. Built around the work that needs to move.</p>
             <a href="#service-menu" class="services-hero__link">discover services <span aria-hidden="true">→</span></a>
           </div>
         </div>
@@ -156,7 +154,6 @@ const workingPrinciples = [
       <div class="container proof-strip__inner">
         <div class="proof-strip__rail">
           <p class="services-label">In practice</p>
-          <p>Services stay close to the material: rooms, tools, images, objects, conversations, and prototypes.</p>
         </div>
 
         <div class="proof-strip__grid">
@@ -176,9 +173,6 @@ const workingPrinciples = [
           <p class="services-label">Our field</p>
           <h2>We move between culture, technology, play, and making.</h2>
         </div>
-        <p class="expertise-section__text">
-          The point is not to separate strategy from execution. We build enough structure to think clearly, and enough tangible material to test what the idea is becoming.
-        </p>
         <ul class="field-list" aria-label="Fields">
           {fields.map((field) => (
             <li>{field}</li>
@@ -192,9 +186,7 @@ const workingPrinciples = [
         <div class="method-section__intro">
           <p class="services-label services-label--dark">How we work</p>
           <h2>A service is a way of paying attention.</h2>
-          <p>
-            We do not start from a deck of answers. We start from the situation, then choose the smallest useful artifact that can make the next decision clearer.
-          </p>
+          <p>We start from the situation, then make the smallest useful artifact for the next decision.</p>
         </div>
 
         <div class="method-list">
@@ -206,7 +198,10 @@ const workingPrinciples = [
           ))}
         </div>
       </div>
-      <img class="method-section__mark" src="/branding/estro-logo-transparent.png" alt="" loading="lazy" decoding="async" />
+      <div class="method-section__brand" aria-label="Estro">
+        <img src="/branding/estro-logo-transparent.png" alt="" loading="lazy" decoding="async" />
+        <span>ESTRO</span>
+      </div>
     </section>
   </div>
 </BaseLayout>
@@ -584,13 +579,29 @@ const workingPrinciples = [
     color: rgba(242, 240, 234, 0.72);
   }
 
-  .method-section__mark {
+  .method-section__brand {
     position: absolute;
-    left: -8vw;
-    bottom: -16vw;
-    width: min(62vw, 760px);
-    opacity: 0.08;
+    left: var(--gutter);
+    bottom: clamp(1.4rem, 3vw, 2.5rem);
+    display: inline-flex;
+    align-items: center;
+    gap: clamp(0.8rem, 1.4vw, 1.15rem);
+    color: var(--color-bg);
+  }
+
+  .method-section__brand img {
+    width: clamp(2.35rem, 4vw, 3.7rem);
+    height: clamp(2.35rem, 4vw, 3.7rem);
+    object-fit: contain;
     filter: invert(1);
+    mix-blend-mode: screen;
+  }
+
+  .method-section__brand span {
+    font-family: var(--font-display);
+    font-size: clamp(1.35rem, 2.5vw, 2.5rem);
+    line-height: 1;
+    letter-spacing: 0.1em;
   }
 
   @media (max-width: 1120px) {
