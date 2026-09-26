@@ -11,8 +11,8 @@ const workshopImages = [
     alt: 'Participants painting by hand during the street art team workshop.',
   },
   {
-    src: '/projects/workshop-team-building-unicredit/3.jpg',
-    alt: 'Participants presenting a colourful artwork created during the workshop.',
+    src: '/projects/workshop-team-building-unicredit/artwork-detail.jpg',
+    alt: 'Close crop of a colourful artwork created during the workshop.',
   },
   {
     src: '/projects/workshop-team-building-unicredit/4.jpg',
@@ -21,6 +21,10 @@ const workshopImages = [
   {
     src: '/projects/workshop-team-building-unicredit/5.jpg',
     alt: 'Workshop room prepared with tables, canvases and materials for a large team activity.',
+  },
+  {
+    src: '/projects/workshop-team-building-unicredit/space-detail.jpg',
+    alt: 'Detail of the workshop space and completed artworks at Mare Culturale Urbano.',
   },
 ];
 
@@ -99,7 +103,7 @@ const faqs = [
 
         <div class="flagship-gallery" aria-label="Workshop images">
           <figure class="flagship-gallery__large">
-            <img src={workshopImages[1].src} alt={workshopImages[1].alt} loading="lazy" decoding="async" />
+            <img src={workshopImages[4].src} alt={workshopImages[4].alt} loading="lazy" decoding="async" />
           </figure>
           <figure>
             <img src={workshopImages[3].src} alt={workshopImages[3].alt} loading="lazy" decoding="async" />
@@ -137,7 +141,7 @@ const faqs = [
     <section class="location-section">
       <div class="container location-section__inner">
         <figure class="location-section__media">
-          <img src={workshopImages[4].src} alt={workshopImages[4].alt} loading="lazy" decoding="async" />
+          <img src={workshopImages[5].src} alt={workshopImages[5].alt} loading="lazy" decoding="async" />
         </figure>
         <div>
           <p class="workshop-label">IN MILAN</p>
@@ -320,6 +324,7 @@ const faqs = [
   .workshop-hero__media img,
   .custom-section__media img,
   .flagship-gallery img {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -469,6 +474,7 @@ const faqs = [
   }
 
   .location-section__media img {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;

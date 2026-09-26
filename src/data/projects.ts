@@ -7,6 +7,7 @@ export const projects = [
     note:
       'The format translates futures thinking tools into an accessible sequence of questions, maps, and shared decisions.',
     tags: ['Foresight', 'Workshop', 'Sensemaking'],
+    logo: '/projects/logos/cludo.png',
     images: [
       '/projects/workshop-cludo/cover.jpg',
       '/projects/workshop-cludo/1.jpg',
@@ -222,6 +223,7 @@ export const projects = [
     note:
       'The work produced maps, criteria, a reciprocity checklist, and an interactive final session to make abstract concepts discussable.',
     tags: ['Research design', 'Citizen science', 'Workshop'],
+    logo: '/projects/logos/vu-amsterdam.png',
     images: [
       '/projects/workshop-vu-amsterdam/1.jpg',
       '/projects/workshop-vu-amsterdam/2.jpg',
@@ -438,10 +440,11 @@ export const projects = [
     note:
       'Street art was used as a concrete team-building tool: hands, materials, shared space, and a visible trace built by the group.',
     tags: ['Team building', 'Street art', 'Corporate'],
+    logo: '/projects/logos/unicredit.png',
     images: [
       '/projects/workshop-team-building-unicredit/1.jpg',
       '/projects/workshop-team-building-unicredit/2.jpg',
-      '/projects/workshop-team-building-unicredit/3.jpg',
+      '/projects/workshop-team-building-unicredit/artwork-detail.jpg',
       '/projects/workshop-team-building-unicredit/4.jpg',
       '/projects/workshop-team-building-unicredit/5.jpg',
     ],

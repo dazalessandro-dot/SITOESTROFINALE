@@ -24,12 +24,6 @@ const matrixCells = [
   },
 ];
 
-const outputs = [
-  'workshops and creative tools',
-  'future scenarios',
-  'branding and product design',
-];
-
 const diamondNotes = [
   'Workshops that open new perspectives.',
   'Tools that help teams generate together.',
@@ -70,7 +64,6 @@ const diamondNotes = [
           <div class="matrix-grid">
             {matrixCells.map((cell) => (
               <article>
-                <p>{cell.axes}</p>
                 <h3>{cell.title}</h3>
                 <span>{cell.body}</span>
               </article>
@@ -150,17 +143,6 @@ const diamondNotes = [
       </div>
     </section>
 
-    <section class="culture-close">
-      <div class="container culture-close__inner">
-        <h2>What this becomes.</h2>
-        <ul aria-label="How Estro culture becomes studio work">
-          {outputs.map((output) => (
-            <li>{output}</li>
-          ))}
-        </ul>
-        <a href="/contact">Start a conversation <span aria-hidden="true">→</span></a>
-      </div>
-    </section>
   </article>
 </BaseLayout>
 
@@ -217,8 +199,7 @@ const diamondNotes = [
 
   .culture-section-grid,
   .culture-visual__inner,
-  .ai-quote-section__inner,
-  .culture-close__inner {
+  .ai-quote-section__inner {
     display: grid;
     grid-template-columns: minmax(0, 0.28fr) minmax(0, 0.72fr);
     gap: clamp(2rem, 6vw, 7rem);
@@ -232,8 +213,7 @@ const diamondNotes = [
     top: 96px;
   }
 
-  .culture-section-heading h2,
-  .culture-close h2 {
+  .culture-section-heading h2 {
     max-width: 11ch;
     font-family: var(--font-display);
     font-size: clamp(2.2rem, 4.2vw, 4.8rem);
@@ -252,94 +232,117 @@ const diamondNotes = [
 
   .culture-matrix-section,
   .culture-visual,
-  .ai-quote-section,
-  .culture-close {
+  .ai-quote-section {
     padding-block: clamp(4rem, 8vw, 8rem);
     border-top: 1px solid rgba(17, 17, 17, 0.16);
   }
 
+  .culture-matrix-section {
+    padding-block: clamp(3rem, 5vw, 5.5rem);
+  }
+
+  .culture-matrix-section .culture-section-grid {
+    grid-template-columns: minmax(11rem, 0.2fr) minmax(0, 0.8fr);
+    gap: clamp(2rem, 4.5vw, 4.5rem);
+  }
+
+  .culture-matrix-section .culture-section-heading h2 {
+    max-width: 10ch;
+    font-size: clamp(2rem, 3.25vw, 3.8rem);
+    line-height: 0.98;
+  }
+
   .culture-matrix {
     position: relative;
-    min-height: clamp(34rem, 54vw, 48rem);
-    padding: clamp(2.6rem, 5vw, 4.5rem);
-  }
-
-  .culture-matrix::before,
-  .culture-matrix::after {
-    content: '';
-    position: absolute;
-    background: rgba(17, 17, 17, 0.28);
-  }
-
-  .culture-matrix::before {
-    left: 50%;
-    top: 1.2rem;
-    bottom: 1.2rem;
-    width: 1px;
-  }
-
-  .culture-matrix::after {
-    left: 1.2rem;
-    right: 1.2rem;
-    top: 50%;
-    height: 1px;
+    width: min(100%, 58rem);
+    justify-self: end;
+    min-height: clamp(24rem, 36vw, 31rem);
+    max-height: calc(100dvh - 10rem);
+    padding: clamp(2rem, 3.2vw, 3rem) clamp(2.9rem, 4vw, 4rem);
+    overflow: visible;
   }
 
   .matrix-axis {
     position: absolute;
     z-index: 2;
-    font-family: var(--font-display);
-    font-size: clamp(1.1rem, 1.8vw, 1.9rem);
+    font-family: var(--font-body);
+    font-size: clamp(0.68rem, 0.82vw, 0.82rem);
+    font-weight: 700;
     line-height: 1;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--color-text);
+    color: rgba(17, 17, 17, 0.62);
+  }
+
+  .matrix-axis--top,
+  .matrix-axis--bottom {
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .matrix-axis--top {
     top: 0;
-    left: 50%;
-    transform: translateX(-50%);
   }
 
   .matrix-axis--bottom {
     bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
+  }
+
+  .matrix-axis--left,
+  .matrix-axis--right {
+    top: 50%;
+    writing-mode: vertical-rl;
   }
 
   .matrix-axis--left {
     left: 0;
-    top: 50%;
-    transform: translateY(-50%) rotate(-90deg);
-    transform-origin: center;
+    transform: translateY(-50%) rotate(180deg);
   }
 
   .matrix-axis--right {
     right: 0;
-    top: 50%;
-    transform: translateY(-50%) rotate(90deg);
-    transform-origin: center;
+    transform: translateY(-50%);
   }
 
   .matrix-grid {
+    position: relative;
     height: 100%;
     min-height: inherit;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1px;
-    background: rgba(17, 17, 17, 0.18);
-    border: 1px solid rgba(17, 17, 17, 0.18);
+    border: 1px solid rgba(17, 17, 17, 0.26);
+    background: var(--color-bg);
+  }
+
+  .matrix-grid::before,
+  .matrix-grid::after {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    background: rgba(17, 17, 17, 0.24);
+    pointer-events: none;
+  }
+
+  .matrix-grid::before {
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+  }
+
+  .matrix-grid::after {
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 1px;
   }
 
   .matrix-grid article {
-    min-height: 16rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: var(--space-4);
-    padding: clamp(1rem, 2.4vw, 2rem);
-    background: var(--color-bg);
+    min-height: clamp(11rem, 16.5vw, 14.8rem);
+    display: grid;
+    grid-template-rows: 1fr auto;
+    gap: clamp(0.85rem, 1.45vw, 1.35rem);
+    padding: clamp(1rem, 1.65vw, 1.45rem);
     transition:
       background var(--duration-fast) var(--easing),
       transform var(--duration-fast) var(--easing);
@@ -350,29 +353,21 @@ const diamondNotes = [
     transform: translateY(-2px);
   }
 
-  .matrix-grid p {
-    font-family: var(--font-body);
-    font-size: var(--text-xs);
-    line-height: 1;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--color-muted);
-  }
-
   .matrix-grid h3 {
-    max-width: 9ch;
+    max-width: 11ch;
+    align-self: end;
     font-family: var(--font-display);
-    font-size: clamp(1.8rem, 3vw, 3.4rem);
+    font-size: clamp(1.55rem, 2.15vw, 2.55rem);
     font-weight: 400;
-    line-height: 0.94;
-    letter-spacing: var(--display-tracking-tight);
+    line-height: 0.98;
+    letter-spacing: 0.018em;
   }
 
   .matrix-grid span {
-    max-width: 24ch;
+    max-width: 28ch;
     font-family: var(--font-body);
-    font-size: clamp(0.95rem, 1.2vw, 1.08rem);
-    line-height: 1.42;
+    font-size: clamp(0.78rem, 0.92vw, 0.92rem);
+    line-height: 1.38;
     color: var(--color-muted);
   }
 
@@ -510,38 +505,6 @@ const diamondNotes = [
     color: var(--color-bg);
   }
 
-  .culture-close {
-    padding-bottom: clamp(5rem, 9vw, 9rem);
-  }
-
-  .culture-close ul {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2);
-    align-content: start;
-  }
-
-  .culture-close li {
-    border: 1px solid rgba(17, 17, 17, 0.34);
-    border-radius: 999px;
-    padding: 0.66rem 0.94rem 0.58rem;
-    font-family: var(--font-display);
-    font-size: clamp(1.1rem, 1.8vw, 1.8rem);
-    line-height: 1;
-    letter-spacing: var(--display-tracking);
-  }
-
-  .culture-close a {
-    grid-column: 2;
-    width: fit-content;
-    border-bottom: 1px solid currentColor;
-    padding-bottom: 0.25rem;
-    font-family: var(--font-display);
-    font-size: clamp(1.1rem, 1.5vw, 1.35rem);
-    line-height: 1;
-    letter-spacing: var(--display-tracking);
-  }
-
   @media (prefers-reduced-motion: reduce) {
     .matrix-grid article {
       transition: none;
@@ -556,8 +519,7 @@ const diamondNotes = [
     .culture-hero__inner,
     .culture-section-grid,
     .culture-visual__inner,
-    .ai-quote-section__inner,
-    .culture-close__inner {
+    .ai-quote-section__inner {
       grid-template-columns: 1fr;
     }
 
@@ -565,8 +527,16 @@ const diamondNotes = [
       position: static;
     }
 
-    .ai-quote-section__note,
-    .culture-close a {
+    .culture-matrix-section .culture-section-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .culture-matrix {
+      width: 100%;
+      justify-self: stretch;
+    }
+
+    .ai-quote-section__note {
       grid-column: auto;
     }
   }
@@ -584,30 +554,13 @@ const diamondNotes = [
 
     .culture-matrix {
       min-height: auto;
-      padding: 2.75rem 0.35rem 3rem;
+      max-height: none;
+      padding: 2.25rem 1.9rem;
     }
 
-    .culture-matrix::before {
-      top: 2.7rem;
-      bottom: 3rem;
-    }
-
-    .culture-matrix::after {
-      left: 0.35rem;
-      right: 0.35rem;
-    }
-
-    .matrix-axis--left,
-    .matrix-axis--right {
-      display: none;
-    }
-
-    .matrix-axis--top,
-    .matrix-axis--bottom {
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 0.95rem;
-      letter-spacing: 0.1em;
+    .matrix-axis {
+      font-size: 0.56rem;
+      letter-spacing: 0.14em;
     }
 
     .matrix-grid {
@@ -616,30 +569,24 @@ const diamondNotes = [
     }
 
     .matrix-grid article {
-      min-height: 10.6rem;
-      gap: 0.85rem;
-      padding: 0.85rem;
-    }
-
-    .matrix-grid p {
-      font-size: 0.58rem;
-      letter-spacing: 0.06em;
+      min-height: 9.8rem;
+      gap: 0.72rem;
+      padding: 0.78rem;
     }
 
     .matrix-grid h3 {
       max-width: 8ch;
       font-size: clamp(1.18rem, 7vw, 1.75rem);
       line-height: 0.98;
-      letter-spacing: 0;
+      letter-spacing: 0.016em;
     }
 
     .matrix-grid span {
-      font-size: 0.72rem;
+      font-size: 0.68rem;
       line-height: 1.25;
     }
 
-    .culture-section-heading h2,
-    .culture-close h2 {
+    .culture-section-heading h2 {
       font-size: clamp(2.25rem, 11vw, 4rem);
     }
 

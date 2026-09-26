@@ -288,12 +288,13 @@ const relatedProjects = (project.related ?? [])
   }
 
   .project-feature img {
+    display: block;
     width: 100%;
     height: min(72dvh, 54rem);
     min-height: 32rem;
     object-fit: cover;
     border-radius: 8px;
-    background: #d8d5ca;
+    background: transparent;
   }
 
   figcaption {
@@ -461,11 +462,12 @@ const relatedProjects = (project.related ?? [])
   }
 
   .project-gallery__item img {
+    display: block;
     width: 100%;
     aspect-ratio: 4 / 3;
     object-fit: cover;
     border-radius: 8px;
-    background: #d8d5ca;
+    background: transparent;
   }
 
   .project-gallery__item.is-wide img {

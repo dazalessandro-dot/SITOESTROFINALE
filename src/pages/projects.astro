@@ -17,12 +17,23 @@ import { projects } from '../data/projects';
               <img
                 src={project.images[0]}
                 alt=""
-                class="project-card__visual"
+                class:list={['project-card__visual', project.logo && 'project-card__visual--logo-bg']}
                 loading="lazy"
                 decoding="async"
               />
             ) : (
               <div class="project-card__visual" style={`background:${project.tint};`}></div>
+            )}
+            {project.logo && <div class="project-card__veil" aria-hidden="true"></div>}
+            {project.logo && (
+              <img
+                src={project.logo}
+                alt=""
+                class="project-card__logo"
+                loading="lazy"
+                decoding="async"
+                aria-hidden="true"
+              />
             )}
             <div class="project-card__shade"></div>
             <div class="project-card__copy">
@@ -80,9 +91,42 @@ import { projects } from '../data/projects';
       transform 360ms ease;
   }
 
+  .project-card__visual--logo-bg {
+    filter: saturate(0.9) blur(4px) brightness(0.92);
+    transform: scale(1.025);
+  }
+
   .project-card:hover .project-card__visual {
     filter: saturate(1.08);
     transform: scale(1.025);
+  }
+
+  .project-card:hover .project-card__visual--logo-bg {
+    filter: saturate(0.98) blur(3px) brightness(0.98);
+    transform: scale(1.045);
+  }
+
+  .project-card__logo {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 3;
+    width: min(66%, 28rem);
+    max-height: 34%;
+    object-fit: contain;
+    opacity: 0.92;
+    filter: drop-shadow(0 1.1rem 2.2rem rgba(0, 0, 0, 0.3));
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .project-card__veil {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: rgba(242, 240, 234, 0.18);
+    backdrop-filter: blur(0.5px);
+    pointer-events: none;
   }
 
   .project-card__shade {
